@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "nexus-attest"
-version = "0.6.0"
+version = "0.6.1"
 description = "Orchestration and approval layer for nexus-router executions"
 readme = "README.md"
 license = "MIT"
