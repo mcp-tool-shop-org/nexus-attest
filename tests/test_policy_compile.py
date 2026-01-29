@@ -2,7 +2,7 @@
 
 import pytest
 
-from nexus_control.policy import (
+from nexus_attest.policy import (
     Policy,
     PolicyValidationResult,
     validate_execution_request,

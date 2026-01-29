@@ -3,7 +3,7 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "nexus-control"
+name = "nexus-attest"
 version = "0.6.0"
 description = "Orchestration and approval layer for nexus-router executions"
 readme = "README.md"
@@ -12,14 +12,31 @@ requires-python = ">=3.11"
 authors = [
     { name = "mcp-tool-shop", email = "64996768+mcp-tool-shop@users.noreply.github.com" }
 ]
-keywords = ["mcp", "orchestration", "approval", "audit", "nexus"]
+keywords = [
+    "mcp",
+    "model-context-protocol",
+    "orchestration",
+    "approval-workflow",
+    "audit-trail",
+    "event-sourcing",
+    "decision-engine",
+    "nexus-router",
+    "cryptographic-proof",
+    "xrpl",
+]
 classifiers = [
-    "Development Status :: 3 - Alpha",
+    "Development Status :: 4 - Beta",
     "Intended Audience :: Developers",
+    "Intended Audience :: System Administrators",
     "License :: OSI Approved :: MIT License",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
-    "Topic :: Software Development :: Libraries",
+    "Operating System :: OS Independent",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: System :: Distributed Computing",
+    "Topic :: Security",
+    "Topic :: System :: Systems Administration",
+    "Typing :: Typed",
 ]
 dependencies = [
     "nexus-router>=0.1.0",
@@ -34,11 +51,11 @@ dev = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/mcp-tool-shop/nexus-control"
-Repository = "https://github.com/mcp-tool-shop/nexus-control"
+Homepage = "https://github.com/mcp-tool-shop/nexus-attest"
+Repository = "https://github.com/mcp-tool-shop/nexus-attest"
 
 [tool.hatch.build.targets.wheel]
-packages = ["nexus_control"]
+packages = ["nexus_attest"]
 
 [tool.pytest.ini_options]
 asyncio_mode = "auto"
@@ -48,7 +65,7 @@ python_files = ["test_*.py"]
 [tool.pyright]
 pythonVersion = "3.11"
 typeCheckingMode = "strict"
-include = ["nexus_control", "tests"]
+include = ["nexus_attest", "tests"]
 
 [tool.ruff]
 target-version = "py311"

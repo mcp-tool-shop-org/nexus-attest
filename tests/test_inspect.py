@@ -2,8 +2,8 @@
 
 import pytest
 
-from nexus_control.events import Actor
-from nexus_control.tool import NexusControlTools
+from nexus_attest.events import Actor
+from nexus_attest.tool import NexusControlTools
 
 
 class MockRouter:

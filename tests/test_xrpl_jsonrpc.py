@@ -18,7 +18,7 @@ from typing import Any
 
 import pytest
 
-from nexus_control.attestation.xrpl.jsonrpc_client import JsonRpcClient
+from nexus_attest.attestation.xrpl.jsonrpc_client import JsonRpcClient
 
 # ---------------------------------------------------------------------------
 # Fake transport

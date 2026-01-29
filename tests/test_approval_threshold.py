@@ -3,9 +3,9 @@
 import pytest
 from datetime import datetime, timezone, timedelta
 
-from nexus_control.events import Actor, EventType
-from nexus_control.store import DecisionStore
-from nexus_control.tool import NexusControlTools
+from nexus_attest.events import Actor, EventType
+from nexus_attest.store import DecisionStore
+from nexus_attest.tool import NexusControlTools
 
 
 class TestApprovalThreshold:
@@ -178,7 +178,7 @@ class TestApprovalThreshold:
         )
 
         # Manually set state to executing by appending events directly
-        from nexus_control.decision import Decision
+        from nexus_attest.decision import Decision
 
         self.tools.store.append_event(
             decision_id=request_id,

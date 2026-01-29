@@ -9,9 +9,9 @@ from datetime import UTC, datetime, timedelta
 
 import pytest
 
-from nexus_control.decision import Decision
-from nexus_control.events import Actor, EventType
-from nexus_control.lifecycle import (
+from nexus_attest.decision import Decision
+from nexus_attest.events import Actor, EventType
+from nexus_attest.lifecycle import (
     BlockingReason,
     Lifecycle,
     LifecycleEntry,
@@ -21,8 +21,8 @@ from nexus_control.lifecycle import (
     compute_progress,
     compute_timeline,
 )
-from nexus_control.store import DecisionStore
-from nexus_control.tool import NexusControlTools
+from nexus_attest.store import DecisionStore
+from nexus_attest.tool import NexusControlTools
 
 
 class TestBlockingReasons:
@@ -741,7 +741,7 @@ class TestTimelineTruncation:
 
     def test_default_timeline_limit(self):
         """Default timeline limit is 20."""
-        from nexus_control.lifecycle import DEFAULT_TIMELINE_LIMIT
+        from nexus_attest.lifecycle import DEFAULT_TIMELINE_LIMIT
 
         assert DEFAULT_TIMELINE_LIMIT == 20
 
@@ -774,7 +774,7 @@ class TestBlockingReasonOrdering:
     def test_blocking_order_is_documented(self):
         """Blocking reason codes follow documented priority order."""
         # Verify the documented order from the docstring
-        from nexus_control.lifecycle import compute_blocking_reasons
+        from nexus_attest.lifecycle import compute_blocking_reasons
 
         doc = compute_blocking_reasons.__doc__
         assert doc is not None

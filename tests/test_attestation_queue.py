@@ -16,9 +16,9 @@ import json
 
 import pytest
 
-from nexus_control.attestation.intent import AttestationIntent
-from nexus_control.attestation.queue import AttestationQueue, QueuedIntent
-from nexus_control.attestation.receipt import (
+from nexus_attest.attestation.intent import AttestationIntent
+from nexus_attest.attestation.queue import AttestationQueue, QueuedIntent
+from nexus_attest.attestation.receipt import (
     AttestationReceipt,
     ReceiptError,
     ReceiptStatus,

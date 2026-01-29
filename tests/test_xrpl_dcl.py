@@ -12,15 +12,15 @@ from typing import Any
 
 import pytest
 
-from nexus_control.attestation.intent import AttestationIntent
-from nexus_control.attestation.receipt import ReceiptStatus
-from nexus_control.attestation.xrpl.adapter import confirm, plan, submit
-from nexus_control.attestation.xrpl.client import SubmitResult, TxStatusResult
-from nexus_control.attestation.xrpl.jsonrpc_client import JsonRpcClient
-from nexus_control.attestation.xrpl.signer import SignResult
-from nexus_control.attestation.xrpl.transport import DclTransport, ExchangeRecord
-from nexus_control.canonical_json import canonical_json_bytes
-from nexus_control.integrity import sha256_digest
+from nexus_attest.attestation.intent import AttestationIntent
+from nexus_attest.attestation.receipt import ReceiptStatus
+from nexus_attest.attestation.xrpl.adapter import confirm, plan, submit
+from nexus_attest.attestation.xrpl.client import SubmitResult, TxStatusResult
+from nexus_attest.attestation.xrpl.jsonrpc_client import JsonRpcClient
+from nexus_attest.attestation.xrpl.signer import SignResult
+from nexus_attest.attestation.xrpl.transport import DclTransport, ExchangeRecord
+from nexus_attest.canonical_json import canonical_json_bytes
+from nexus_attest.integrity import sha256_digest
 
 
 # ---------------------------------------------------------------------------

@@ -11,8 +11,8 @@ Test plan:
 
 from typing import Any
 
-from nexus_control.audit_export import export_audit_package, render_audit_package
-from nexus_control.audit_package import (
+from nexus_attest.audit_export import export_audit_package, render_audit_package
+from nexus_attest.audit_package import (
     AUDIT_ERROR_NO_ROUTER_LINK,
     AUDIT_ERROR_ROUTER_DIGEST_MISMATCH,
     PACKAGE_VERSION,
@@ -20,9 +20,9 @@ from nexus_control.audit_package import (
     compute_binding_digest,
     verify_audit_package,
 )
-from nexus_control.events import Actor
-from nexus_control.export import export_decision
-from nexus_control.tool import NexusControlTools
+from nexus_attest.events import Actor
+from nexus_attest.export import export_decision
+from nexus_attest.tool import NexusControlTools
 
 
 class MockRouter:

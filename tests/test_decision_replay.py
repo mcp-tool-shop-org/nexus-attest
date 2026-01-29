@@ -3,8 +3,8 @@
 import pytest
 from datetime import datetime, timezone, timedelta
 
-from nexus_control.decision import Decision, DecisionState
-from nexus_control.events import (
+from nexus_attest.decision import Decision, DecisionState
+from nexus_attest.events import (
     Actor,
     EventType,
     DecisionCreatedPayload,
@@ -12,7 +12,7 @@ from nexus_control.events import (
     ApprovalGrantedPayload,
     ExecutionCompletedPayload,
 )
-from nexus_control.store import DecisionStore, StoredEvent
+from nexus_attest.store import DecisionStore, StoredEvent
 
 
 class TestDecisionReplay:

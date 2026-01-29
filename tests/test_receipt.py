@@ -10,12 +10,12 @@ Test plan:
 - Invariants: intent_digest format, backend format, attempt >= 1,
   created_at RFC3339 UTC, evidence_digests format, proof required when confirmed
 - Enums: ReceiptStatus values, ReceiptErrorCode values
-- Import: re-exported from nexus_control.attestation
+- Import: re-exported from nexus_attest.attestation
 """
 
 import pytest
 
-from nexus_control.attestation.receipt import (
+from nexus_attest.attestation.receipt import (
     RECEIPT_VERSION,
     AttestationReceipt,
     ReceiptError,
@@ -382,21 +382,21 @@ class TestReceiptEnums:
 
 class TestReceiptImport:
     def test_importable_from_attestation_package(self) -> None:
-        from nexus_control.attestation import AttestationReceipt as Imported
+        from nexus_attest.attestation import AttestationReceipt as Imported
         assert Imported is AttestationReceipt
 
     def test_receipt_status_importable(self) -> None:
-        from nexus_control.attestation import ReceiptStatus as Imported
+        from nexus_attest.attestation import ReceiptStatus as Imported
         assert Imported is ReceiptStatus
 
     def test_receipt_error_code_importable(self) -> None:
-        from nexus_control.attestation import ReceiptErrorCode as Imported
+        from nexus_attest.attestation import ReceiptErrorCode as Imported
         assert Imported is ReceiptErrorCode
 
     def test_receipt_error_importable(self) -> None:
-        from nexus_control.attestation import ReceiptError as Imported
+        from nexus_attest.attestation import ReceiptError as Imported
         assert Imported is ReceiptError
 
     def test_receipt_version_importable(self) -> None:
-        from nexus_control.attestation import RECEIPT_VERSION as Imported
+        from nexus_attest.attestation import RECEIPT_VERSION as Imported
         assert Imported == RECEIPT_VERSION

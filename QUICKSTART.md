@@ -1,11 +1,11 @@
-# Quickstart: nexus-control
+# Quickstart: nexus-attest
 
 Get operational in 5 minutes.
 
 ## Install
 
 ```bash
-pip install nexus-control
+pip install nexus-attest
 ```
 
 ## The 3-Command Flow
@@ -13,8 +13,8 @@ pip install nexus-control
 ### 1. Create a Decision
 
 ```python
-from nexus_control import NexusControlTools
-from nexus_control.events import Actor
+from nexus_attest import NexusControlTools
+from nexus_attest.events import Actor
 
 tools = NexusControlTools(db_path="control.db")
 
@@ -155,8 +155,8 @@ for event in status.data["events"]:
 # 2024-01-15T10:05:00Z | APPROVAL_GRANTED | alice
 # 2024-01-15T10:10:00Z | APPROVAL_GRANTED | bob
 # 2024-01-15T10:15:00Z | EXECUTION_REQUESTED | scheduler
-# 2024-01-15T10:15:01Z | EXECUTION_STARTED | nexus-control
-# 2024-01-15T10:15:30Z | EXECUTION_COMPLETED | nexus-control
+# 2024-01-15T10:15:01Z | EXECUTION_STARTED | nexus-attest
+# 2024-01-15T10:15:30Z | EXECUTION_COMPLETED | nexus-attest
 ```
 
 ## What Makes This Useful

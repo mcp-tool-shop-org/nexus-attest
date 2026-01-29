@@ -14,18 +14,18 @@ import json
 
 import pytest
 
-from nexus_control.bundle import (
+from nexus_attest.bundle import (
     BUNDLE_VERSION,
     DecisionBundle,
     compute_bundle_digest,
     validate_bundle_schema,
 )
-from nexus_control.decision import Decision
-from nexus_control.events import Actor
-from nexus_control.export import export_decision, render_export
-from nexus_control.import_ import import_bundle
-from nexus_control.store import DecisionStore
-from nexus_control.tool import NexusControlTools
+from nexus_attest.decision import Decision
+from nexus_attest.events import Actor
+from nexus_attest.export import export_decision, render_export
+from nexus_attest.import_ import import_bundle
+from nexus_attest.store import DecisionStore
+from nexus_attest.tool import NexusControlTools
 
 
 class TestExportDeterminism:
@@ -401,7 +401,7 @@ class TestImportConflictModes:
         bundle_dict["decision"]["decision_id"] = decision_id
 
         # Recompute digest for the modified bundle
-        from nexus_control.bundle import (
+        from nexus_attest.bundle import (
             BundleDecision,
             BundleEvent,
             BundleRouterLink,

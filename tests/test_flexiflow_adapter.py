@@ -10,20 +10,20 @@ Covers:
 
 import pytest
 
-from nexus_control.attestation.flexiflow_adapter import (
+from nexus_attest.attestation.flexiflow_adapter import (
     _receipt_summary,
     attest_xrpl_process_one,
     configure_signer,
 )
-from nexus_control.attestation.intent import AttestationIntent
-from nexus_control.attestation.queue import AttestationQueue
-from nexus_control.attestation.receipt import (
+from nexus_attest.attestation.intent import AttestationIntent
+from nexus_attest.attestation.queue import AttestationQueue
+from nexus_attest.attestation.receipt import (
     AttestationReceipt,
     ReceiptError,
     ReceiptStatus,
 )
-from nexus_control.attestation.xrpl.client import SubmitResult, TxStatusResult
-from nexus_control.attestation.xrpl.signer import SignResult
+from nexus_attest.attestation.xrpl.client import SubmitResult, TxStatusResult
+from nexus_attest.attestation.xrpl.signer import SignResult
 
 
 # ---------------------------------------------------------------------------
@@ -91,7 +91,7 @@ class TestSignerConfiguration:
         configure_signer(FakeSigner)
 
         # The factory should be callable and return a signer
-        from nexus_control.attestation.flexiflow_adapter import _get_signer
+        from nexus_attest.attestation.flexiflow_adapter import _get_signer
 
         signer = _get_signer()
         assert hasattr(signer, "account")
@@ -175,7 +175,7 @@ class TestHandlerOutcomes:
         self, tmp_path: pytest.TempPathFactory, monkeypatch: pytest.MonkeyPatch
     ) -> None:
         """Handler returns CONFIRMED when attestation succeeds."""
-        import nexus_control.attestation.flexiflow_adapter as adapter_module
+        import nexus_attest.attestation.flexiflow_adapter as adapter_module
 
         db_path = tmp_path / "test.db"  # type: ignore[operator]
 
@@ -186,7 +186,7 @@ class TestHandlerOutcomes:
 
         # Mock process_one_xrpl to return CONFIRMED
         async def mock_process_one(*args, **kwargs):
-            from nexus_control.attestation.worker import ProcessResult
+            from nexus_attest.attestation.worker import ProcessResult
 
             return ProcessResult(
                 processed=True,
@@ -218,7 +218,7 @@ class TestHandlerOutcomes:
         self, tmp_path: pytest.TempPathFactory, monkeypatch: pytest.MonkeyPatch
     ) -> None:
         """Handler returns FAILED when attestation fails permanently."""
-        import nexus_control.attestation.flexiflow_adapter as adapter_module
+        import nexus_attest.attestation.flexiflow_adapter as adapter_module
 
         db_path = tmp_path / "test.db"  # type: ignore[operator]
 
@@ -227,7 +227,7 @@ class TestHandlerOutcomes:
         queue.enqueue(intent)
 
         async def mock_process_one(*args, **kwargs):
-            from nexus_control.attestation.worker import ProcessResult
+            from nexus_attest.attestation.worker import ProcessResult
 
             return ProcessResult(
                 processed=True,
@@ -258,7 +258,7 @@ class TestHandlerOutcomes:
         self, tmp_path: pytest.TempPathFactory, monkeypatch: pytest.MonkeyPatch
     ) -> None:
         """Handler returns DEFERRED when confirmation is pending."""
-        import nexus_control.attestation.flexiflow_adapter as adapter_module
+        import nexus_attest.attestation.flexiflow_adapter as adapter_module
 
         db_path = tmp_path / "test.db"  # type: ignore[operator]
 
@@ -267,7 +267,7 @@ class TestHandlerOutcomes:
         queue.enqueue(intent)
 
         async def mock_process_one(*args, **kwargs):
-            from nexus_control.attestation.worker import ProcessResult
+            from nexus_attest.attestation.worker import ProcessResult
 
             return ProcessResult(
                 processed=True,
@@ -315,7 +315,7 @@ class TestContextParameters:
         self, tmp_path: pytest.TempPathFactory, monkeypatch: pytest.MonkeyPatch
     ) -> None:
         """intent_digest from context is passed to process_one_xrpl."""
-        import nexus_control.attestation.flexiflow_adapter as adapter_module
+        import nexus_attest.attestation.flexiflow_adapter as adapter_module
 
         db_path = tmp_path / "test.db"  # type: ignore[operator]
         queue = AttestationQueue(str(db_path))
@@ -326,7 +326,7 @@ class TestContextParameters:
 
         async def mock_process_one(*args, **kwargs):
             captured_kwargs.update(kwargs)
-            from nexus_control.attestation.worker import ProcessResult
+            from nexus_attest.attestation.worker import ProcessResult
 
             return ProcessResult(processed=False)
 
@@ -345,7 +345,7 @@ class TestContextParameters:
         self, tmp_path: pytest.TempPathFactory, monkeypatch: pytest.MonkeyPatch
     ) -> None:
         """account from context overrides signer.account."""
-        import nexus_control.attestation.flexiflow_adapter as adapter_module
+        import nexus_attest.attestation.flexiflow_adapter as adapter_module
 
         db_path = tmp_path / "test.db"  # type: ignore[operator]
         queue = AttestationQueue(str(db_path))
@@ -354,7 +354,7 @@ class TestContextParameters:
 
         async def mock_process_one(*args, **kwargs):
             captured_kwargs.update(kwargs)
-            from nexus_control.attestation.worker import ProcessResult
+            from nexus_attest.attestation.worker import ProcessResult
 
             return ProcessResult(processed=False)
 

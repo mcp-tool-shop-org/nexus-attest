@@ -1,8 +1,8 @@
-# Architecture: How Nexus-Control Works
+# Architecture: How nexus-attest Works
 
 ## One Sentence
 
-Nexus-Control turns governance + execution into a single, verifiable artifact.
+nexus-attest turns governance + execution into a single, verifiable artifact.
 
 Not logs. Not reports. A file you can hash.
 
@@ -130,7 +130,7 @@ No mutable state. No hidden writes. Replay is deterministic.
 
 ```
 ┌─────────────────────────────────────────────────────────┐
-│                     nexus-control                        │
+│                     nexus-attest                        │
 │                                                         │
 │  ┌─────────┐ ┌─────────┐ ┌─────────┐ ┌──────────────┐  │
 │  │ request │ │ approve │ │ execute │ │ audit export │  │
@@ -169,7 +169,7 @@ Control plane stores **links, not copies**. Router remains the flight recorder.
 
 ## What This Replaces
 
-| Old World | Nexus-Control |
+| Old World | nexus-attest |
 |-----------|---------------|
 | Logs | Artifacts |
 | Trust | Verification |

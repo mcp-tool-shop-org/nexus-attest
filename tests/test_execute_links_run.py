@@ -4,8 +4,8 @@ import pytest
 from typing import Any
 from unittest.mock import MagicMock
 
-from nexus_control.events import Actor
-from nexus_control.tool import NexusControlTools, RouterProtocol
+from nexus_attest.events import Actor
+from nexus_attest.tool import NexusControlTools, RouterProtocol
 
 
 class MockRouter:

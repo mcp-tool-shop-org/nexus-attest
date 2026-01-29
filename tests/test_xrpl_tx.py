@@ -13,8 +13,8 @@ Test plan:
 
 import pytest
 
-from nexus_control.attestation.xrpl.memo import MEMO_TYPE_HEX
-from nexus_control.attestation.xrpl.tx import plan_payment_to_self
+from nexus_attest.attestation.xrpl.memo import MEMO_TYPE_HEX
+from nexus_attest.attestation.xrpl.tx import plan_payment_to_self
 
 # ---------------------------------------------------------------------------
 # Fixtures

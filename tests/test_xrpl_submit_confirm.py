@@ -16,22 +16,22 @@ Test plan:
 
 import pytest
 
-from nexus_control.attestation.intent import AttestationIntent
-from nexus_control.attestation.receipt import (
+from nexus_attest.attestation.intent import AttestationIntent
+from nexus_attest.attestation.receipt import (
     AttestationReceipt,
     ReceiptErrorCode,
     ReceiptStatus,
 )
-from nexus_control.attestation.xrpl.adapter import (
+from nexus_attest.attestation.xrpl.adapter import (
     XRPL_BACKEND,
     AnchorPlan,
     confirm,
     plan,
     submit,
 )
-from nexus_control.attestation.xrpl.client import SubmitResult, TxStatusResult
-from nexus_control.attestation.xrpl.errors import classify_engine_result
-from nexus_control.attestation.xrpl.signer import SignResult
+from nexus_attest.attestation.xrpl.client import SubmitResult, TxStatusResult
+from nexus_attest.attestation.xrpl.errors import classify_engine_result
+from nexus_attest.attestation.xrpl.signer import SignResult
 
 # ---------------------------------------------------------------------------
 # Fixtures

@@ -15,8 +15,8 @@ from typing import Any
 
 import pytest
 
-from nexus_control.attestation.xrpl.exchange_store import ExchangeStore
-from nexus_control.attestation.xrpl.transport import DclTransport, ExchangeRecord
+from nexus_attest.attestation.xrpl.exchange_store import ExchangeStore
+from nexus_attest.attestation.xrpl.transport import DclTransport, ExchangeRecord
 
 
 # ---------------------------------------------------------------------------

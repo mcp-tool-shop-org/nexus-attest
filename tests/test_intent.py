@@ -9,14 +9,14 @@ Test plan:
   digest when absent, labels affect digest
 - Invariants: binding_digest must be sha256:+64hex, label key format,
   label value length, label value no control chars, labels max count
-- Import: re-exported from nexus_control.attestation
+- Import: re-exported from nexus_attest.attestation
 """
 
 import copy
 
 import pytest
 
-from nexus_control.attestation.intent import (
+from nexus_attest.attestation.intent import (
     INTENT_VERSION,
     AttestationIntent,
 )
@@ -256,9 +256,9 @@ class TestIntentInvariants:
 
 class TestIntentImport:
     def test_importable_from_attestation_package(self) -> None:
-        from nexus_control.attestation import AttestationIntent as Imported
+        from nexus_attest.attestation import AttestationIntent as Imported
         assert Imported is AttestationIntent
 
     def test_intent_version_importable(self) -> None:
-        from nexus_control.attestation import INTENT_VERSION as Imported
+        from nexus_attest.attestation import INTENT_VERSION as Imported
         assert Imported == INTENT_VERSION

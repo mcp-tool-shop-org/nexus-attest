@@ -14,9 +14,9 @@ Test plan:
 
 import pytest
 
-from nexus_control.attestation.intent import AttestationIntent
-from nexus_control.attestation.xrpl.adapter import AnchorPlan, plan
-from nexus_control.attestation.xrpl.memo import (
+from nexus_attest.attestation.intent import AttestationIntent
+from nexus_attest.attestation.xrpl.adapter import AnchorPlan, plan
+from nexus_attest.attestation.xrpl.memo import (
     MAX_MEMO_BYTES,
     MEMO_TYPE_HEX,
     build_memo_payload,
@@ -24,7 +24,7 @@ from nexus_control.attestation.xrpl.memo import (
     memo_digest,
     serialize_memo,
 )
-from nexus_control.attestation.xrpl.tx import plan_payment_to_self
+from nexus_attest.attestation.xrpl.tx import plan_payment_to_self
 
 # ---------------------------------------------------------------------------
 # Fixtures

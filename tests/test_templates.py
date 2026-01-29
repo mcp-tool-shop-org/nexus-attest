@@ -2,9 +2,9 @@
 
 import pytest
 
-from nexus_control.events import Actor
-from nexus_control.template import Template, TemplateStore
-from nexus_control.tool import NexusControlTools
+from nexus_attest.events import Actor
+from nexus_attest.template import Template, TemplateStore
+from nexus_attest.tool import NexusControlTools
 
 
 class TestTemplate:
@@ -408,7 +408,7 @@ class TestRequestWithTemplate:
 
     def test_decision_tracks_template_ref(self):
         """Decision stores template reference."""
-        from nexus_control.decision import Decision
+        from nexus_attest.decision import Decision
 
         result = self.tools.request(
             goal="Deploy",
@@ -425,7 +425,7 @@ class TestRequestWithTemplate:
 
     def test_decision_tracks_overrides(self):
         """Decision stores applied overrides."""
-        from nexus_control.decision import Decision
+        from nexus_attest.decision import Decision
 
         result = self.tools.request(
             goal="Deploy",
@@ -611,7 +611,7 @@ class TestTemplateEndToEnd:
         request_id = result.data["request_id"]
 
         # Get decision and check snapshot
-        from nexus_control.decision import Decision
+        from nexus_attest.decision import Decision
 
         decision = Decision.load(self.tools.store, request_id)
 

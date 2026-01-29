@@ -15,8 +15,8 @@ import json
 
 import pytest
 
-from nexus_control.attestation.intent import AttestationIntent
-from nexus_control.attestation.xrpl.memo import (
+from nexus_attest.attestation.intent import AttestationIntent
+from nexus_attest.attestation.xrpl.memo import (
     MAX_MEMO_BYTES,
     MEMO_TYPE,
     MEMO_TYPE_HEX,

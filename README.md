@@ -1,4 +1,10 @@
-# nexus-control
+# nexus-attest
+
+[![PyPI version](https://badge.fury.io/py/nexus-attest.svg)](https://badge.fury.io/py/nexus-attest)
+[![Python Support](https://img.shields.io/pypi/pyversions/nexus-attest.svg)](https://pypi.org/project/nexus-attest/)
+[![License](https://img.shields.io/github/license/mcp-tool-shop/nexus-attest.svg)](https://github.com/mcp-tool-shop/nexus-attest/blob/main/LICENSE)
+[![Tests](https://github.com/mcp-tool-shop/nexus-attest/actions/workflows/ci.yml/badge.svg)](https://github.com/mcp-tool-shop/nexus-attest/actions/workflows/ci.yml)
+[![Code style: ruff](https://img.shields.io/badge/code%20style-ruff-000000.svg)](https://github.com/astral-sh/ruff)
 
 **Orchestration and approval layer for nexus-router executions.**
 
@@ -20,21 +26,37 @@ Everything is exportable, verifiable, and replayable.
 ## Installation
 
 ```bash
-pip install nexus-control
+pip install nexus-attest
 ```
 
 Or from source:
 ```bash
-git clone https://github.com/mcp-tool-shop/nexus-control
-cd nexus-control
+git clone https://github.com/mcp-tool-shop/nexus-attest
+cd nexus-attest
 pip install -e ".[dev]"
 ```
+
+## Why nexus-attest?
+
+**Problem**: Running MCP tools in production requires approval workflows, audit trails, and policy enforcement — but nexus-router executes immediately.
+
+**Solution**: nexus-attest adds a governance layer:
+- ✅ Request → Review → Approve → Execute workflow
+- ✅ Cryptographic audit packages linking decisions to executions
+- ✅ Policy templates for repeatable approval patterns
+- ✅ Full event sourcing for compliance and replay
+
+**Use Cases**:
+- Production deployments requiring N-of-M approvals
+- Security-sensitive operations (key rotation, access changes)
+- Compliance workflows needing audit trails
+- Multi-stakeholder decision processes
 
 ## Quick Start
 
 ```python
-from nexus_control import NexusControlTools
-from nexus_control.events import Actor
+from nexus_attest import NexusControlTools
+from nexus_attest.events import Actor
 
 # Initialize (uses in-memory SQLite by default)
 tools = NexusControlTools(db_path="decisions.db")
@@ -72,17 +94,17 @@ print(audit.data["digest"])  # sha256:...
 
 | Tool | Description |
 |------|-------------|
-| `nexus-control.request` | Create an execution request with goal, policy, and approvers |
-| `nexus-control.approve` | Approve a request (supports N-of-M approvals) |
-| `nexus-control.execute` | Execute approved request via nexus-router |
-| `nexus-control.status` | Get request state and linked run status |
-| `nexus-control.inspect` | Read-only introspection with human-readable output |
-| `nexus-control.template.create` | Create a named, immutable policy template |
-| `nexus-control.template.get` | Retrieve a template by name |
-| `nexus-control.template.list` | List all templates with optional label filtering |
-| `nexus-control.export_bundle` | Export a decision as a portable, integrity-verified bundle |
-| `nexus-control.import_bundle` | Import a bundle with conflict modes and replay validation |
-| `nexus-control.export_audit_package` | Export audit package binding governance to execution |
+| `nexus-attest.request` | Create an execution request with goal, policy, and approvers |
+| `nexus-attest.approve` | Approve a request (supports N-of-M approvals) |
+| `nexus-attest.execute` | Execute approved request via nexus-router |
+| `nexus-attest.status` | Get request state and linked run status |
+| `nexus-attest.inspect` | Read-only introspection with human-readable output |
+| `nexus-attest.template.create` | Create a named, immutable policy template |
+| `nexus-attest.template.get` | Retrieve a template by name |
+| `nexus-attest.template.list` | List all templates with optional label filtering |
+| `nexus-attest.export_bundle` | Export a decision as a portable, integrity-verified bundle |
+| `nexus-attest.import_bundle` | Import a bundle with conflict modes and replay validation |
+| `nexus-attest.export_audit_package` | Export audit package binding governance to execution |
 
 ## Audit Packages (v0.6.0)
 
@@ -94,7 +116,7 @@ A single JSON artifact that cryptographically binds:
 Into one verifiable `binding_digest`.
 
 ```python
-from nexus_control import export_audit_package, verify_audit_package
+from nexus_attest import export_audit_package, verify_audit_package
 
 # Export
 result = export_audit_package(store, decision_id)
@@ -140,7 +162,7 @@ result = tools.request(
 Computed lifecycle with blocking reasons and timeline:
 
 ```python
-from nexus_control import compute_lifecycle
+from nexus_attest import compute_lifecycle
 
 lifecycle = compute_lifecycle(decision, events, policy)
 
@@ -229,7 +251,7 @@ ruff check .
 ## Project Structure
 
 ```
-nexus-control/
+nexus-attest/
 ├── nexus_control/
 │   ├── __init__.py          # Public API + version
 │   ├── tool.py              # MCP tool entrypoints (11 tools)

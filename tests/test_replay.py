@@ -12,14 +12,14 @@ from pathlib import Path
 
 import pytest
 
-from nexus_control.attestation.intent import AttestationIntent
-from nexus_control.attestation.queue import AttestationQueue
-from nexus_control.attestation.receipt import (
+from nexus_attest.attestation.intent import AttestationIntent
+from nexus_attest.attestation.queue import AttestationQueue
+from nexus_attest.attestation.receipt import (
     AttestationReceipt,
     ReceiptError,
     ReceiptStatus,
 )
-from nexus_control.attestation.replay import (
+from nexus_attest.attestation.replay import (
     AttestationReport,
     ExchangeEvidence,
     ReceiptSummary,
@@ -27,8 +27,8 @@ from nexus_control.attestation.replay import (
     replay_attestation,
     show_attestation,
 )
-from nexus_control.attestation.xrpl.exchange_store import ExchangeStore
-from nexus_control.attestation.xrpl.transport import ExchangeRecord
+from nexus_attest.attestation.xrpl.exchange_store import ExchangeStore
+from nexus_attest.attestation.xrpl.transport import ExchangeRecord
 
 
 # ---------------------------------------------------------------------------
