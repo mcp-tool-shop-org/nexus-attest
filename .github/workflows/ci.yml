@@ -36,15 +36,15 @@ jobs:
 
       - name: Run tests
         run: |
-          pytest -v --tb=short --cov=nexus_control --cov-report=term-missing
+          pytest -v --tb=short --cov=nexus_attest --cov=nexus_control --cov-report=term-missing
 
       - name: Type check with pyright
         run: |
-          pyright nexus_control tests
+          pyright nexus_attest nexus_control tests
 
       - name: Lint with ruff
         run: |
-          ruff check nexus_control tests --exit-zero
+          ruff check nexus_attest nexus_control tests
 
   build-check:
     name: Build Package Check
