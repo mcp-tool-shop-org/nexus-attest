@@ -1,3 +1,8 @@
+> ⚠️ **This repository has moved to [nexus-suite](https://github.com/mcp-tool-shop/nexus-suite)**
+> Source now lives at: `src/nexus-attest/`
+
+---
+
 # nexus-attest
 
 [![PyPI version](https://badge.fury.io/py/nexus-attest.svg)](https://badge.fury.io/py/nexus-attest)
