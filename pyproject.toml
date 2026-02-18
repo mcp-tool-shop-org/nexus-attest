@@ -4,8 +4,8 @@ build-backend = "hatchling.build"
 
 [project]
 name = "nexus-attest"
-version = "0.6.1"
-description = "Orchestration and approval layer for nexus-router executions"
+version = "0.6.2"
+description = "Cryptographic attestation and verification layer for MCP tool executions"
 readme = "README.md"
 license = "MIT"
 requires-python = ">=3.11"
@@ -15,13 +15,13 @@ authors = [
 keywords = [
     "mcp",
     "model-context-protocol",
-    "orchestration",
-    "approval-workflow",
+    "attestation",
+    "cryptographic-proof",
+    "verification",
     "audit-trail",
     "event-sourcing",
     "decision-engine",
     "nexus-router",
-    "cryptographic-proof",
     "xrpl",
 ]
 classifiers = [
@@ -35,7 +35,7 @@ classifiers = [
     "Topic :: Software Development :: Libraries :: Python Modules",
     "Topic :: System :: Distributed Computing",
     "Topic :: Security",
-    "Topic :: System :: Systems Administration",
+    "Topic :: Security :: Cryptography",
     "Typing :: Typed",
 ]
 dependencies = [
@@ -51,8 +51,9 @@ dev = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/mcp-tool-shop/nexus-attest"
-Repository = "https://github.com/mcp-tool-shop/nexus-attest"
+Homepage = "https://github.com/mcp-tool-shop-org/nexus-attest"
+Repository = "https://github.com/mcp-tool-shop-org/nexus-attest"
+Issues = "https://github.com/mcp-tool-shop-org/nexus-attest/issues"
 
 [tool.hatch.build.targets.wheel]
 packages = ["nexus_attest"]

@@ -1,19 +1,23 @@
-> ⚠️ **This repository has moved to [nexus-suite](https://github.com/mcp-tool-shop/nexus-suite)**
-> Source now lives at: `src/nexus-attest/`
+<p align="center">
+  <img src="logo.png" alt="nexus-attest logo" width="200" />
+</p>
 
----
+<h1 align="center">nexus-attest</h1>
 
-# nexus-attest
+<p align="center">
+  <strong>Cryptographic attestation and verification layer for MCP tool executions.</strong>
+</p>
 
-[![PyPI version](https://badge.fury.io/py/nexus-attest.svg)](https://badge.fury.io/py/nexus-attest)
-[![Python Support](https://img.shields.io/pypi/pyversions/nexus-attest.svg)](https://pypi.org/project/nexus-attest/)
-[![License](https://img.shields.io/github/license/mcp-tool-shop/nexus-attest.svg)](https://github.com/mcp-tool-shop/nexus-attest/blob/main/LICENSE)
-[![Tests](https://github.com/mcp-tool-shop/nexus-attest/actions/workflows/ci.yml/badge.svg)](https://github.com/mcp-tool-shop/nexus-attest/actions/workflows/ci.yml)
-[![Code style: ruff](https://img.shields.io/badge/code%20style-ruff-000000.svg)](https://github.com/astral-sh/ruff)
+<p align="center">
+  <a href="https://pypi.org/project/nexus-attest/"><img src="https://badge.fury.io/py/nexus-attest.svg" alt="PyPI version" /></a>
+  <a href="https://pypi.org/project/nexus-attest/"><img src="https://img.shields.io/pypi/pyversions/nexus-attest.svg" alt="Python Support" /></a>
+  <a href="https://github.com/mcp-tool-shop-org/nexus-attest/blob/main/LICENSE"><img src="https://img.shields.io/github/license/mcp-tool-shop-org/nexus-attest.svg" alt="License" /></a>
+  <a href="https://github.com/mcp-tool-shop-org/nexus-attest/actions/workflows/ci.yml"><img src="https://github.com/mcp-tool-shop-org/nexus-attest/actions/workflows/ci.yml/badge.svg" alt="Tests" /></a>
+  <a href="https://github.com/astral-sh/ruff"><img src="https://img.shields.io/badge/code%20style-ruff-000000.svg" alt="Code style: ruff" /></a>
+</p>
 
-**Orchestration and approval layer for nexus-router executions.**
 
-A thin control plane that turns "router can execute" into "org can safely decide to execute" — with cryptographic proof.
+Every MCP tool execution becomes a tamper-evident, cryptographically signed event — with optional XRPL-anchored witness proofs for third-party verifiability.
 
 ## Core Promise
 
@@ -36,7 +40,7 @@ pip install nexus-attest
 
 Or from source:
 ```bash
-git clone https://github.com/mcp-tool-shop/nexus-attest
+git clone https://github.com/mcp-tool-shop-org/nexus-attest
 cd nexus-attest
 pip install -e ".[dev]"
 ```
@@ -257,7 +261,7 @@ ruff check .
 
 ```
 nexus-attest/
-├── nexus_control/
+├── nexus_attest/
 │   ├── __init__.py          # Public API + version
 │   ├── tool.py              # MCP tool entrypoints (11 tools)
 │   ├── store.py             # SQLite event store

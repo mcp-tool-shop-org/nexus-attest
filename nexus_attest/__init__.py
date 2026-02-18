@@ -1,16 +1,16 @@
 """
-nexus-control: Orchestration and approval layer for nexus-router executions.
+nexus-attest: Cryptographic attestation and verification layer for MCP tool executions.
 
 Every execution is tied to:
-- a decision
-- a policy
-- an approval trail
-- a nexus-router run id
+- a cryptographic attestation (signed claims + digest)
+- a decision (the request + policy)
+- an approval trail (who approved, when, with what authority)
+- a nexus-router run_id (for full execution audit)
 
-Everything is exportable and replayable.
+Everything is exportable, verifiable, and replayable.
 """
 
-__version__ = "0.6.1"
+__version__ = "0.6.2"
 
 from nexus_attest.audit_export import export_audit_package
 from nexus_attest.audit_package import (

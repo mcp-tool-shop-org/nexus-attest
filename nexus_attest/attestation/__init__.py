@@ -1,8 +1,8 @@
 """
-Attestation subsystem for nexus-control.
+Attestation subsystem for nexus-attest.
 
 Re-exports cryptographic signing primitives from ``_signing``.
-XRPL witness backend available at ``nexus_control.attestation.xrpl``.
+XRPL witness backend available at ``nexus_attest.attestation.xrpl``.
 """
 
 from nexus_attest.attestation._signing import (
