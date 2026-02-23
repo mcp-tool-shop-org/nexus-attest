@@ -104,9 +104,7 @@ class TestTxAmount:
 
     def test_rejects_non_string_amount(self) -> None:
         with pytest.raises(ValueError, match="amount_drops"):
-            plan_payment_to_self(
-                SAMPLE_ACCOUNT, SAMPLE_MEMO_HEX, amount_drops="1000000"
-            )
+            plan_payment_to_self(SAMPLE_ACCOUNT, SAMPLE_MEMO_HEX, amount_drops="1000000")
 
 
 # ---------------------------------------------------------------------------

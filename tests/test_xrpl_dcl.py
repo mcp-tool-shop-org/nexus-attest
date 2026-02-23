@@ -22,7 +22,6 @@ from nexus_attest.attestation.xrpl.transport import DclTransport, ExchangeRecord
 from nexus_attest.canonical_json import canonical_json_bytes
 from nexus_attest.integrity import sha256_digest
 
-
 # ---------------------------------------------------------------------------
 # Fake HTTP client for DclTransport tests
 # ---------------------------------------------------------------------------
@@ -41,9 +40,7 @@ class FakeHttpxClient:
     async def __aexit__(self, *args: object) -> None:
         pass
 
-    async def post(
-        self, url: str, json: dict[str, Any], headers: dict[str, str]
-    ) -> "FakeResponse":
+    async def post(self, url: str, json: dict[str, Any], headers: dict[str, str]) -> "FakeResponse":
         self.calls.append((url, json))
         return FakeResponse(self._response_content)
 
@@ -237,9 +234,7 @@ class TestDclTransport:
         assert transport1.last_exchange.request_digest != transport2.last_exchange.request_digest
 
     @pytest.mark.asyncio
-    async def test_response_digest_is_from_raw_bytes(
-        self, monkeypatch: pytest.MonkeyPatch
-    ) -> None:
+    async def test_response_digest_is_from_raw_bytes(self, monkeypatch: pytest.MonkeyPatch) -> None:
         response_bytes = b'{"result": {"status": "success"}}'
         fake_client = FakeHttpxClient(response_bytes)
         monkeypatch.setattr("httpx.AsyncClient", lambda **kw: fake_client)
@@ -543,14 +538,18 @@ class TestFullDclFlow:
     ) -> None:
         """End-to-end: DclTransport exchange digest appears in adapter receipt."""
         # Mock httpx for DclTransport
-        submit_response = b'''{
+        submit_response = (
+            b'''{
             "result": {
                 "status": "success",
                 "accepted": true,
                 "engine_result": "tesSUCCESS",
-                "tx_json": {"hash": "''' + b"a" * 64 + b'''"}
+                "tx_json": {"hash": "'''
+            + b"a" * 64
+            + b""""}
             }
-        }'''
+        }"""
+        )
         fake_client = FakeHttpxClient(submit_response)
         monkeypatch.setattr("httpx.AsyncClient", lambda **kw: fake_client)
 

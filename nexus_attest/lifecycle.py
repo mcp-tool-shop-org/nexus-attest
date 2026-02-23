@@ -198,9 +198,13 @@ def compute_blocking_reasons(decision: "Decision") -> list[BlockingReason]:
         reasons.append(
             BlockingReason(
                 code="EXECUTION_FAILED",
-                message=f"Previous execution failed: {error_msg}" if error_msg else "Previous execution failed",
+                message=f"Previous execution failed: {error_msg}"
+                if error_msg
+                else "Previous execution failed",
                 details={
-                    "error_code": decision.latest_execution.error_code if decision.latest_execution else None,
+                    "error_code": decision.latest_execution.error_code
+                    if decision.latest_execution
+                    else None,
                     "error_message": error_msg,
                 },
             )
@@ -472,9 +476,9 @@ def compute_progress(decision: "Decision") -> LifecycleProgress:
     elif decision.state == DecisionState.EXECUTING:
         execution_outcome = "pending"
 
-    ready = (
-        decision.is_approved
-        and decision.state not in (DecisionState.COMPLETED, DecisionState.FAILED)
+    ready = decision.is_approved and decision.state not in (
+        DecisionState.COMPLETED,
+        DecisionState.FAILED,
     )
 
     return LifecycleProgress(

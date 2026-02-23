@@ -203,9 +203,7 @@ def export_audit_package(
     )
 
 
-def _build_audit_provenance(
-    decision_id: str, binding_digest: str
-) -> BundleProvenance:
+def _build_audit_provenance(decision_id: str, binding_digest: str) -> BundleProvenance:
     """Build provenance section for audit package export.
 
     prov_id is deterministic: derived from decision_id + binding_digest
@@ -213,9 +211,7 @@ def _build_audit_provenance(
     """
     from nexus_control.integrity import sha256_digest
 
-    prov_id = (
-        f"prov_{sha256_digest(f'{decision_id}:{binding_digest}'.encode())[:12]}"
-    )
+    prov_id = f"prov_{sha256_digest(f'{decision_id}:{binding_digest}'.encode())[:12]}"
 
     record = ProvenanceRecord(
         prov_id=prov_id,
@@ -243,17 +239,11 @@ def render_audit_package(package: AuditPackage) -> str:
 
     # Control bundle summary
     lines.append("## Control Bundle")
-    lines.append(
-        f"  Decision ID: {package.control_bundle.decision.decision_id}"
-    )
+    lines.append(f"  Decision ID: {package.control_bundle.decision.decision_id}")
     lines.append(f"  Status:      {package.control_bundle.decision.status}")
     lines.append(f"  Mode:        {package.control_bundle.decision.mode}")
-    lines.append(
-        f"  Goal:        {package.control_bundle.decision.goal or '---'}"
-    )
-    lines.append(
-        f"  Digest:      {package.control_bundle.integrity.canonical_digest}"
-    )
+    lines.append(f"  Goal:        {package.control_bundle.decision.goal or '---'}")
+    lines.append(f"  Digest:      {package.control_bundle.integrity.canonical_digest}")
     lines.append("")
 
     # Router section
@@ -262,11 +252,7 @@ def render_audit_package(package: AuditPackage) -> str:
     if package.router.mode == "embedded" and package.router.bundle:
         run_id = package.router.bundle.get("run_id", "---")
         lines.append(f"  Run ID: {run_id}")
-        router_digest = (
-            package.router.bundle.get("integrity", {}).get(
-                "canonical_digest", "---"
-            )
-        )
+        router_digest = package.router.bundle.get("integrity", {}).get("canonical_digest", "---")
         lines.append(f"  Digest: {router_digest}")
     elif package.router.mode == "reference" and package.router.ref:
         lines.append(f"  Run ID: {package.router.ref.run_id}")
@@ -277,9 +263,7 @@ def render_audit_package(package: AuditPackage) -> str:
     lines.append("## Binding")
     lines.append(f"  Control digest: {package.binding.control_digest}")
     lines.append(f"  Router digest:  {package.binding.router_digest}")
-    lines.append(
-        f"  Link digest:    {package.binding.control_router_link_digest}"
-    )
+    lines.append(f"  Link digest:    {package.binding.control_router_link_digest}")
     lines.append("")
 
     # Integrity

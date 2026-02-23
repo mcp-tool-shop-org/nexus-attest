@@ -180,10 +180,7 @@ class TestAuditPackageConsistency:
         assert result.package is not None
         assert result.package.router.mode == "reference"
         assert result.package.router.ref is not None
-        assert (
-            result.package.binding.router_digest
-            == result.package.router.ref.digest
-        )
+        assert result.package.binding.router_digest == result.package.router.ref.digest
 
     def test_package_version_is_0_6(self) -> None:
         """Package version is 0.6."""
@@ -208,9 +205,7 @@ class TestAuditPackageRouterModes:
         """Default mode is reference when embed_router_bundle=False."""
         decision_id = _create_executed_decision(self.tools, self.actor)
 
-        result = export_audit_package(
-            self.tools.store, decision_id, embed_router_bundle=False
-        )
+        result = export_audit_package(self.tools.store, decision_id, embed_router_bundle=False)
 
         assert result.success
         assert result.package is not None
@@ -358,9 +353,7 @@ class TestAuditPackageRender:
 
     def test_render_includes_key_sections(self) -> None:
         """Rendered output includes all key sections."""
-        decision_id = _create_executed_decision(
-            self.tools, self.actor, goal="render test"
-        )
+        decision_id = _create_executed_decision(self.tools, self.actor, goal="render test")
 
         audit_result = export_audit_package(self.tools.store, decision_id)
         assert audit_result.success
@@ -452,9 +445,7 @@ class TestVerifyAuditPackage:
     def test_tampered_link_digest_fails(self) -> None:
         """Tampering with control_router_link_digest breaks binding_link_match."""
         package = self._export_package()
-        package.control_bundle.router_link.control_router_link_digest = (
-            "sha256:" + "a" * 64
-        )
+        package.control_bundle.router_link.control_router_link_digest = "sha256:" + "a" * 64
 
         result = verify_audit_package(package)
 

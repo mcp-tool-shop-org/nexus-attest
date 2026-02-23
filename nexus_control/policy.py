@@ -74,8 +74,12 @@ class Policy:
 
         return cls(
             min_approvals=min_approvals_val,
-            allowed_modes=tuple(allowed_modes_raw) if isinstance(allowed_modes_raw, list) else ("dry_run",),  # type: ignore[arg-type]
-            require_adapter_capabilities=tuple(require_caps_raw) if isinstance(require_caps_raw, list) else (),  # type: ignore[arg-type]
+            allowed_modes=tuple(allowed_modes_raw)
+            if isinstance(allowed_modes_raw, list)
+            else ("dry_run",),  # type: ignore[arg-type]
+            require_adapter_capabilities=tuple(require_caps_raw)
+            if isinstance(require_caps_raw, list)
+            else (),  # type: ignore[arg-type]
             max_steps=max_steps_val,
             labels=tuple(labels_raw) if isinstance(labels_raw, list) else (),  # type: ignore[arg-type]
         )
@@ -159,9 +163,7 @@ def validate_execution_request(
 
     # Check approval threshold
     if approval_count < policy.min_approvals:
-        errors.append(
-            f"Insufficient approvals: {approval_count} < {policy.min_approvals} required"
-        )
+        errors.append(f"Insufficient approvals: {approval_count} < {policy.min_approvals} required")
 
     # Check adapter capabilities if provided
     if adapter_capabilities is not None and policy.require_adapter_capabilities:

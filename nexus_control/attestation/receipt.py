@@ -47,9 +47,7 @@ RECEIPT_VERSION = "0.1"
 # Validation patterns
 _SHA256_DIGEST_RE = re.compile(r"^sha256:[0-9a-f]{64}$")
 _BACKEND_RE = re.compile(r"^[a-z0-9._-]{1,64}$")
-_RFC3339_UTC_RE = re.compile(
-    r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d+)?(Z|\+00:00)$"
-)
+_RFC3339_UTC_RE = re.compile(r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d+)?(Z|\+00:00)$")
 
 
 # =========================================================================
@@ -90,9 +88,7 @@ def _validate_intent_digest(value: str) -> None:
 
 def _validate_backend(value: str) -> None:
     if not _BACKEND_RE.match(value):
-        raise ValueError(
-            f"backend must be 1-64 chars [a-z0-9._-], got: {value!r}"
-        )
+        raise ValueError(f"backend must be 1-64 chars [a-z0-9._-], got: {value!r}")
 
 
 def _validate_attempt(value: int) -> None:
@@ -102,23 +98,18 @@ def _validate_attempt(value: int) -> None:
 
 def _validate_created_at(value: str) -> None:
     if not _RFC3339_UTC_RE.match(value):
-        raise ValueError(
-            f"created_at must be RFC3339 UTC (ending Z or +00:00), got: {value!r}"
-        )
+        raise ValueError(f"created_at must be RFC3339 UTC (ending Z or +00:00), got: {value!r}")
 
 
 def _validate_evidence_digests(values: dict[str, str]) -> None:
     for key, digest in values.items():
         if not _SHA256_DIGEST_RE.match(digest):
             raise ValueError(
-                f"evidence_digests[{key!r}] must be 'sha256:' + 64 lowercase hex, "
-                f"got: {digest!r}"
+                f"evidence_digests[{key!r}] must be 'sha256:' + 64 lowercase hex, got: {digest!r}"
             )
 
 
-def _validate_proof_if_confirmed(
-    status: ReceiptStatus, proof: dict[str, object]
-) -> None:
+def _validate_proof_if_confirmed(status: ReceiptStatus, proof: dict[str, object]) -> None:
     if status == ReceiptStatus.CONFIRMED and not proof:
         raise ValueError("proof must be non-empty when status is CONFIRMED")
 

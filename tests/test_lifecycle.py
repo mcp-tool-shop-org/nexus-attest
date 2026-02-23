@@ -13,7 +13,6 @@ from nexus_attest.decision import Decision
 from nexus_attest.events import Actor, EventType
 from nexus_attest.lifecycle import (
     BlockingReason,
-    Lifecycle,
     LifecycleEntry,
     LifecycleProgress,
     compute_blocking_reasons,
@@ -52,9 +51,7 @@ class TestBlockingReasons:
 
     def test_missing_approvals_blocking(self):
         """Decision without enough approvals is blocked with MISSING_APPROVALS."""
-        result = self.tools.request(
-            goal="test", actor=self.actor, min_approvals=2
-        )
+        result = self.tools.request(goal="test", actor=self.actor, min_approvals=2)
         decision_id = result.data["request_id"]
 
         decision = Decision.load(self.store, decision_id)
@@ -68,9 +65,7 @@ class TestBlockingReasons:
 
     def test_partial_approvals_blocking(self):
         """Decision with some but not enough approvals is blocked."""
-        result = self.tools.request(
-            goal="test", actor=self.actor, min_approvals=3
-        )
+        result = self.tools.request(goal="test", actor=self.actor, min_approvals=3)
         decision_id = result.data["request_id"]
 
         self.tools.approve(decision_id, actor=Actor(type="human", id="alice"))
@@ -86,9 +81,7 @@ class TestBlockingReasons:
 
     def test_approved_not_blocked(self):
         """Decision with enough approvals has no blocking reasons."""
-        result = self.tools.request(
-            goal="test", actor=self.actor, min_approvals=2
-        )
+        result = self.tools.request(goal="test", actor=self.actor, min_approvals=2)
         decision_id = result.data["request_id"]
 
         self.tools.approve(decision_id, actor=Actor(type="human", id="alice"))
@@ -101,9 +94,7 @@ class TestBlockingReasons:
 
     def test_expired_approval_blocking(self):
         """Expired approvals result in APPROVAL_EXPIRED blocking."""
-        result = self.tools.request(
-            goal="test", actor=self.actor, min_approvals=1
-        )
+        result = self.tools.request(goal="test", actor=self.actor, min_approvals=1)
         decision_id = result.data["request_id"]
 
         # Approve with already-expired time
@@ -124,15 +115,14 @@ class TestBlockingReasons:
     def test_completed_decision_blocking(self):
         """Completed decision is blocked with ALREADY_EXECUTED."""
         # Create and execute a decision using mock router
-        result = self.tools.request(
-            goal="test", actor=self.actor, min_approvals=1
-        )
+        result = self.tools.request(goal="test", actor=self.actor, min_approvals=1)
         decision_id = result.data["request_id"]
         self.tools.approve(decision_id, actor=Actor(type="human", id="alice"))
 
         class MockRouter:
             def run(self, **kwargs):
                 return {"run_id": "r123", "steps_executed": 1}
+
             def get_adapter_capabilities(self, adapter_id):
                 return None
 
@@ -152,15 +142,14 @@ class TestBlockingReasons:
 
     def test_failed_decision_blocking(self):
         """Failed decision is blocked with EXECUTION_FAILED."""
-        result = self.tools.request(
-            goal="test", actor=self.actor, min_approvals=1
-        )
+        result = self.tools.request(goal="test", actor=self.actor, min_approvals=1)
         decision_id = result.data["request_id"]
         self.tools.approve(decision_id, actor=Actor(type="human", id="alice"))
 
         class FailingRouter:
             def run(self, **kwargs):
                 raise RuntimeError("Router crashed")
+
             def get_adapter_capabilities(self, adapter_id):
                 return None
 
@@ -226,7 +215,7 @@ class TestTimeline:
         decision = Decision.load(self.store, result.data["request_id"])
         timeline = compute_timeline(decision)
 
-        approval_entry = [e for e in timeline if e.label == "approved"][0]
+        approval_entry = next(e for e in timeline if e.label == "approved")
         assert approval_entry.category == "approval"
         assert "alice" in approval_entry.summary
         assert "LGTM" in approval_entry.summary
@@ -248,7 +237,7 @@ class TestTimeline:
         decision = Decision.load(self.store, result.data["request_id"])
         timeline = compute_timeline(decision)
 
-        revoke_entry = [e for e in timeline if e.label == "revoked"][0]
+        revoke_entry = next(e for e in timeline if e.label == "revoked")
         assert revoke_entry.category == "approval"
         assert "Changed my mind" in revoke_entry.summary
         assert revoke_entry.actor == "alice"
@@ -264,6 +253,7 @@ class TestTimeline:
         class MockRouter:
             def run(self, **kwargs):
                 return {"run_id": "r123", "steps_executed": 5}
+
             def get_adapter_capabilities(self, adapter_id):
                 return None
 
@@ -323,7 +313,7 @@ class TestTimeline:
 
         # Verify sorted order (seq should be non-decreasing)
         for i in range(1, len(timeline)):
-            assert timeline[i].seq >= timeline[i-1].seq
+            assert timeline[i].seq >= timeline[i - 1].seq
 
     def test_system_actor_prefix(self):
         """System actors are prefixed with 'system:'."""
@@ -336,6 +326,7 @@ class TestTimeline:
         class MockRouter:
             def run(self, **kwargs):
                 return {"run_id": "r123", "steps_executed": 1}
+
             def get_adapter_capabilities(self, adapter_id):
                 return None
 
@@ -370,7 +361,7 @@ class TestTimeline:
         decision = Decision.load(self.store, result.data["request_id"])
         timeline = compute_timeline(decision)
 
-        policy_entry = [e for e in timeline if e.category == "policy"][0]
+        policy_entry = next(e for e in timeline if e.category == "policy")
         assert "test-template" in policy_entry.summary
 
 
@@ -429,6 +420,7 @@ class TestProgress:
         class MockRouter:
             def run(self, **kwargs):
                 return {"run_id": "r123", "steps_executed": 1}
+
             def get_adapter_capabilities(self, adapter_id):
                 return None
 
@@ -454,6 +446,7 @@ class TestProgress:
         class FailingRouter:
             def run(self, **kwargs):
                 raise RuntimeError("Failed")
+
             def get_adapter_capabilities(self, adapter_id):
                 return None
 
@@ -574,7 +567,7 @@ class TestBlockingReasonModel:
             details={},
         )
 
-        with pytest.raises(Exception):  # FrozenInstanceError
+        with pytest.raises(AttributeError):  # FrozenInstanceError
             reason.code = "OTHER"  # type: ignore
 
     def test_blocking_reason_to_dict(self):
@@ -622,7 +615,7 @@ class TestLifecycleEntryModel:
             seq=0,
         )
 
-        with pytest.raises(Exception):
+        with pytest.raises(AttributeError):
             entry.label = "modified"  # type: ignore
 
     def test_lifecycle_entry_to_dict(self):

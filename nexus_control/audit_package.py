@@ -170,9 +170,7 @@ class AuditPackage:
             router=RouterSection.from_dict(data["router"]),
             binding=AuditBinding.from_dict(data["binding"]),
             integrity=AuditIntegrity.from_dict(data["integrity"]),
-            provenance=BundleProvenance.from_dict(
-                data.get("provenance", {"records": []})
-            ),
+            provenance=BundleProvenance.from_dict(data.get("provenance", {"records": []})),
             meta=data.get("meta", {}),
         )
 
@@ -294,13 +292,15 @@ def verify_audit_package(package: AuditPackage) -> VerificationResult:
     expected_binding_raw = (
         expected_binding[7:] if expected_binding.startswith("sha256:") else expected_binding
     )
-    checks.append(VerificationCheck(
-        name=VERIFY_BINDING_DIGEST,
-        ok=(recomputed_binding == expected_binding_raw),
-        expected=expected_binding,
-        actual=f"sha256:{recomputed_binding}",
-        detail="Recomputed binding digest from binding fields",
-    ))
+    checks.append(
+        VerificationCheck(
+            name=VERIFY_BINDING_DIGEST,
+            ok=(recomputed_binding == expected_binding_raw),
+            expected=expected_binding,
+            actual=f"sha256:{recomputed_binding}",
+            detail="Recomputed binding digest from binding fields",
+        )
+    )
 
     # 2. Control bundle digest: recompute from content
     cb = package.control_bundle
@@ -315,67 +315,76 @@ def verify_audit_package(package: AuditPackage) -> VerificationResult:
     stored_control_raw = (
         stored_control[7:] if stored_control.startswith("sha256:") else stored_control
     )
-    checks.append(VerificationCheck(
-        name=VERIFY_CONTROL_BUNDLE_DIGEST,
-        ok=(recomputed_control == stored_control_raw),
-        expected=stored_control,
-        actual=f"sha256:{recomputed_control}",
-        detail="Recomputed control bundle digest from content",
-    ))
+    checks.append(
+        VerificationCheck(
+            name=VERIFY_CONTROL_BUNDLE_DIGEST,
+            ok=(recomputed_control == stored_control_raw),
+            expected=stored_control,
+            actual=f"sha256:{recomputed_control}",
+            detail="Recomputed control bundle digest from content",
+        )
+    )
 
     # 3. Binding ↔ control bundle consistency
-    checks.append(VerificationCheck(
-        name=VERIFY_BINDING_CONTROL_MATCH,
-        ok=(package.binding.control_digest == cb.integrity.canonical_digest),
-        expected=cb.integrity.canonical_digest,
-        actual=package.binding.control_digest,
-        detail="binding.control_digest must match control_bundle.integrity.canonical_digest",
-    ))
+    checks.append(
+        VerificationCheck(
+            name=VERIFY_BINDING_CONTROL_MATCH,
+            ok=(package.binding.control_digest == cb.integrity.canonical_digest),
+            expected=cb.integrity.canonical_digest,
+            actual=package.binding.control_digest,
+            detail="binding.control_digest must match control_bundle.integrity.canonical_digest",
+        )
+    )
 
     # 4. Binding ↔ router section consistency
     router_digest_from_section: str | None = None
     if package.router.mode == "embedded" and package.router.bundle is not None:
-        router_digest_from_section = (
-            package.router.bundle.get("integrity", {}).get("canonical_digest")
+        router_digest_from_section = package.router.bundle.get("integrity", {}).get(
+            "canonical_digest"
         )
     elif package.router.mode == "reference" and package.router.ref is not None:
         router_digest_from_section = package.router.ref.digest
 
-    checks.append(VerificationCheck(
-        name=VERIFY_BINDING_ROUTER_MATCH,
-        ok=(
-            router_digest_from_section is not None
-            and package.binding.router_digest == router_digest_from_section
-        ),
-        expected=router_digest_from_section,
-        actual=package.binding.router_digest,
-        detail="binding.router_digest must match router section digest",
-    ))
+    checks.append(
+        VerificationCheck(
+            name=VERIFY_BINDING_ROUTER_MATCH,
+            ok=(
+                router_digest_from_section is not None
+                and package.binding.router_digest == router_digest_from_section
+            ),
+            expected=router_digest_from_section,
+            actual=package.binding.router_digest,
+            detail="binding.router_digest must match router section digest",
+        )
+    )
 
     # 5. Binding ↔ control router link consistency
     link_from_bundle = cb.router_link.control_router_link_digest
-    checks.append(VerificationCheck(
-        name=VERIFY_BINDING_LINK_MATCH,
-        ok=(
-            link_from_bundle is not None
-            and package.binding.control_router_link_digest == link_from_bundle
-        ),
-        expected=link_from_bundle,
-        actual=package.binding.control_router_link_digest,
-        detail="binding.control_router_link_digest must match control bundle's router link",
-    ))
+    checks.append(
+        VerificationCheck(
+            name=VERIFY_BINDING_LINK_MATCH,
+            ok=(
+                link_from_bundle is not None
+                and package.binding.control_router_link_digest == link_from_bundle
+            ),
+            expected=link_from_bundle,
+            actual=package.binding.control_router_link_digest,
+            detail="binding.control_router_link_digest must match control bundle's router link",
+        )
+    )
 
     # 6. Router digest presence (if embedded)
     if package.router.mode == "embedded" and package.router.bundle is not None:
-        has_integrity = (
-            isinstance(package.router.bundle.get("integrity"), dict)
-            and "canonical_digest" in package.router.bundle.get("integrity", {})
+        has_integrity = isinstance(
+            package.router.bundle.get("integrity"), dict
+        ) and "canonical_digest" in package.router.bundle.get("integrity", {})
+        checks.append(
+            VerificationCheck(
+                name=VERIFY_ROUTER_DIGEST,
+                ok=has_integrity,
+                detail="Embedded router bundle must have integrity.canonical_digest",
+            )
         )
-        checks.append(VerificationCheck(
-            name=VERIFY_ROUTER_DIGEST,
-            ok=has_integrity,
-            detail="Embedded router bundle must have integrity.canonical_digest",
-        ))
 
     all_ok = all(c.ok for c in checks)
     return VerificationResult(ok=all_ok, checks=checks)

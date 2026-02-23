@@ -12,10 +12,6 @@ Test plan:
 - Get status: returns current state, None for unknown
 """
 
-import json
-
-import pytest
-
 from nexus_attest.attestation.intent import AttestationIntent
 from nexus_attest.attestation.queue import AttestationQueue, QueuedIntent
 from nexus_attest.attestation.receipt import (
@@ -28,9 +24,7 @@ from nexus_attest.attestation.receipt import (
 # Fixtures
 # ---------------------------------------------------------------------------
 
-SAMPLE_BINDING_DIGEST = (
-    "sha256:abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890"
-)
+SAMPLE_BINDING_DIGEST = "sha256:abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890"
 SAMPLE_CREATED_AT = "2025-01-15T12:00:00+00:00"
 
 
@@ -172,7 +166,7 @@ class TestNextPending:
         for i in range(5):
             q.enqueue(
                 _make_intent(env=f"env-{i}"),
-                created_at=f"2025-01-{15+i:02d}T12:00:00+00:00",
+                created_at=f"2025-01-{15 + i:02d}T12:00:00+00:00",
             )
         pending = q.next_pending(limit=2)
         assert len(pending) == 2

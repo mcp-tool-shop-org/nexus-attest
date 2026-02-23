@@ -26,10 +26,10 @@ from nexus_attest.attestation.receipt import ReceiptErrorCode
 
 # Coarse prefix-based mapping. Start small, add precision when needed.
 _PREFIX_MAP: dict[str, ReceiptErrorCode] = {
-    "tem": ReceiptErrorCode.REJECTED,   # malformed — won't ever succeed
-    "tef": ReceiptErrorCode.REJECTED,   # local failure — won't be forwarded
-    "tec": ReceiptErrorCode.REJECTED,   # claimed cost — included but "failed"
-    "ter": ReceiptErrorCode.REJECTED,   # retry — but we don't auto-retry here
+    "tem": ReceiptErrorCode.REJECTED,  # malformed — won't ever succeed
+    "tef": ReceiptErrorCode.REJECTED,  # local failure — won't be forwarded
+    "tec": ReceiptErrorCode.REJECTED,  # claimed cost — included but "failed"
+    "ter": ReceiptErrorCode.REJECTED,  # retry — but we don't auto-retry here
 }
 
 

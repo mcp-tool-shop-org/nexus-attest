@@ -29,9 +29,10 @@ Exchange record:
 
 from __future__ import annotations
 
+from collections.abc import Callable
 from dataclasses import dataclass
-from datetime import datetime, timezone
-from typing import TYPE_CHECKING, Any, Callable, Protocol, runtime_checkable
+from datetime import UTC, datetime
+from typing import TYPE_CHECKING, Any, Protocol, runtime_checkable
 
 from nexus_control.canonical_json import canonical_json_bytes
 from nexus_control.integrity import sha256_digest
@@ -150,7 +151,7 @@ class ExchangeRecord:
 
 def _default_now() -> str:
     """RFC3339 UTC timestamp."""
-    return datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%S+00:00")
+    return datetime.now(UTC).strftime("%Y-%m-%dT%H:%M:%S+00:00")
 
 
 class DclTransport:

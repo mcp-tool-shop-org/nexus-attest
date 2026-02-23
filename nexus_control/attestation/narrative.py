@@ -33,7 +33,7 @@ Usage:
 from __future__ import annotations
 
 import json
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from enum import StrEnum
 from typing import TYPE_CHECKING, Any
 
@@ -84,7 +84,7 @@ _CANONICALIZATION_BASE = {
 }
 
 
-def _build_canonicalization_block() -> dict[str, str]:
+def _build_canonicalization_block() -> dict[str, str | dict[str, str]]:
     """Build the canonicalization metadata block with current versions.
 
     Includes schema versions so that reports can be reproduced with
@@ -489,6 +489,8 @@ def show_intent(
 
     if intent_row is not None:
         intent_json = intent_row["intent_json"]
+        if not isinstance(intent_json, str):
+            intent_json = str(intent_json) if intent_json is not None else "{}"
         intent_data = json.loads(intent_json)
         subject_type = intent_data.get("subject_type")
         binding_digest = intent_data.get("binding_digest")
@@ -511,9 +513,7 @@ def show_intent(
 
     for receipt in raw_receipts:
         # Build receipt entry
-        entry, entry_checks = _build_receipt_entry(
-            receipt, exchange_store, include_bodies
-        )
+        entry, entry_checks = _build_receipt_entry(receipt, exchange_store, include_bodies)
         receipt_entries.append(entry)
         checks.extend(entry_checks)
 
@@ -529,7 +529,7 @@ def show_intent(
             if tx_hash and ledger_index:
                 witness = XrplWitness(
                     tx_hash=str(tx_hash),
-                    ledger_index=int(ledger_index),
+                    ledger_index=int(ledger_index) if isinstance(ledger_index, (int, str)) else 0,
                     ledger_close_time=str(ledger_close_time) if ledger_close_time else None,
                     engine_result=str(engine_result) if engine_result else None,
                     account=str(account) if account else None,
@@ -645,7 +645,9 @@ class AttemptDiff:
         return d
 
 
-def diff_attempts(report: NarrativeReport, from_attempt: int, to_attempt: int) -> AttemptDiff | None:
+def diff_attempts(
+    report: NarrativeReport, from_attempt: int, to_attempt: int
+) -> AttemptDiff | None:
     """Compare two attempts in a narrative report.
 
     This answers: "What changed between attempts?"
@@ -829,10 +831,7 @@ def _verify_receipts_intent_consistency(
             reason="No receipts to verify",
         )
 
-    mismatched = [
-        r.intent_digest for r in receipts
-        if r.intent_digest != ledger_intent_digest
-    ]
+    mismatched = [r.intent_digest for r in receipts if r.intent_digest != ledger_intent_digest]
 
     if not mismatched:
         return IntegrityCheck(
@@ -857,7 +856,7 @@ def _verify_receipt_digest(receipt: AttestationReceipt) -> IntegrityCheck:
     return IntegrityCheck(
         name="receipt_digest_valid",
         status=CheckStatus.PASS,
-        reason=f"Receipt digest matches computed value",
+        reason="Receipt digest matches computed value",
         expected=f"sha256:{expected}",
         actual=f"sha256:{expected}",
     )
@@ -1039,13 +1038,13 @@ def _build_receipt_entry(
         # Verify bodies if requested
         if include_bodies and ex.record_found:
             if ex.request_digest:
-                checks.append(_verify_body_exists(
-                    ex.request_digest, f"{key}:request", exchange_store
-                ))
+                checks.append(
+                    _verify_body_exists(ex.request_digest, f"{key}:request", exchange_store)
+                )
             if ex.response_digest:
-                checks.append(_verify_body_exists(
-                    ex.response_digest, f"{key}:response", exchange_store
-                ))
+                checks.append(
+                    _verify_body_exists(ex.response_digest, f"{key}:response", exchange_store)
+                )
 
     entry = ReceiptEntry(
         attempt=receipt.attempt,
@@ -1054,7 +1053,7 @@ def _build_receipt_entry(
         backend=receipt.backend,
         receipt_digest=f"sha256:{receipt.receipt_digest()}",
         tx_hash=str(tx_hash) if tx_hash else None,
-        ledger_index=int(ledger_index) if ledger_index else None,
+        ledger_index=int(ledger_index) if isinstance(ledger_index, (int, str)) else None,
         ledger_close_time=str(ledger_close_time) if ledger_close_time else None,
         engine_result=str(engine_result) if engine_result else None,
         error_code=error_code,
@@ -1173,9 +1172,9 @@ def render_narrative(
             lines.append(f"  Key ID:       {report.witness.key_id}")
         lines.append("")
         lines.append("  To verify externally:")
-        lines.append(f"    - Look up tx_hash on XRPL explorer")
+        lines.append("    - Look up tx_hash on XRPL explorer")
         lines.append(f"    - Confirm ledger_index >= {report.witness.ledger_index}")
-        lines.append(f"    - Verify memo contains intent binding")
+        lines.append("    - Verify memo contains intent binding")
         lines.append("")
 
     # Timeline section

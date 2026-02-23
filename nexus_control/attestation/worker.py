@@ -22,9 +22,9 @@ Attempt numbers come from QueuedIntent.next_attempt (queue-owned).
 
 from __future__ import annotations
 
+from collections.abc import Callable
 from dataclasses import dataclass, field
-from datetime import datetime, timezone
-from typing import Callable
+from datetime import UTC, datetime
 
 from nexus_control.attestation.queue import AttestationQueue
 from nexus_control.attestation.receipt import AttestationReceipt, ReceiptStatus
@@ -35,7 +35,7 @@ from nexus_control.attestation.xrpl.signer import XRPLSigner
 
 def _default_now() -> str:
     """RFC3339 UTC timestamp."""
-    return datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%S+00:00")
+    return datetime.now(UTC).strftime("%Y-%m-%dT%H:%M:%S+00:00")
 
 
 @dataclass(frozen=True)

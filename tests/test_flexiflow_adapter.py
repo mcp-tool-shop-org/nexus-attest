@@ -25,7 +25,6 @@ from nexus_attest.attestation.receipt import (
 from nexus_attest.attestation.xrpl.client import SubmitResult, TxStatusResult
 from nexus_attest.attestation.xrpl.signer import SignResult
 
-
 # ---------------------------------------------------------------------------
 # Fakes for testing
 # ---------------------------------------------------------------------------
@@ -333,10 +332,12 @@ class TestContextParameters:
         monkeypatch.setattr(adapter_module, "process_one_xrpl", mock_process_one)
 
         target_digest = f"sha256:{'f' * 64}"
-        await attest_xrpl_process_one({
-            "db_path": str(db_path),
-            "intent_digest": target_digest,
-        })
+        await attest_xrpl_process_one(
+            {
+                "db_path": str(db_path),
+                "intent_digest": target_digest,
+            }
+        )
 
         assert captured_kwargs.get("intent_digest") == target_digest
 
@@ -348,7 +349,7 @@ class TestContextParameters:
         import nexus_attest.attestation.flexiflow_adapter as adapter_module
 
         db_path = tmp_path / "test.db"  # type: ignore[operator]
-        queue = AttestationQueue(str(db_path))
+        AttestationQueue(str(db_path))
 
         captured_kwargs: dict = {}
 
@@ -360,9 +361,11 @@ class TestContextParameters:
 
         monkeypatch.setattr(adapter_module, "process_one_xrpl", mock_process_one)
 
-        await attest_xrpl_process_one({
-            "db_path": str(db_path),
-            "account": "rCustomAccount123",
-        })
+        await attest_xrpl_process_one(
+            {
+                "db_path": str(db_path),
+                "account": "rCustomAccount123",
+            }
+        )
 
         assert captured_kwargs.get("account") == "rCustomAccount123"

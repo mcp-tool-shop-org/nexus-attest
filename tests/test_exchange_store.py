@@ -9,7 +9,6 @@ Covers:
 - Integration with DclTransport
 """
 
-import tempfile
 from pathlib import Path
 from typing import Any
 
@@ -17,7 +16,6 @@ import pytest
 
 from nexus_attest.attestation.xrpl.exchange_store import ExchangeStore
 from nexus_attest.attestation.xrpl.transport import DclTransport, ExchangeRecord
-
 
 # ---------------------------------------------------------------------------
 # Fixtures
@@ -87,9 +85,7 @@ class TestPutAndGet:
 
 
 class TestIdempotency:
-    def test_put_same_record_twice_is_idempotent(
-        self, memory_store: ExchangeStore
-    ) -> None:
+    def test_put_same_record_twice_is_idempotent(self, memory_store: ExchangeStore) -> None:
         record = _make_record()
         digest1 = memory_store.put(record)
         digest2 = memory_store.put(record)
@@ -113,9 +109,7 @@ class TestIdempotency:
         assert digest1 == digest2
         assert memory_store.count() == 1
 
-    def test_different_request_creates_new_record(
-        self, memory_store: ExchangeStore
-    ) -> None:
+    def test_different_request_creates_new_record(self, memory_store: ExchangeStore) -> None:
         record1 = _make_record(request_digest="sha256:" + "a" * 64)
         record2 = _make_record(request_digest="sha256:" + "c" * 64)
 
@@ -225,9 +219,7 @@ class TestQueryByDigest:
 
         assert len(results) == 2
 
-    def test_list_by_request_returns_empty_for_unknown(
-        self, memory_store: ExchangeStore
-    ) -> None:
+    def test_list_by_request_returns_empty_for_unknown(self, memory_store: ExchangeStore) -> None:
         results = memory_store.list_by_request("sha256:" + "x" * 64)
         assert results == []
 
@@ -278,9 +270,7 @@ class FakeHttpxClient:
     async def __aexit__(self, *args: object) -> None:
         pass
 
-    async def post(
-        self, url: str, json: dict[str, Any], headers: dict[str, str]
-    ) -> "FakeResponse":
+    async def post(self, url: str, json: dict[str, Any], headers: dict[str, str]) -> "FakeResponse":
         return FakeResponse(self._response_content)
 
 
@@ -293,15 +283,14 @@ class FakeResponse:
 
     def json(self) -> dict[str, Any]:
         import json
+
         result: dict[str, Any] = json.loads(self.content)
         return result
 
 
 class TestDclTransportWithStore:
     @pytest.mark.asyncio
-    async def test_transport_auto_stores_record(
-        self, monkeypatch: pytest.MonkeyPatch
-    ) -> None:
+    async def test_transport_auto_stores_record(self, monkeypatch: pytest.MonkeyPatch) -> None:
         store = ExchangeStore(":memory:")
         response_bytes = b'{"result": {}}'
         monkeypatch.setattr("httpx.AsyncClient", lambda **kw: FakeHttpxClient(response_bytes))

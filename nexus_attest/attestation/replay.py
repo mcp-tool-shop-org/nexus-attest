@@ -40,7 +40,7 @@ from dataclasses import dataclass, field
 from typing import TYPE_CHECKING, Any
 
 from nexus_attest.attestation.queue import AttestationQueue
-from nexus_attest.attestation.receipt import AttestationReceipt, ReceiptStatus
+from nexus_attest.attestation.receipt import ReceiptStatus
 
 if TYPE_CHECKING:
     from nexus_attest.attestation.xrpl.exchange_store import ExchangeStore
@@ -189,9 +189,7 @@ def replay_attestation(
         for key in ["xrpl.submit.exchange", "xrpl.tx.exchange"]:
             if key in receipt.evidence_digests:
                 content_digest = receipt.evidence_digests[key]
-                exchange_evidence = _lookup_exchange(
-                    content_digest, exchange_store
-                )
+                exchange_evidence = _lookup_exchange(content_digest, exchange_store)
                 exchanges.append(
                     ExchangeEvidence(
                         key=key,
@@ -207,11 +205,13 @@ def replay_attestation(
 
         summary = ReceiptSummary(
             attempt=receipt.attempt,
-            status=receipt.status.value if hasattr(receipt.status, "value") else str(receipt.status),
+            status=receipt.status.value
+            if hasattr(receipt.status, "value")
+            else str(receipt.status),
             created_at=receipt.created_at,
             backend=receipt.backend,
             tx_hash=str(tx_hash) if tx_hash else None,
-            ledger_index=int(ledger_index) if ledger_index else None,
+            ledger_index=int(ledger_index) if isinstance(ledger_index, (int, str)) else None,
             ledger_close_time=str(ledger_close_time) if ledger_close_time else None,
             engine_result=str(engine_result) if engine_result else None,
             error_code=error_code,
@@ -225,7 +225,7 @@ def replay_attestation(
         if receipt.status == ReceiptStatus.CONFIRMED:
             confirmed = True
             final_tx_hash = str(tx_hash) if tx_hash else None
-            final_ledger_index = int(ledger_index) if ledger_index else None
+            final_ledger_index = int(ledger_index) if isinstance(ledger_index, (int, str)) else None
             final_ledger_close_time = str(ledger_close_time) if ledger_close_time else None
 
     return AttestationReport(
@@ -317,7 +317,7 @@ def render_report(report: AttestationReport) -> str:
     lines.append(f"  Attempts:     {report.total_attempts}")
 
     if report.confirmed:
-        lines.append(f"  Confirmed:    YES")
+        lines.append("  Confirmed:    YES")
         if report.final_tx_hash:
             lines.append(f"  TX Hash:      {report.final_tx_hash}")
         if report.final_ledger_index:
@@ -325,7 +325,7 @@ def render_report(report: AttestationReport) -> str:
         if report.final_ledger_close_time:
             lines.append(f"  Close Time:   {report.final_ledger_close_time}")
     else:
-        lines.append(f"  Confirmed:    NO")
+        lines.append("  Confirmed:    NO")
     lines.append("")
 
     # Timeline section
@@ -353,7 +353,7 @@ def render_report(report: AttestationReport) -> str:
 
             # Exchange evidence
             if receipt.exchanges:
-                lines.append(f"      Evidence:")
+                lines.append("      Evidence:")
                 for ex in receipt.exchanges:
                     found_marker = "[stored]" if ex.record_found else "[digest only]"
                     lines.append(f"        - {ex.key}: {found_marker}")
@@ -361,9 +361,9 @@ def render_report(report: AttestationReport) -> str:
                     if ex.record_found and ex.timestamp:
                         lines.append(f"          recorded: {ex.timestamp}")
                     if ex.request_body_available:
-                        lines.append(f"          request body: available")
+                        lines.append("          request body: available")
                     if ex.response_body_available:
-                        lines.append(f"          response body: available")
+                        lines.append("          response body: available")
 
             if receipt.memo_digest:
                 lines.append(f"      Memo:     {receipt.memo_digest}")

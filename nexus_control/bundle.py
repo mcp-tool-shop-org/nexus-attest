@@ -409,6 +409,7 @@ def validate_bundle_schema(data: dict[str, Any]) -> list[str]:
         errors.append("Field 'events' must be an array")
     else:
         from typing import cast
+
         events_data = cast(list[Any], data["events"])
         for i, event in enumerate(events_data):
             if not isinstance(event, dict):

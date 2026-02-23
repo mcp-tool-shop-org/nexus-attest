@@ -208,7 +208,9 @@ def _receipt_summary(receipt: Any) -> dict[str, Any]:
     happened without duplicating the full evidence chain.
     """
     return {
-        "status": str(receipt.status.value) if hasattr(receipt.status, "value") else str(receipt.status),
+        "status": str(receipt.status.value)
+        if hasattr(receipt.status, "value")
+        else str(receipt.status),
         "attempt": receipt.attempt,
         "created_at": receipt.created_at,
         "backend": receipt.backend,

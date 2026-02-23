@@ -12,8 +12,6 @@ Test plan:
 - Import: re-exported from nexus_attest.attestation
 """
 
-import copy
-
 import pytest
 
 from nexus_attest.attestation.intent import (
@@ -25,9 +23,7 @@ from nexus_attest.attestation.intent import (
 # Fixtures
 # ---------------------------------------------------------------------------
 
-SAMPLE_BINDING_DIGEST = (
-    "sha256:abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890"
-)
+SAMPLE_BINDING_DIGEST = "sha256:abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890"
 
 
 def _make_intent(**overrides: object) -> AttestationIntent:
@@ -118,7 +114,9 @@ class TestIntentSchema:
     def test_frozen(self) -> None:
         intent = _make_intent()
         with pytest.raises(AttributeError):
-            intent.binding_digest = "sha256:0000000000000000000000000000000000000000000000000000000000000000"  # type: ignore[misc]
+            intent.binding_digest = (
+                "sha256:0000000000000000000000000000000000000000000000000000000000000000"  # type: ignore[misc]
+            )
 
 
 # ---------------------------------------------------------------------------
@@ -257,8 +255,10 @@ class TestIntentInvariants:
 class TestIntentImport:
     def test_importable_from_attestation_package(self) -> None:
         from nexus_attest.attestation import AttestationIntent as Imported
+
         assert Imported is AttestationIntent
 
     def test_intent_version_importable(self) -> None:
         from nexus_attest.attestation import INTENT_VERSION as Imported
+
         assert Imported == INTENT_VERSION

@@ -27,12 +27,8 @@ from nexus_attest.attestation.receipt import (
 # Fixtures
 # ---------------------------------------------------------------------------
 
-SAMPLE_INTENT_DIGEST = (
-    "sha256:abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890"
-)
-SAMPLE_EVIDENCE_DIGEST = (
-    "sha256:1111111111111111111111111111111111111111111111111111111111111111"
-)
+SAMPLE_INTENT_DIGEST = "sha256:abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890"
+SAMPLE_EVIDENCE_DIGEST = "sha256:1111111111111111111111111111111111111111111111111111111111111111"
 SAMPLE_CREATED_AT = "2026-01-28T20:14:03Z"
 
 
@@ -321,9 +317,7 @@ class TestReceiptInvariants:
             _make_receipt(evidence_digests={"memo": "md5:abc123"})
 
     def test_evidence_digest_valid(self) -> None:
-        receipt = _make_receipt(
-            evidence_digests={"memo": SAMPLE_EVIDENCE_DIGEST}
-        )
+        receipt = _make_receipt(evidence_digests={"memo": SAMPLE_EVIDENCE_DIGEST})
         assert receipt.evidence_digests["memo"] == SAMPLE_EVIDENCE_DIGEST
 
     # --- proof required when confirmed ---
@@ -383,20 +377,25 @@ class TestReceiptEnums:
 class TestReceiptImport:
     def test_importable_from_attestation_package(self) -> None:
         from nexus_attest.attestation import AttestationReceipt as Imported
+
         assert Imported is AttestationReceipt
 
     def test_receipt_status_importable(self) -> None:
         from nexus_attest.attestation import ReceiptStatus as Imported
+
         assert Imported is ReceiptStatus
 
     def test_receipt_error_code_importable(self) -> None:
         from nexus_attest.attestation import ReceiptErrorCode as Imported
+
         assert Imported is ReceiptErrorCode
 
     def test_receipt_error_importable(self) -> None:
         from nexus_attest.attestation import ReceiptError as Imported
+
         assert Imported is ReceiptError
 
     def test_receipt_version_importable(self) -> None:
         from nexus_attest.attestation import RECEIPT_VERSION as Imported
+
         assert Imported == RECEIPT_VERSION

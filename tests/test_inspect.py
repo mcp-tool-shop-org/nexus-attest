@@ -1,7 +1,5 @@
 """Tests for inspect tool."""
 
-import pytest
-
 from nexus_attest.events import Actor
 from nexus_attest.tool import NexusControlTools
 
@@ -192,9 +190,7 @@ class TestInspect:
     def test_inspect_rendered_output(self):
         """Inspect includes rendered markdown."""
         request_id = self._create_request(min_approvals=1)
-        self.tools.approve(
-            request_id, actor=Actor(type="human", id="alice"), comment="LGTM"
-        )
+        self.tools.approve(request_id, actor=Actor(type="human", id="alice"), comment="LGTM")
 
         result = self.tools.inspect(request_id, render=True)
 

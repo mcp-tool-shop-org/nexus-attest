@@ -1,18 +1,17 @@
 """Tests for decision state machine and event replay."""
 
-import pytest
-from datetime import datetime, timezone, timedelta
+from datetime import UTC, datetime, timedelta
 
 from nexus_attest.decision import Decision, DecisionState
 from nexus_attest.events import (
     Actor,
-    EventType,
-    DecisionCreatedPayload,
-    PolicyAttachedPayload,
     ApprovalGrantedPayload,
+    DecisionCreatedPayload,
+    EventType,
     ExecutionCompletedPayload,
+    PolicyAttachedPayload,
 )
-from nexus_attest.store import DecisionStore, StoredEvent
+from nexus_attest.store import DecisionStore
 
 
 class TestDecisionReplay:
@@ -164,7 +163,7 @@ class TestDecisionReplay:
         )
 
         # Approval that expired yesterday
-        yesterday = datetime.now(timezone.utc) - timedelta(days=1)
+        yesterday = datetime.now(UTC) - timedelta(days=1)
         store.append_event(
             decision_id=decision_id,
             event_type=EventType.APPROVAL_GRANTED,

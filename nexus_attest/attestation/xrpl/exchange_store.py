@@ -18,7 +18,6 @@ Invariants:
 
 from __future__ import annotations
 
-import json
 import sqlite3
 from collections.abc import Iterator
 from contextlib import contextmanager
@@ -26,7 +25,6 @@ from pathlib import Path
 from typing import Any
 
 from nexus_attest.attestation.xrpl.transport import ExchangeRecord
-
 
 _SCHEMA = """\
 CREATE TABLE IF NOT EXISTS dcl_exchanges (
@@ -141,7 +139,7 @@ class ExchangeStore:
         store_time = created_at if created_at is not None else record.timestamp
 
         with self._transaction() as conn:
-            try:
+            try:  # noqa: SIM105
                 conn.execute(
                     """
                     INSERT INTO dcl_exchanges

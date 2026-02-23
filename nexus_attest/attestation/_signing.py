@@ -334,38 +334,48 @@ def verify_attestation_signature(
     except Exception:
         sig_ok = False
 
-    checks.append(VerificationCheck(
-        name=VERIFY_SIGNATURE,
-        ok=sig_ok,
-        detail="Ed25519 signature verification" if sig_ok else "Signature verification failed",
-    ))
+    checks.append(
+        VerificationCheck(
+            name=VERIFY_SIGNATURE,
+            ok=sig_ok,
+            detail="Ed25519 signature verification" if sig_ok else "Signature verification failed",
+        )
+    )
 
     # 2. Attestation version
     version_ok = p.attestation_version == ATTESTATION_VERSION
-    checks.append(VerificationCheck(
-        name=VERIFY_ATTESTATION_VERSION,
-        ok=version_ok,
-        expected=ATTESTATION_VERSION,
-        actual=p.attestation_version,
-        detail="Attestation version must be recognized",
-    ))
+    checks.append(
+        VerificationCheck(
+            name=VERIFY_ATTESTATION_VERSION,
+            ok=version_ok,
+            expected=ATTESTATION_VERSION,
+            actual=p.attestation_version,
+            detail="Attestation version must be recognized",
+        )
+    )
 
     # 3. Claims non-empty
     claims_ok = len(p.claims) > 0
-    checks.append(VerificationCheck(
-        name=VERIFY_CLAIMS_NON_EMPTY,
-        ok=claims_ok,
-        detail="At least one claim must be present",
-    ))
+    checks.append(
+        VerificationCheck(
+            name=VERIFY_CLAIMS_NON_EMPTY,
+            ok=claims_ok,
+            detail="At least one claim must be present",
+        )
+    )
 
     # 4. Binding digest format
     format_ok = p.binding_digest.startswith("sha256:")
-    checks.append(VerificationCheck(
-        name=VERIFY_DIGEST_FORMAT,
-        ok=format_ok,
-        actual=p.binding_digest[:12] + "..." if len(p.binding_digest) > 12 else p.binding_digest,
-        detail="binding_digest must start with 'sha256:'",
-    ))
+    checks.append(
+        VerificationCheck(
+            name=VERIFY_DIGEST_FORMAT,
+            ok=format_ok,
+            actual=p.binding_digest[:12] + "..."
+            if len(p.binding_digest) > 12
+            else p.binding_digest,
+            detail="binding_digest must start with 'sha256:'",
+        )
+    )
 
     all_ok = all(c.ok for c in checks)
     return AttestationVerificationResult(ok=all_ok, checks=checks)

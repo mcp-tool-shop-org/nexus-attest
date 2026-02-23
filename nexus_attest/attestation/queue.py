@@ -45,7 +45,7 @@ from __future__ import annotations
 
 import json
 from dataclasses import dataclass
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
 
@@ -57,7 +57,7 @@ from nexus_attest.canonical_json import canonical_json
 
 def _now_utc() -> str:
     """RFC3339 UTC timestamp."""
-    return datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%S+00:00")
+    return datetime.now(UTC).strftime("%Y-%m-%dT%H:%M:%S+00:00")
 
 
 @dataclass(frozen=True)
@@ -144,14 +144,16 @@ class AttestationQueue:
         for row in rows:
             intent_dict = json.loads(row["intent_json"])
             intent = AttestationIntent.from_dict(intent_dict)
-            results.append(QueuedIntent(
-                queue_id=row["queue_id"],
-                intent=intent,
-                intent_digest=row["intent_digest"],
-                status=row["status"],
-                next_attempt=row["last_attempt"] + 1,
-                created_at=row["created_at"],
-            ))
+            results.append(
+                QueuedIntent(
+                    queue_id=row["queue_id"],
+                    intent=intent,
+                    intent_digest=row["intent_digest"],
+                    status=row["status"],
+                    next_attempt=row["last_attempt"] + 1,
+                    created_at=row["created_at"],
+                )
+            )
         return results
 
     def record_receipt(self, receipt: AttestationReceipt) -> bool:
@@ -206,10 +208,7 @@ class AttestationQueue:
             List of AttestationReceipt objects in attempt order.
         """
         rows = self._storage.list_receipts(intent_digest)
-        return [
-            AttestationReceipt.from_dict(json.loads(row["receipt_json"]))
-            for row in rows
-        ]
+        return [AttestationReceipt.from_dict(json.loads(row["receipt_json"])) for row in rows]
 
     def get_status(self, queue_id: str) -> dict[str, Any] | None:
         """Get the current status of a queued intent.

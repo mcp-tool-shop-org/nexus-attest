@@ -252,9 +252,7 @@ class TestSubmitSuccess:
     @pytest.mark.asyncio
     async def test_no_accepted_field_infers_from_engine_result(self) -> None:
         """Server without 'accepted' field — infer from tesSUCCESS."""
-        client = JsonRpcClient(
-            "http://localhost:5005", FakeTransport(SUBMIT_NO_ACCEPTED_FIELD)
-        )
+        client = JsonRpcClient("http://localhost:5005", FakeTransport(SUBMIT_NO_ACCEPTED_FIELD))
         result = await client.submit("deadbeef")
         assert result.accepted is True
         assert result.tx_hash == "f" * 64
@@ -413,9 +411,7 @@ class TestTxValidated:
 
     @pytest.mark.asyncio
     async def test_validated_no_close_time(self) -> None:
-        client = JsonRpcClient(
-            "http://localhost:5005", FakeTransport(TX_VALIDATED_NO_CLOSE_TIME)
-        )
+        client = JsonRpcClient("http://localhost:5005", FakeTransport(TX_VALIDATED_NO_CLOSE_TIME))
         result = await client.get_tx("a" * 64)
         assert result.validated is True
         assert result.ledger_index == 99999

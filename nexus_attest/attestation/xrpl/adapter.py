@@ -19,7 +19,7 @@ attempt sequencing later.
 from __future__ import annotations
 
 from dataclasses import dataclass
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 
 from nexus_attest.attestation.intent import AttestationIntent
 from nexus_attest.attestation.receipt import (
@@ -82,7 +82,7 @@ class AnchorPlan:
 
 def _now_utc() -> str:
     """RFC3339 UTC timestamp for receipt creation."""
-    return datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%S+00:00")
+    return datetime.now(UTC).strftime("%Y-%m-%dT%H:%M:%S+00:00")
 
 
 def _prefixed_intent_digest(raw_hex: str) -> str:
@@ -135,8 +135,7 @@ def plan(
     # 3. Validate size
     if not validate_memo_size(payload_bytes):
         raise ValueError(
-            f"memo payload exceeds {MAX_MEMO_BYTES} bytes "
-            f"(got {len(payload_bytes)} bytes)"
+            f"memo payload exceeds {MAX_MEMO_BYTES} bytes (got {len(payload_bytes)} bytes)"
         )
 
     # 4. Compute memo digest (over JCS bytes, pre-encoding)

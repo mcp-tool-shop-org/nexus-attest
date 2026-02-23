@@ -21,18 +21,16 @@ import pytest
 
 from nexus_attest.attestation.intent import AttestationIntent
 from nexus_attest.attestation.narrative import (
-    AttemptDiff,
     CANONICALIZATION,
+    NARRATIVE_SCHEMA,
+    NARRATIVE_VERSION,
     CheckStatus,
     ExchangeEvidence,
     IntegrityCheck,
     NarrativeReport,
-    NARRATIVE_SCHEMA,
-    NARRATIVE_VERSION,
     ReceiptEntry,
     XrplWitness,
     diff_attempts,
-    render_narrative,
     show_intent,
     show_queue,
     verify_narrative_digest,
@@ -47,7 +45,6 @@ from nexus_attest.attestation.xrpl.exchange_store import ExchangeStore
 from nexus_attest.attestation.xrpl.transport import ExchangeRecord
 from nexus_attest.canonical_json import canonical_json_bytes
 from nexus_attest.integrity import sha256_digest
-
 
 # ---------------------------------------------------------------------------
 # Fixtures
@@ -272,6 +269,7 @@ class TestNarrativeReportSerialization:
 
         # Keys should be alphabetically sorted
         import json
+
         parsed = json.loads(json_str)
         keys = list(parsed.keys())
         assert keys == sorted(keys)
@@ -459,9 +457,7 @@ class TestIntegrityChecks:
         assert len(digest_checks) == 1
         assert digest_checks[0].status == CheckStatus.PASS
 
-    def test_exchange_exists_check_skipped_without_store(
-        self, queue: AttestationQueue
-    ) -> None:
+    def test_exchange_exists_check_skipped_without_store(self, queue: AttestationQueue) -> None:
         intent = _make_intent("5")
         queue.enqueue(intent)
         intent_digest = f"sha256:{intent.intent_digest()}"
@@ -570,7 +566,8 @@ class TestIntegrityChecks:
         queue.record_receipt(receipt)
 
         report = show_intent(
-            queue, intent_digest,
+            queue,
+            intent_digest,
             exchange_store=exchange_store,
             include_bodies=True,
         )
@@ -699,9 +696,7 @@ class TestDiffAttempts:
         assert diff is not None
         assert "xrpl.submit.exchange" in diff.added_evidence
 
-    def test_diff_returns_none_for_missing_attempt(
-        self, queue: AttestationQueue
-    ) -> None:
+    def test_diff_returns_none_for_missing_attempt(self, queue: AttestationQueue) -> None:
         intent = _make_intent("9")
         queue.enqueue(intent)
         intent_digest = f"sha256:{intent.intent_digest()}"
@@ -946,9 +941,7 @@ class TestNarrativeDigest:
 
         assert report.narrative_digest == recomputed
 
-    def test_narrative_digest_changes_with_content(
-        self, queue: AttestationQueue
-    ) -> None:
+    def test_narrative_digest_changes_with_content(self, queue: AttestationQueue) -> None:
         """Different content produces different digest."""
         intent1 = _make_intent("d")
         intent2 = _make_intent("e")
@@ -1019,9 +1012,7 @@ class TestIntentDigestValidCheck:
 
 
 class TestReceiptsIntentConsistencyCheck:
-    def test_receipts_consistent_passes_with_no_receipts(
-        self, queue: AttestationQueue
-    ) -> None:
+    def test_receipts_consistent_passes_with_no_receipts(self, queue: AttestationQueue) -> None:
         """Check is SKIP when no receipts exist."""
         intent = _make_intent("a")
         queue.enqueue(intent)
@@ -1030,15 +1021,11 @@ class TestReceiptsIntentConsistencyCheck:
         report = show_intent(queue, intent_digest)
 
         # Find the receipts_intent_consistent check
-        consistency_checks = [
-            c for c in report.checks if c.name == "receipts_intent_consistent"
-        ]
+        consistency_checks = [c for c in report.checks if c.name == "receipts_intent_consistent"]
         assert len(consistency_checks) == 1
         assert consistency_checks[0].status == CheckStatus.SKIP
 
-    def test_receipts_consistent_passes_with_receipts(
-        self, queue: AttestationQueue
-    ) -> None:
+    def test_receipts_consistent_passes_with_receipts(self, queue: AttestationQueue) -> None:
         """Check passes when all receipts reference correct intent."""
         intent = _make_intent("b")
         queue.enqueue(intent)
@@ -1055,15 +1042,11 @@ class TestReceiptsIntentConsistencyCheck:
 
         report = show_intent(queue, intent_digest)
 
-        consistency_check = next(
-            c for c in report.checks if c.name == "receipts_intent_consistent"
-        )
+        consistency_check = next(c for c in report.checks if c.name == "receipts_intent_consistent")
         assert consistency_check.status == CheckStatus.PASS
         assert "1 receipts" in consistency_check.reason
 
-    def test_receipts_consistent_with_multiple_receipts(
-        self, queue: AttestationQueue
-    ) -> None:
+    def test_receipts_consistent_with_multiple_receipts(self, queue: AttestationQueue) -> None:
         """Check passes with multiple receipts all referencing same intent."""
         intent = _make_intent("c")
         queue.enqueue(intent)
@@ -1089,9 +1072,7 @@ class TestReceiptsIntentConsistencyCheck:
 
         report = show_intent(queue, intent_digest)
 
-        consistency_check = next(
-            c for c in report.checks if c.name == "receipts_intent_consistent"
-        )
+        consistency_check = next(c for c in report.checks if c.name == "receipts_intent_consistent")
         assert consistency_check.status == CheckStatus.PASS
         assert "2 receipts" in consistency_check.reason
 
@@ -1159,7 +1140,8 @@ class TestSelfVerifyingChecklist:
         queue.record_receipt(r2)
 
         report = show_intent(
-            queue, intent_digest,
+            queue,
+            intent_digest,
             exchange_store=exchange_store,
             include_bodies=True,
         )
@@ -1250,9 +1232,7 @@ class TestCanonicalizationMetadata:
 
         assert d["canonicalization"] == CANONICALIZATION
 
-    def test_canonicalization_in_not_found_report(
-        self, queue: AttestationQueue
-    ) -> None:
+    def test_canonicalization_in_not_found_report(self, queue: AttestationQueue) -> None:
         """Even not-found reports include canonicalization."""
         report = show_intent(queue, "sha256:" + "0" * 64)
         d = report.to_dict()
@@ -1293,10 +1273,12 @@ class TestCanonicalizationMetadata:
         intent_digest = f"sha256:{intent.intent_digest()}"
 
         report = show_intent(queue, intent_digest)
-        output = report.render(sources={
-            "attest_db": "/path/to/attest.db",
-            "exchange_db": "/path/to/exchanges.db",
-        })
+        output = report.render(
+            sources={
+                "attest_db": "/path/to/attest.db",
+                "exchange_db": "/path/to/exchanges.db",
+            }
+        )
 
         assert "Sources:" in output
         assert "attest_db: /path/to/attest.db" in output
@@ -1309,9 +1291,7 @@ class TestCanonicalizationMetadata:
 
 
 class TestWitnessExchangeValid:
-    def test_witness_exchange_passes_for_non_confirmed(
-        self, queue: AttestationQueue
-    ) -> None:
+    def test_witness_exchange_passes_for_non_confirmed(self, queue: AttestationQueue) -> None:
         """witness_exchange_valid is PASS for non-CONFIRMED receipts."""
         intent = _make_intent("a")
         queue.enqueue(intent)
@@ -1420,9 +1400,7 @@ class TestWitnessExchangeValid:
         assert len(witness_checks) == 1
         assert witness_checks[0].status == CheckStatus.PASS
 
-    def test_witness_exchange_skip_without_store(
-        self, queue: AttestationQueue
-    ) -> None:
+    def test_witness_exchange_skip_without_store(self, queue: AttestationQueue) -> None:
         """witness_exchange_valid SKIP when no exchange_store provided."""
         intent = _make_intent("e")
         queue.enqueue(intent)

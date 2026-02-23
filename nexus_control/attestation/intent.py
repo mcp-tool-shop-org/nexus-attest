@@ -63,17 +63,11 @@ def _validate_labels(labels: dict[str, str]) -> None:
         raise ValueError(f"labels: max {_LABELS_MAX_COUNT} entries, got {len(labels)}")
     for key, value in labels.items():
         if not _LABEL_KEY_RE.match(key):
-            raise ValueError(
-                f"label key must be 1-64 ASCII chars [a-zA-Z0-9._-], got: {key!r}"
-            )
+            raise ValueError(f"label key must be 1-64 ASCII chars [a-zA-Z0-9._-], got: {key!r}")
         if len(value) > _LABEL_VALUE_MAX:
-            raise ValueError(
-                f"label value for {key!r} exceeds {_LABEL_VALUE_MAX} chars"
-            )
+            raise ValueError(f"label value for {key!r} exceeds {_LABEL_VALUE_MAX} chars")
         if any(ord(c) < 0x20 for c in value):
-            raise ValueError(
-                f"label value for {key!r} contains control characters"
-            )
+            raise ValueError(f"label value for {key!r} contains control characters")
 
 
 # =========================================================================

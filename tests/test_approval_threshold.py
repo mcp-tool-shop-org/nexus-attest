@@ -1,10 +1,6 @@
 """Tests for approval threshold behavior."""
 
-import pytest
-from datetime import datetime, timezone, timedelta
-
 from nexus_attest.events import Actor, EventType
-from nexus_attest.store import DecisionStore
 from nexus_attest.tool import NexusControlTools
 
 
@@ -141,8 +137,7 @@ class TestApprovalThreshold:
         # Comment is stored in events (check via status with events)
         status = self.tools.status(request_id, include_events=True)
         approval_events = [
-            e for e in status.data["events"]
-            if e["event_type"] == "APPROVAL_GRANTED"
+            e for e in status.data["events"] if e["event_type"] == "APPROVAL_GRANTED"
         ]
         assert len(approval_events) == 1
         assert approval_events[0]["payload"]["comment"] == "Reviewed the plan, looks good"
@@ -178,7 +173,6 @@ class TestApprovalThreshold:
         )
 
         # Manually set state to executing by appending events directly
-        from nexus_attest.decision import Decision
 
         self.tools.store.append_event(
             decision_id=request_id,

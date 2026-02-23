@@ -150,10 +150,14 @@ class Decision:
                     overrides_raw = payload.get("overrides_applied", {})
                     # Explicitly cast the dict types for pyright
                     snapshot_dict: dict[str, object] = (
-                        cast(dict[str, object], snapshot_raw) if isinstance(snapshot_raw, dict) else {}
+                        cast(dict[str, object], snapshot_raw)
+                        if isinstance(snapshot_raw, dict)
+                        else {}
                     )
                     overrides_dict: dict[str, object] = (
-                        cast(dict[str, object], overrides_raw) if isinstance(overrides_raw, dict) else {}
+                        cast(dict[str, object], overrides_raw)
+                        if isinstance(overrides_raw, dict)
+                        else {}
                     )
                     self.template_ref = TemplateRef(
                         name=str(template_name),

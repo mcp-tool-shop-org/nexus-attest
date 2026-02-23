@@ -9,13 +9,7 @@ Test plan:
 - Template coverage: snapshots included when present
 """
 
-import copy
-import json
-
-import pytest
-
 from nexus_attest.bundle import (
-    BUNDLE_VERSION,
     DecisionBundle,
     compute_bundle_digest,
     validate_bundle_schema,
@@ -197,6 +191,7 @@ class TestExportContent:
         class MockRouter:
             def run(self, **kwargs):
                 return {"run_id": "run_123", "steps_executed": 5}
+
             def get_adapter_capabilities(self, adapter_id):
                 return None
 
@@ -313,9 +308,7 @@ class TestImportDigestVerification:
         bundle_dict["events"][0]["payload"]["goal"] = "MUTATED"
 
         # Skip verification
-        import_result = import_bundle(
-            self.store2, bundle_dict, verify_digest=False
-        )
+        import_result = import_bundle(self.store2, bundle_dict, verify_digest=False)
 
         assert import_result.success is True
         assert import_result.digest_verified is False
@@ -358,9 +351,7 @@ class TestImportConflictModes:
         bundle_dict = self._create_and_export()
 
         # Try to import again (decision already exists)
-        import_result = import_bundle(
-            self.store, bundle_dict, conflict_mode="reject_on_conflict"
-        )
+        import_result = import_bundle(self.store, bundle_dict, conflict_mode="reject_on_conflict")
 
         assert import_result.success is False
         assert import_result.error_code == "DECISION_EXISTS"
@@ -371,9 +362,7 @@ class TestImportConflictModes:
         original_id = bundle_dict["decision"]["decision_id"]
 
         # Import with new_decision_id
-        import_result = import_bundle(
-            self.store, bundle_dict, conflict_mode="new_decision_id"
-        )
+        import_result = import_bundle(self.store, bundle_dict, conflict_mode="new_decision_id")
 
         assert import_result.success is True
         assert import_result.new_decision_id is not None
@@ -407,6 +396,7 @@ class TestImportConflictModes:
             BundleRouterLink,
             BundleTemplateSnapshot,
         )
+
         bundle = DecisionBundle.from_dict(bundle_dict)
         new_digest = compute_bundle_digest(
             bundle_version=bundle.bundle_version,
@@ -419,7 +409,8 @@ class TestImportConflictModes:
 
         # Overwrite
         import_result = import_bundle(
-            self.store, bundle_dict,
+            self.store,
+            bundle_dict,
             conflict_mode="overwrite",
             replay_after_import=False,  # Skip replay since IDs don't match
         )
@@ -432,7 +423,8 @@ class TestImportConflictModes:
         bundle_dict = self._create_and_export()
 
         import_result = import_bundle(
-            self.store, bundle_dict,
+            self.store,
+            bundle_dict,
             conflict_mode="invalid_mode",  # type: ignore
         )
 
@@ -457,9 +449,7 @@ class TestImportReplayValidation:
         assert export_result.bundle is not None
         bundle_dict = export_result.bundle.to_dict()
 
-        import_result = import_bundle(
-            self.store2, bundle_dict, replay_after_import=True
-        )
+        import_result = import_bundle(self.store2, bundle_dict, replay_after_import=True)
 
         assert import_result.success is True
         assert import_result.replay is not None
@@ -494,7 +484,8 @@ class TestImportReplayValidation:
 
         # Skip digest verification since we mutated
         import_result = import_bundle(
-            self.store2, bundle_dict,
+            self.store2,
+            bundle_dict,
             verify_digest=False,
             replay_after_import=True,
         )
@@ -515,7 +506,8 @@ class TestImportReplayValidation:
             event["seq"] += 1
 
         import_result = import_bundle(
-            self.store2, bundle_dict,
+            self.store2,
+            bundle_dict,
             verify_digest=False,
         )
 

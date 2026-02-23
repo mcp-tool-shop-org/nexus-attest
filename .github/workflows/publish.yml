@@ -88,7 +88,7 @@ jobs:
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "📦 Package: nexus-attest" >> $GITHUB_STEP_SUMMARY
           echo "🔗 PyPI: https://pypi.org/project/nexus-attest/" >> $GITHUB_STEP_SUMMARY
-          echo "📚 Documentation: https://github.com/mcp-tool-shop/nexus-attest" >> $GITHUB_STEP_SUMMARY
+          echo "📚 Documentation: https://github.com/mcp-tool-shop-org/nexus-attest" >> $GITHUB_STEP_SUMMARY
 
   publish-release-notes:
     name: Update Release on GitHub
@@ -110,7 +110,7 @@ jobs:
           ### Package Information
           - **PyPI Package**: [nexus-attest](https://pypi.org/project/nexus-attest/${{ env.RELEASE_TAG }}/)
           - **Installation**: `pip install nexus-attest==${{ env.RELEASE_TAG }}`
-          - **Repository**: [github.com/mcp-tool-shop/nexus-attest](https://github.com/mcp-tool-shop/nexus-attest)
+          - **Repository**: [github.com/mcp-tool-shop-org/nexus-attest](https://github.com/mcp-tool-shop-org/nexus-attest)
 
           ### Features
           - **Orchestration**: Control plane for nexus-router executions
@@ -124,12 +124,12 @@ jobs:
           pip install nexus-attest
           ```
 
-          See [QUICKSTART.md](https://github.com/mcp-tool-shop/nexus-attest/blob/main/QUICKSTART.md) for usage examples.
+          See [QUICKSTART.md](https://github.com/mcp-tool-shop-org/nexus-attest/blob/main/QUICKSTART.md) for usage examples.
 
           ### Documentation
-          - [Architecture Guide](https://github.com/mcp-tool-shop/nexus-attest/blob/main/ARCHITECTURE.md)
-          - [Quickstart](https://github.com/mcp-tool-shop/nexus-attest/blob/main/QUICKSTART.md)
-          - [README](https://github.com/mcp-tool-shop/nexus-attest/blob/main/README.md)
+          - [Architecture Guide](https://github.com/mcp-tool-shop-org/nexus-attest/blob/main/ARCHITECTURE.md)
+          - [Quickstart](https://github.com/mcp-tool-shop-org/nexus-attest/blob/main/QUICKSTART.md)
+          - [README](https://github.com/mcp-tool-shop-org/nexus-attest/blob/main/README.md)
           EOF
           cat /tmp/release_notes.md
 

@@ -47,9 +47,7 @@ def plan_payment_to_self(
         ValueError: If memo_data_hex is empty.
     """
     if amount_drops not in _ALLOWED_AMOUNTS:
-        raise ValueError(
-            f"amount_drops must be '0' or '1', got: {amount_drops!r}"
-        )
+        raise ValueError(f"amount_drops must be '0' or '1', got: {amount_drops!r}")
     if not account:
         raise ValueError("account must be non-empty")
     if not memo_data_hex:

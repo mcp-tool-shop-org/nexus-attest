@@ -5,61 +5,41 @@
 <h1 align="center">nexus-attest</h1>
 
 <p align="center">
-  <strong>Cryptographic attestation and verification layer for MCP tool executions.</strong>
+  <strong>Deterministic attestation with verifiable evidence.</strong><br/>
+  Part of <a href="https://mcp-tool-shop.github.io/">MCP Tool Shop</a>
 </p>
 
 <p align="center">
-  <a href="https://pypi.org/project/nexus-attest/"><img src="https://badge.fury.io/py/nexus-attest.svg" alt="PyPI version" /></a>
-  <a href="https://pypi.org/project/nexus-attest/"><img src="https://img.shields.io/pypi/pyversions/nexus-attest.svg" alt="Python Support" /></a>
-  <a href="https://github.com/mcp-tool-shop-org/nexus-attest/blob/main/LICENSE"><img src="https://img.shields.io/github/license/mcp-tool-shop-org/nexus-attest.svg" alt="License" /></a>
-  <a href="https://github.com/mcp-tool-shop-org/nexus-attest/actions/workflows/ci.yml"><img src="https://github.com/mcp-tool-shop-org/nexus-attest/actions/workflows/ci.yml/badge.svg" alt="Tests" /></a>
+  <a href="https://pypi.org/project/nexus-attest/"><img src="https://img.shields.io/pypi/v/nexus-attest?color=blue" alt="PyPI version" /></a>
+  <a href="https://github.com/mcp-tool-shop-org/nexus-attest/actions/workflows/ci.yml"><img src="https://github.com/mcp-tool-shop-org/nexus-attest/actions/workflows/ci.yml/badge.svg" alt="CI" /></a>
+  <img src="https://img.shields.io/badge/python-3.11%20%7C%203.12-blue" alt="Python versions" />
   <a href="https://github.com/astral-sh/ruff"><img src="https://img.shields.io/badge/code%20style-ruff-000000.svg" alt="Code style: ruff" /></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-black" alt="license" /></a>
 </p>
 
+---
 
-Every MCP tool execution becomes a tamper-evident, cryptographically signed event — with optional XRPL-anchored witness proofs for third-party verifiability.
+## Why
 
-## Core Promise
+Running MCP tools in production requires approval workflows, audit trails, and policy enforcement. nexus-router executes immediately --- there is no governance layer.
 
-Every execution is tied to:
-- A **decision** (the request + policy)
-- A **policy** (approval rules, allowed modes, constraints)
-- An **approval trail** (who approved, when, with what comment)
-- A **nexus-router run_id** (for full execution audit)
-- An **audit package** (cryptographic binding of governance to execution)
+**nexus-attest** adds that layer:
 
-Everything is exportable, verifiable, and replayable.
+- Request / Review / Approve / Execute workflow with N-of-M approvals
+- Cryptographic audit packages that bind governance decisions to execution outcomes
+- XRPL-anchored witness proofs for third-party verifiability
+- Policy templates for repeatable approval patterns
+- Full event sourcing --- every state is derived by replaying an immutable log
 
-> See [ARCHITECTURE.md](ARCHITECTURE.md) for the full mental model and design guarantees.
+Everything is exportable, verifiable, and replayable. No mutable state. No hidden writes.
 
-## Installation
+## Install
 
 ```bash
 pip install nexus-attest
 ```
 
-Or from source:
-```bash
-git clone https://github.com/mcp-tool-shop-org/nexus-attest
-cd nexus-attest
-pip install -e ".[dev]"
-```
-
-## Why nexus-attest?
-
-**Problem**: Running MCP tools in production requires approval workflows, audit trails, and policy enforcement — but nexus-router executes immediately.
-
-**Solution**: nexus-attest adds a governance layer:
-- ✅ Request → Review → Approve → Execute workflow
-- ✅ Cryptographic audit packages linking decisions to executions
-- ✅ Policy templates for repeatable approval patterns
-- ✅ Full event sourcing for compliance and replay
-
-**Use Cases**:
-- Production deployments requiring N-of-M approvals
-- Security-sensitive operations (key rotation, access changes)
-- Compliance workflows needing audit trails
-- Multi-stakeholder decision processes
+Requires Python 3.11 or later.
 
 ## Quick Start
 
@@ -80,11 +60,11 @@ result = tools.request(
 )
 request_id = result.data["request_id"]
 
-# 2. Get approvals
+# 2. Get approvals (N-of-M)
 tools.approve(request_id, actor=Actor(type="human", id="alice@example.com"))
 tools.approve(request_id, actor=Actor(type="human", id="bob@example.com"))
 
-# 3. Execute (with your router)
+# 3. Execute via nexus-router
 result = tools.execute(
     request_id=request_id,
     adapter_id="subprocess:mcpt:key-rotation",
@@ -94,12 +74,61 @@ result = tools.execute(
 
 print(f"Run ID: {result.data['run_id']}")
 
-# 4. Export audit package (cryptographic proof of governance + execution)
+# 4. Export audit package (cryptographic proof)
 audit = tools.export_audit_package(request_id)
 print(audit.data["digest"])  # sha256:...
 ```
 
+See [QUICKSTART.md](QUICKSTART.md) for the full walkthrough with policy options, dry-run mode, and timeline views.
+
+## Core Concepts
+
+### Governance Flow
+
+```
+Request ──► Policy ──► Approvals (N-of-M) ──► Execute ──► Audit Package
+   │           │              │                    │              │
+   │           │              │                    │              │
+   ▼           ▼              ▼                    ▼              ▼
+ Decision   Constraints   Actor trail        nexus-router    Binding digest
+ created    attached      recorded           run_id linked   (tamper-evident)
+```
+
+### What Gets Bound
+
+Every audit package cryptographically links three things:
+
+| Component | What it captures |
+|-----------|-----------------|
+| **Control bundle** | The decision, policy, approvals, and constraints (what was allowed) |
+| **Router section** | The execution identity --- `run_id` and `router_digest` (what actually ran) |
+| **Control-router link** | Why this specific execution was authorized by this specific decision |
+
+The `binding_digest` is a SHA-256 hash over all three. If any component changes, the digest breaks.
+
+### Verification
+
+```python
+from nexus_attest import verify_audit_package
+
+verification = verify_audit_package(package)
+assert verification.ok  # 6 independent checks, no short-circuiting
+```
+
+All six checks run regardless of failures --- every issue is reported:
+
+| Check | What it verifies |
+|-------|-----------------|
+| `binding_digest` | Recompute from binding fields |
+| `control_bundle_digest` | Recompute from control bundle content |
+| `binding_control_match` | Binding matches control bundle |
+| `binding_router_match` | Binding matches router section |
+| `binding_link_match` | Binding matches control-router link |
+| `router_digest` | Embedded router bundle integrity (if applicable) |
+
 ## MCP Tools
+
+11 tools exposed via the Model Context Protocol:
 
 | Tool | Description |
 |------|-------------|
@@ -115,35 +144,7 @@ print(audit.data["digest"])  # sha256:...
 | `nexus-attest.import_bundle` | Import a bundle with conflict modes and replay validation |
 | `nexus-attest.export_audit_package` | Export audit package binding governance to execution |
 
-## Audit Packages (v0.6.0)
-
-A single JSON artifact that cryptographically binds:
-- **What was allowed** (control bundle)
-- **What actually ran** (router execution)
-- **Why it was allowed** (control-router link)
-
-Into one verifiable `binding_digest`.
-
-```python
-from nexus_attest import export_audit_package, verify_audit_package
-
-# Export
-result = export_audit_package(store, decision_id)
-package = result.package
-
-# Verify (6 independent checks, no short-circuiting)
-verification = verify_audit_package(package)
-assert verification.ok
-```
-
-Two router modes:
-
-| Mode | Description | Use Case |
-|------|-------------|----------|
-| **Reference** | `run_id` + `router_digest` | CI, internal systems |
-| **Embedded** | Full router bundle included | Regulators, long-term archival |
-
-## Decision Templates (v0.3.0)
+## Decision Templates
 
 Named, immutable policy bundles that can be reused across decisions:
 
@@ -166,7 +167,7 @@ result = tools.request(
 )
 ```
 
-## Decision Lifecycle (v0.4.0)
+## Decision Lifecycle
 
 Computed lifecycle with blocking reasons and timeline:
 
@@ -184,9 +185,9 @@ for entry in lifecycle.timeline:
     print(f"  {entry.seq}  {entry.label}")
 ```
 
-## Export/Import Bundles (v0.5.0)
+## Export / Import Bundles
 
-Portable, integrity-verified decision bundles:
+Portable, integrity-verified decision bundles for cross-system transfer:
 
 ```python
 # Export
@@ -201,7 +202,66 @@ import_result = tools.import_bundle(
 )
 ```
 
-Conflict modes: `reject_on_conflict`, `new_decision_id`, `overwrite`
+Conflict modes: `reject_on_conflict` | `new_decision_id` | `overwrite`
+
+## Attestation Subsystem
+
+The attestation layer provides cryptographic witness proofs with XRPL anchoring:
+
+### Attestation Intents
+
+Content-addressed attestation requests with subject binding:
+
+```python
+from nexus_attest.attestation import AttestationIntent
+
+intent = AttestationIntent(
+    subject_type="decision",
+    binding_digest="sha256:abc123...",
+    env="production",
+    claims={"decision_id": "...", "outcome": "approved"},
+)
+```
+
+### XRPL Witness Backend
+
+On-chain attestation via the XRP Ledger for third-party verifiability:
+
+| Component | Purpose |
+|-----------|---------|
+| `XRPLAdapter` | Submit attestation transactions |
+| `JsonRpcClient` | Communicate with XRPL nodes |
+| `ExchangeStore` | Track request/response evidence |
+| `MemoCodec` | Encode/decode attestation payloads in XRPL memos |
+| `XRPLSigner` | Transaction signing |
+
+### Self-Verifying Narratives
+
+Human-readable audit reports with embedded integrity checks:
+
+```python
+from nexus_attest.attestation.narrative import build_narrative
+
+report = build_narrative(
+    queue=attestation_queue,
+    intent_digest="sha256:...",
+    include_bodies=True,
+)
+# Returns NarrativeReport with receipt timeline,
+# integrity checks (PASS/FAIL/SKIP), and XRPL witness data
+```
+
+### Attestation Replay
+
+Deterministic replay of attestation timelines for verification:
+
+```python
+from nexus_attest.attestation.replay import replay_attestation
+
+report = replay_attestation(queue, intent_digest)
+# Returns AttestationReport with receipt summaries,
+# confirmation status, and exchange evidence
+```
 
 ## Data Model
 
@@ -211,15 +271,15 @@ All state is derived by replaying an immutable event log:
 
 ```
 decisions (header)
-  └── decision_events (append-only log)
-        ├── DECISION_CREATED
-        ├── POLICY_ATTACHED
-        ├── APPROVAL_GRANTED
-        ├── APPROVAL_REVOKED
-        ├── EXECUTION_REQUESTED
-        ├── EXECUTION_STARTED
-        ├── EXECUTION_COMPLETED
-        └── EXECUTION_FAILED
+  +-- decision_events (append-only log)
+        |-- DECISION_CREATED
+        |-- POLICY_ATTACHED
+        |-- APPROVAL_GRANTED
+        |-- APPROVAL_REVOKED
+        |-- EXECUTION_REQUESTED
+        |-- EXECUTION_STARTED
+        |-- EXECUTION_COMPLETED
+        +-- EXECUTION_FAILED
 ```
 
 ### Policy Model
@@ -241,49 +301,88 @@ Policy(
 - Can be revoked (before execution)
 - Execution requires approvals to satisfy policy **at execution time**
 
+### Router Modes
+
+| Mode | Contains | Use Case |
+|------|----------|----------|
+| **Reference** (default) | `run_id` + `router_digest` | CI, internal systems |
+| **Embedded** | Full router bundle + cross-check | Regulators, long-term archival |
+
+Both modes are cryptographically equivalent at the binding layer.
+
+## Project Structure
+
+```
+nexus-attest/
+|-- nexus_attest/              35 modules (published package)
+|   |-- __init__.py            Public API + version
+|   |-- tool.py                MCP tool entrypoints (11 tools)
+|   |-- store.py               SQLite event store
+|   |-- events.py              Event type definitions
+|   |-- policy.py              Policy validation + router compilation
+|   |-- decision.py            State machine + replay
+|   |-- lifecycle.py           Blocking reasons, timeline, progress
+|   |-- template.py            Named immutable policy templates
+|   |-- export.py              Decision bundle export
+|   |-- import_.py             Bundle import with conflict modes
+|   |-- bundle.py              Bundle types + digest computation
+|   |-- audit_package.py       Audit package types + verification
+|   |-- audit_export.py        Audit package export + rendering
+|   |-- canonical_json.py      Deterministic serialization
+|   |-- integrity.py           SHA-256 helpers
+|   +-- attestation/           Cryptographic attestation subsystem
+|       |-- intent.py          Attestation intents
+|       |-- receipt.py         Receipts with error taxonomy
+|       |-- narrative.py       Self-verifying narrative reports
+|       |-- replay.py          Deterministic attestation replay
+|       |-- queue.py           Attestation queue management
+|       |-- worker.py          Background attestation worker
+|       |-- storage.py         Attestation storage layer
+|       |-- flexiflow_adapter.py  FlexiFlow integration
+|       +-- xrpl/              XRPL witness backend
+|           |-- adapter.py     XRPL attestation adapter
+|           |-- client.py      XRPL client
+|           |-- jsonrpc_client.py  JSON-RPC transport
+|           |-- exchange_store.py  Request/response evidence
+|           |-- memo.py        Memo encoding/decoding
+|           |-- signer.py      Transaction signing
+|           |-- transport.py   Network transport
+|           +-- tx.py          Transaction construction
+|
+|-- nexus_control/             35 modules (internal engine)
+|-- tests/                     22 test files, 632 tests
+|-- schemas/                   JSON schemas for tool inputs
+|-- ARCHITECTURE.md            Mental model + design guarantees
+|-- QUICKSTART.md              5-minute operational guide
++-- pyproject.toml
+```
+
 ## Development
 
 ```bash
 # Install dev dependencies
 pip install -e ".[dev]"
 
-# Run tests (203 tests)
+# Run tests (632 tests)
 pytest
 
-# Type check (strict mode)
-pyright
+# Type check (basic mode, source packages)
+pyright nexus_attest nexus_control
 
 # Lint
 ruff check .
+
+# Format
+ruff format .
 ```
 
-## Project Structure
+## Exit Codes
 
-```
-nexus-attest/
-├── nexus_attest/
-│   ├── __init__.py          # Public API + version
-│   ├── tool.py              # MCP tool entrypoints (11 tools)
-│   ├── store.py             # SQLite event store
-│   ├── events.py            # Event type definitions
-│   ├── policy.py            # Policy validation + router compilation
-│   ├── decision.py          # State machine + replay
-│   ├── lifecycle.py         # Blocking reasons, timeline, progress
-│   ├── template.py          # Named immutable policy templates
-│   ├── export.py            # Decision bundle export
-│   ├── import_.py           # Bundle import with conflict modes
-│   ├── bundle.py            # Bundle types + digest computation
-│   ├── audit_package.py     # Audit package types + verification
-│   ├── audit_export.py      # Audit package export + rendering
-│   ├── canonical_json.py    # Deterministic serialization
-│   └── integrity.py         # SHA-256 helpers
-├── schemas/                 # JSON schemas for tool inputs
-├── tests/                   # 203 tests across 9 test files
-├── ARCHITECTURE.md          # Mental model + design guarantees
-├── QUICKSTART.md
-├── README.md
-└── pyproject.toml
-```
+| Code | Meaning |
+|------|---------|
+| `0` | All checks passed |
+| `1` | Unhandled error |
+| `2` | Validation or schema error |
 
 ## License
 

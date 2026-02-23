@@ -214,7 +214,9 @@ def import_bundle(
         if not success:
             return ImportResult(
                 success=False,
-                error_code=IMPORT_ERROR_DECISION_EXISTS if "exists" in (error_msg or "").lower() else IMPORT_ERROR_ATOMICITY_FAILED,
+                error_code=IMPORT_ERROR_DECISION_EXISTS
+                if "exists" in (error_msg or "").lower()
+                else IMPORT_ERROR_ATOMICITY_FAILED,
                 error_message=error_msg,
             )
 
@@ -270,15 +272,17 @@ def _prepare_events_for_import(
         # Payloads should not contain redundant decision_id references
         # The target_decision_id is only used for the decision_id field
 
-        prepared.append({
-            "seq": event.seq,
-            "event_type": event.type,
-            "ts": event.ts,
-            "actor_type": str(event.actor.get("type", "unknown")),
-            "actor_id": str(event.actor.get("id", "unknown")),
-            "payload": json.dumps(event.payload),
-            "digest": event.digest,
-        })
+        prepared.append(
+            {
+                "seq": event.seq,
+                "event_type": event.type,
+                "ts": event.ts,
+                "actor_type": str(event.actor.get("type", "unknown")),
+                "actor_id": str(event.actor.get("id", "unknown")),
+                "payload": json.dumps(event.payload),
+                "digest": event.digest,
+            }
+        )
 
     return prepared
 

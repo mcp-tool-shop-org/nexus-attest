@@ -37,9 +37,7 @@ from nexus_attest.attestation.xrpl.signer import SignResult
 # Fixtures
 # ---------------------------------------------------------------------------
 
-SAMPLE_BINDING_DIGEST = (
-    "sha256:abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890"
-)
+SAMPLE_BINDING_DIGEST = "sha256:abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890"
 SAMPLE_ACCOUNT = "rHb9CJAWyB4rj91VRWn96DkukG4bwdtyTh"
 SAMPLE_TX_HASH = "a" * 64
 SAMPLE_SIGNED_BLOB = "deadbeef" * 16
@@ -154,8 +152,11 @@ class TestSubmitAccepted:
     async def test_returns_submitted_receipt(self) -> None:
         anchor = _make_plan()
         receipt = await submit(
-            anchor, FakeClient(), FakeSigner(),
-            attempt=1, created_at=SAMPLE_CREATED_AT,
+            anchor,
+            FakeClient(),
+            FakeSigner(),
+            attempt=1,
+            created_at=SAMPLE_CREATED_AT,
         )
         assert isinstance(receipt, AttestationReceipt)
         assert receipt.status == ReceiptStatus.SUBMITTED
@@ -164,8 +165,11 @@ class TestSubmitAccepted:
     async def test_receipt_backend_is_xrpl(self) -> None:
         anchor = _make_plan()
         receipt = await submit(
-            anchor, FakeClient(), FakeSigner(),
-            attempt=1, created_at=SAMPLE_CREATED_AT,
+            anchor,
+            FakeClient(),
+            FakeSigner(),
+            attempt=1,
+            created_at=SAMPLE_CREATED_AT,
         )
         assert receipt.backend == XRPL_BACKEND
 
@@ -173,8 +177,11 @@ class TestSubmitAccepted:
     async def test_receipt_intent_digest_is_prefixed(self) -> None:
         anchor = _make_plan()
         receipt = await submit(
-            anchor, FakeClient(), FakeSigner(),
-            attempt=1, created_at=SAMPLE_CREATED_AT,
+            anchor,
+            FakeClient(),
+            FakeSigner(),
+            attempt=1,
+            created_at=SAMPLE_CREATED_AT,
         )
         assert receipt.intent_digest == f"sha256:{anchor.intent_digest}"
 
@@ -182,8 +189,11 @@ class TestSubmitAccepted:
     async def test_receipt_attempt_matches(self) -> None:
         anchor = _make_plan()
         receipt = await submit(
-            anchor, FakeClient(), FakeSigner(),
-            attempt=3, created_at=SAMPLE_CREATED_AT,
+            anchor,
+            FakeClient(),
+            FakeSigner(),
+            attempt=3,
+            created_at=SAMPLE_CREATED_AT,
         )
         assert receipt.attempt == 3
 
@@ -191,8 +201,11 @@ class TestSubmitAccepted:
     async def test_receipt_created_at_matches(self) -> None:
         anchor = _make_plan()
         receipt = await submit(
-            anchor, FakeClient(), FakeSigner(),
-            attempt=1, created_at=SAMPLE_CREATED_AT,
+            anchor,
+            FakeClient(),
+            FakeSigner(),
+            attempt=1,
+            created_at=SAMPLE_CREATED_AT,
         )
         assert receipt.created_at == SAMPLE_CREATED_AT
 
@@ -200,8 +213,11 @@ class TestSubmitAccepted:
     async def test_evidence_includes_memo_digest(self) -> None:
         anchor = _make_plan()
         receipt = await submit(
-            anchor, FakeClient(), FakeSigner(),
-            attempt=1, created_at=SAMPLE_CREATED_AT,
+            anchor,
+            FakeClient(),
+            FakeSigner(),
+            attempt=1,
+            created_at=SAMPLE_CREATED_AT,
         )
         assert "memo_digest" in receipt.evidence_digests
         assert receipt.evidence_digests["memo_digest"] == anchor.memo_digest
@@ -210,8 +226,11 @@ class TestSubmitAccepted:
     async def test_proof_includes_tx_hash(self) -> None:
         anchor = _make_plan()
         receipt = await submit(
-            anchor, FakeClient(), FakeSigner(),
-            attempt=1, created_at=SAMPLE_CREATED_AT,
+            anchor,
+            FakeClient(),
+            FakeSigner(),
+            attempt=1,
+            created_at=SAMPLE_CREATED_AT,
         )
         assert receipt.proof["tx_hash"] == SAMPLE_TX_HASH
 
@@ -219,8 +238,11 @@ class TestSubmitAccepted:
     async def test_proof_includes_engine_result(self) -> None:
         anchor = _make_plan()
         receipt = await submit(
-            anchor, FakeClient(), FakeSigner(),
-            attempt=1, created_at=SAMPLE_CREATED_AT,
+            anchor,
+            FakeClient(),
+            FakeSigner(),
+            attempt=1,
+            created_at=SAMPLE_CREATED_AT,
         )
         assert receipt.proof["engine_result"] == "tesSUCCESS"
 
@@ -228,8 +250,11 @@ class TestSubmitAccepted:
     async def test_proof_includes_key_id(self) -> None:
         anchor = _make_plan()
         receipt = await submit(
-            anchor, FakeClient(), FakeSigner(),
-            attempt=1, created_at=SAMPLE_CREATED_AT,
+            anchor,
+            FakeClient(),
+            FakeSigner(),
+            attempt=1,
+            created_at=SAMPLE_CREATED_AT,
         )
         assert receipt.proof["key_id"] == SAMPLE_KEY_ID
 
@@ -237,8 +262,11 @@ class TestSubmitAccepted:
     async def test_no_error_on_success(self) -> None:
         anchor = _make_plan()
         receipt = await submit(
-            anchor, FakeClient(), FakeSigner(),
-            attempt=1, created_at=SAMPLE_CREATED_AT,
+            anchor,
+            FakeClient(),
+            FakeSigner(),
+            attempt=1,
+            created_at=SAMPLE_CREATED_AT,
         )
         assert receipt.error is None
 
@@ -247,8 +275,11 @@ class TestSubmitAccepted:
         anchor = _make_plan()
         signer = FakeSigner()
         await submit(
-            anchor, FakeClient(), signer,
-            attempt=1, created_at=SAMPLE_CREATED_AT,
+            anchor,
+            FakeClient(),
+            signer,
+            attempt=1,
+            created_at=SAMPLE_CREATED_AT,
         )
         assert len(signer.sign_calls) == 1
         assert signer.sign_calls[0] == anchor.tx
@@ -258,8 +289,11 @@ class TestSubmitAccepted:
         anchor = _make_plan()
         client = FakeClient()
         await submit(
-            anchor, client, FakeSigner(),
-            attempt=1, created_at=SAMPLE_CREATED_AT,
+            anchor,
+            client,
+            FakeSigner(),
+            attempt=1,
+            created_at=SAMPLE_CREATED_AT,
         )
         assert len(client.submit_calls) == 1
         assert client.submit_calls[0] == SAMPLE_SIGNED_BLOB
@@ -268,80 +302,110 @@ class TestSubmitAccepted:
 class TestSubmitRejected:
     @pytest.mark.asyncio
     async def test_rejected_returns_failed(self) -> None:
-        client = FakeClient(submit_result=SubmitResult(
-            accepted=False,
-            tx_hash=SAMPLE_TX_HASH,
-            engine_result="temBAD_FEE",
-            detail="fee too low",
-        ))
+        client = FakeClient(
+            submit_result=SubmitResult(
+                accepted=False,
+                tx_hash=SAMPLE_TX_HASH,
+                engine_result="temBAD_FEE",
+                detail="fee too low",
+            )
+        )
         receipt = await submit(
-            _make_plan(), client, FakeSigner(),
-            attempt=1, created_at=SAMPLE_CREATED_AT,
+            _make_plan(),
+            client,
+            FakeSigner(),
+            attempt=1,
+            created_at=SAMPLE_CREATED_AT,
         )
         assert receipt.status == ReceiptStatus.FAILED
 
     @pytest.mark.asyncio
     async def test_rejected_error_code_mapped(self) -> None:
-        client = FakeClient(submit_result=SubmitResult(
-            accepted=False,
-            engine_result="temBAD_FEE",
-        ))
+        client = FakeClient(
+            submit_result=SubmitResult(
+                accepted=False,
+                engine_result="temBAD_FEE",
+            )
+        )
         receipt = await submit(
-            _make_plan(), client, FakeSigner(),
-            attempt=1, created_at=SAMPLE_CREATED_AT,
+            _make_plan(),
+            client,
+            FakeSigner(),
+            attempt=1,
+            created_at=SAMPLE_CREATED_AT,
         )
         assert receipt.error is not None
         assert receipt.error.code == str(ReceiptErrorCode.REJECTED)
 
     @pytest.mark.asyncio
     async def test_rejected_tef_mapped(self) -> None:
-        client = FakeClient(submit_result=SubmitResult(
-            accepted=False,
-            engine_result="tefPAST_SEQ",
-        ))
+        client = FakeClient(
+            submit_result=SubmitResult(
+                accepted=False,
+                engine_result="tefPAST_SEQ",
+            )
+        )
         receipt = await submit(
-            _make_plan(), client, FakeSigner(),
-            attempt=1, created_at=SAMPLE_CREATED_AT,
+            _make_plan(),
+            client,
+            FakeSigner(),
+            attempt=1,
+            created_at=SAMPLE_CREATED_AT,
         )
         assert receipt.error is not None
         assert receipt.error.code == str(ReceiptErrorCode.REJECTED)
 
     @pytest.mark.asyncio
     async def test_rejected_tec_mapped(self) -> None:
-        client = FakeClient(submit_result=SubmitResult(
-            accepted=False,
-            engine_result="tecPATH_DRY",
-        ))
+        client = FakeClient(
+            submit_result=SubmitResult(
+                accepted=False,
+                engine_result="tecPATH_DRY",
+            )
+        )
         receipt = await submit(
-            _make_plan(), client, FakeSigner(),
-            attempt=1, created_at=SAMPLE_CREATED_AT,
+            _make_plan(),
+            client,
+            FakeSigner(),
+            attempt=1,
+            created_at=SAMPLE_CREATED_AT,
         )
         assert receipt.error is not None
         assert receipt.error.code == str(ReceiptErrorCode.REJECTED)
 
     @pytest.mark.asyncio
     async def test_rejected_unknown_engine_result(self) -> None:
-        client = FakeClient(submit_result=SubmitResult(
-            accepted=False,
-            engine_result="xyzUNKNOWN",
-        ))
+        client = FakeClient(
+            submit_result=SubmitResult(
+                accepted=False,
+                engine_result="xyzUNKNOWN",
+            )
+        )
         receipt = await submit(
-            _make_plan(), client, FakeSigner(),
-            attempt=1, created_at=SAMPLE_CREATED_AT,
+            _make_plan(),
+            client,
+            FakeSigner(),
+            attempt=1,
+            created_at=SAMPLE_CREATED_AT,
         )
         assert receipt.error is not None
         assert receipt.error.code == str(ReceiptErrorCode.UNKNOWN)
 
     @pytest.mark.asyncio
     async def test_rejected_detail_includes_engine_result(self) -> None:
-        client = FakeClient(submit_result=SubmitResult(
-            accepted=False,
-            engine_result="temBAD_FEE",
-            detail="fee below minimum",
-        ))
+        client = FakeClient(
+            submit_result=SubmitResult(
+                accepted=False,
+                engine_result="temBAD_FEE",
+                detail="fee below minimum",
+            )
+        )
         receipt = await submit(
-            _make_plan(), client, FakeSigner(),
-            attempt=1, created_at=SAMPLE_CREATED_AT,
+            _make_plan(),
+            client,
+            FakeSigner(),
+            attempt=1,
+            created_at=SAMPLE_CREATED_AT,
         )
         assert receipt.error is not None
         assert "temBAD_FEE" in receipt.error.detail  # type: ignore[operator]
@@ -350,8 +414,11 @@ class TestSubmitRejected:
     async def test_rejected_still_has_evidence(self) -> None:
         client = FakeClient(submit_result=SubmitResult(accepted=False))
         receipt = await submit(
-            _make_plan(), client, FakeSigner(),
-            attempt=1, created_at=SAMPLE_CREATED_AT,
+            _make_plan(),
+            client,
+            FakeSigner(),
+            attempt=1,
+            created_at=SAMPLE_CREATED_AT,
         )
         assert "memo_digest" in receipt.evidence_digests
 
@@ -363,8 +430,11 @@ class TestSubmitConnectionError:
             submit_should_raise=ConnectionError("connection refused"),
         )
         receipt = await submit(
-            _make_plan(), client, FakeSigner(),
-            attempt=1, created_at=SAMPLE_CREATED_AT,
+            _make_plan(),
+            client,
+            FakeSigner(),
+            attempt=1,
+            created_at=SAMPLE_CREATED_AT,
         )
         assert receipt.status == ReceiptStatus.FAILED
 
@@ -374,8 +444,11 @@ class TestSubmitConnectionError:
             submit_should_raise=ConnectionError("connection refused"),
         )
         receipt = await submit(
-            _make_plan(), client, FakeSigner(),
-            attempt=1, created_at=SAMPLE_CREATED_AT,
+            _make_plan(),
+            client,
+            FakeSigner(),
+            attempt=1,
+            created_at=SAMPLE_CREATED_AT,
         )
         assert receipt.error is not None
         assert receipt.error.code == str(ReceiptErrorCode.BACKEND_UNAVAILABLE)
@@ -386,8 +459,11 @@ class TestSubmitConnectionError:
             submit_should_raise=ConnectionError("connection refused"),
         )
         receipt = await submit(
-            _make_plan(), client, FakeSigner(),
-            attempt=1, created_at=SAMPLE_CREATED_AT,
+            _make_plan(),
+            client,
+            FakeSigner(),
+            attempt=1,
+            created_at=SAMPLE_CREATED_AT,
         )
         assert receipt.error is not None
         assert "connection refused" in receipt.error.detail  # type: ignore[operator]
@@ -398,8 +474,11 @@ class TestSubmitSigningError:
     async def test_signing_error_returns_failed(self) -> None:
         signer = FakeSigner(should_raise=ValueError("bad key"))
         receipt = await submit(
-            _make_plan(), FakeClient(), signer,
-            attempt=1, created_at=SAMPLE_CREATED_AT,
+            _make_plan(),
+            FakeClient(),
+            signer,
+            attempt=1,
+            created_at=SAMPLE_CREATED_AT,
         )
         assert receipt.status == ReceiptStatus.FAILED
 
@@ -407,8 +486,11 @@ class TestSubmitSigningError:
     async def test_signing_error_code_is_rejected(self) -> None:
         signer = FakeSigner(should_raise=ValueError("bad key"))
         receipt = await submit(
-            _make_plan(), FakeClient(), signer,
-            attempt=1, created_at=SAMPLE_CREATED_AT,
+            _make_plan(),
+            FakeClient(),
+            signer,
+            attempt=1,
+            created_at=SAMPLE_CREATED_AT,
         )
         assert receipt.error is not None
         assert receipt.error.code == "REJECTED"
@@ -417,8 +499,11 @@ class TestSubmitSigningError:
     async def test_signing_error_detail_included(self) -> None:
         signer = FakeSigner(should_raise=ValueError("bad key"))
         receipt = await submit(
-            _make_plan(), FakeClient(), signer,
-            attempt=1, created_at=SAMPLE_CREATED_AT,
+            _make_plan(),
+            FakeClient(),
+            signer,
+            attempt=1,
+            created_at=SAMPLE_CREATED_AT,
         )
         assert receipt.error is not None
         assert "bad key" in receipt.error.detail  # type: ignore[operator]
@@ -428,8 +513,11 @@ class TestSubmitSigningError:
         client = FakeClient()
         signer = FakeSigner(should_raise=ValueError("bad key"))
         await submit(
-            _make_plan(), client, signer,
-            attempt=1, created_at=SAMPLE_CREATED_AT,
+            _make_plan(),
+            client,
+            signer,
+            attempt=1,
+            created_at=SAMPLE_CREATED_AT,
         )
         assert len(client.submit_calls) == 0
 
@@ -438,8 +526,11 @@ class TestSubmitCreatedAt:
     @pytest.mark.asyncio
     async def test_auto_created_at_when_none(self) -> None:
         receipt = await submit(
-            _make_plan(), FakeClient(), FakeSigner(),
-            attempt=1, created_at=None,
+            _make_plan(),
+            FakeClient(),
+            FakeSigner(),
+            attempt=1,
+            created_at=None,
         )
         # Should be a valid RFC3339 UTC timestamp
         assert receipt.created_at.endswith("+00:00")
@@ -454,13 +545,15 @@ class TestSubmitCreatedAt:
 class TestConfirmValidated:
     @pytest.mark.asyncio
     async def test_validated_returns_confirmed(self) -> None:
-        client = FakeClient(get_tx_result=TxStatusResult(
-            found=True,
-            validated=True,
-            ledger_index=12345,
-            engine_result="tesSUCCESS",
-            ledger_close_time="2025-01-15T12:01:00Z",
-        ))
+        client = FakeClient(
+            get_tx_result=TxStatusResult(
+                found=True,
+                validated=True,
+                ledger_index=12345,
+                engine_result="tesSUCCESS",
+                ledger_close_time="2025-01-15T12:01:00Z",
+            )
+        )
         anchor = _make_plan()
         receipt = await confirm(
             intent_digest=f"sha256:{anchor.intent_digest}",
@@ -474,9 +567,13 @@ class TestConfirmValidated:
 
     @pytest.mark.asyncio
     async def test_confirmed_proof_has_tx_hash(self) -> None:
-        client = FakeClient(get_tx_result=TxStatusResult(
-            found=True, validated=True, ledger_index=12345,
-        ))
+        client = FakeClient(
+            get_tx_result=TxStatusResult(
+                found=True,
+                validated=True,
+                ledger_index=12345,
+            )
+        )
         anchor = _make_plan()
         receipt = await confirm(
             intent_digest=f"sha256:{anchor.intent_digest}",
@@ -490,9 +587,13 @@ class TestConfirmValidated:
 
     @pytest.mark.asyncio
     async def test_confirmed_proof_has_ledger_index(self) -> None:
-        client = FakeClient(get_tx_result=TxStatusResult(
-            found=True, validated=True, ledger_index=12345,
-        ))
+        client = FakeClient(
+            get_tx_result=TxStatusResult(
+                found=True,
+                validated=True,
+                ledger_index=12345,
+            )
+        )
         anchor = _make_plan()
         receipt = await confirm(
             intent_digest=f"sha256:{anchor.intent_digest}",
@@ -506,10 +607,14 @@ class TestConfirmValidated:
 
     @pytest.mark.asyncio
     async def test_confirmed_proof_has_engine_result(self) -> None:
-        client = FakeClient(get_tx_result=TxStatusResult(
-            found=True, validated=True, ledger_index=12345,
-            engine_result="tesSUCCESS",
-        ))
+        client = FakeClient(
+            get_tx_result=TxStatusResult(
+                found=True,
+                validated=True,
+                ledger_index=12345,
+                engine_result="tesSUCCESS",
+            )
+        )
         anchor = _make_plan()
         receipt = await confirm(
             intent_digest=f"sha256:{anchor.intent_digest}",
@@ -523,10 +628,14 @@ class TestConfirmValidated:
 
     @pytest.mark.asyncio
     async def test_confirmed_proof_has_ledger_close_time(self) -> None:
-        client = FakeClient(get_tx_result=TxStatusResult(
-            found=True, validated=True, ledger_index=12345,
-            ledger_close_time="2025-01-15T12:01:00Z",
-        ))
+        client = FakeClient(
+            get_tx_result=TxStatusResult(
+                found=True,
+                validated=True,
+                ledger_index=12345,
+                ledger_close_time="2025-01-15T12:01:00Z",
+            )
+        )
         anchor = _make_plan()
         receipt = await confirm(
             intent_digest=f"sha256:{anchor.intent_digest}",
@@ -540,9 +649,13 @@ class TestConfirmValidated:
 
     @pytest.mark.asyncio
     async def test_confirmed_evidence_includes_memo_digest(self) -> None:
-        client = FakeClient(get_tx_result=TxStatusResult(
-            found=True, validated=True, ledger_index=12345,
-        ))
+        client = FakeClient(
+            get_tx_result=TxStatusResult(
+                found=True,
+                validated=True,
+                ledger_index=12345,
+            )
+        )
         anchor = _make_plan()
         receipt = await confirm(
             intent_digest=f"sha256:{anchor.intent_digest}",
@@ -556,9 +669,13 @@ class TestConfirmValidated:
 
     @pytest.mark.asyncio
     async def test_confirmed_backend_is_xrpl(self) -> None:
-        client = FakeClient(get_tx_result=TxStatusResult(
-            found=True, validated=True, ledger_index=12345,
-        ))
+        client = FakeClient(
+            get_tx_result=TxStatusResult(
+                found=True,
+                validated=True,
+                ledger_index=12345,
+            )
+        )
         anchor = _make_plan()
         receipt = await confirm(
             intent_digest=f"sha256:{anchor.intent_digest}",
@@ -604,9 +721,12 @@ class TestConfirmNotFound:
 class TestConfirmFoundNotValidated:
     @pytest.mark.asyncio
     async def test_found_not_validated_returns_deferred(self) -> None:
-        client = FakeClient(get_tx_result=TxStatusResult(
-            found=True, validated=False,
-        ))
+        client = FakeClient(
+            get_tx_result=TxStatusResult(
+                found=True,
+                validated=False,
+            )
+        )
         anchor = _make_plan()
         receipt = await confirm(
             intent_digest=f"sha256:{anchor.intent_digest}",

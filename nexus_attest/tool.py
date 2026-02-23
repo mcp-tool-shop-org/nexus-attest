@@ -209,7 +209,9 @@ class NexusControlTools:
                 # No template - use provided values with defaults
                 effective_min_approvals = min_approvals if min_approvals is not None else 1
                 if allowed_modes is None:
-                    effective_allowed_modes = ["dry_run"] if mode == "dry_run" else ["dry_run", "apply"]
+                    effective_allowed_modes = (
+                        ["dry_run"] if mode == "dry_run" else ["dry_run", "apply"]
+                    )
                 else:
                     effective_allowed_modes = allowed_modes
                 effective_require_caps = require_adapter_capabilities or []
@@ -614,13 +616,15 @@ class NexusControlTools:
             summaries: list[dict[str, Any]] = []
             for decision_id, created_at in decisions:
                 decision = Decision.load(self.store, decision_id)
-                summaries.append({
-                    "request_id": decision_id,
-                    "created_at": created_at.isoformat(),
-                    "state": decision.state.value,
-                    "goal": decision.goal,
-                    "is_approved": decision.is_approved,
-                })
+                summaries.append(
+                    {
+                        "request_id": decision_id,
+                        "created_at": created_at.isoformat(),
+                        "state": decision.state.value,
+                        "goal": decision.goal,
+                        "is_approved": decision.is_approved,
+                    }
+                )
 
             return ToolResult(
                 success=True,
@@ -754,7 +758,9 @@ class NexusControlTools:
                     "mode": decision.requested_mode or "dry_run",
                     "goal": decision.goal,
                     "created_at": decision.events[0].ts.isoformat() if decision.events else None,
-                    "last_event_at": decision.events[-1].ts.isoformat() if decision.events else None,
+                    "last_event_at": decision.events[-1].ts.isoformat()
+                    if decision.events
+                    else None,
                 },
                 "lifecycle": lifecycle.to_dict(),
                 "approval": self._build_approval_section(decision),
@@ -817,7 +823,10 @@ class NexusControlTools:
                 missing = 0
                 if decision.policy:
                     missing = decision.policy.min_approvals - decision.active_approval_count
-                return (False, f"Decision not executable (missing {missing} approval{'s' if missing != 1 else ''})")
+                return (
+                    False,
+                    f"Decision not executable (missing {missing} approval{'s' if missing != 1 else ''})",
+                )
             case "APPROVED":
                 return (True, "Decision approved (ready to execute)")
             case "EXECUTING":
@@ -841,13 +850,17 @@ class NexusControlTools:
         approvers: list[dict[str, Any]] = []
         for actor_id, approval in sorted(decision.approvals.items()):
             if not approval.revoked:
-                approvers.append({
-                    "actor": actor_id,
-                    "actor_type": approval.actor.get("type", "unknown"),
-                    "expires_at": approval.expires_at.isoformat() if approval.expires_at else None,
-                    "comment": approval.comment,
-                    "ts": approval.granted_at.isoformat(),
-                })
+                approvers.append(
+                    {
+                        "actor": actor_id,
+                        "actor_type": approval.actor.get("type", "unknown"),
+                        "expires_at": approval.expires_at.isoformat()
+                        if approval.expires_at
+                        else None,
+                        "comment": approval.comment,
+                        "ts": approval.granted_at.isoformat(),
+                    }
+                )
 
         return {
             "min_approvals": required,
@@ -907,7 +920,9 @@ class NexusControlTools:
             "requested": True,
             "requested_at": exec_record.requested_at.isoformat(),
             "started_at": exec_record.started_at.isoformat() if exec_record.started_at else None,
-            "completed_at": exec_record.completed_at.isoformat() if exec_record.completed_at else None,
+            "completed_at": exec_record.completed_at.isoformat()
+            if exec_record.completed_at
+            else None,
             "run_id": exec_record.run_id,
             "adapter_id": exec_record.adapter_id,
             "dry_run": exec_record.dry_run,
@@ -982,7 +997,9 @@ class NexusControlTools:
         # Lifecycle section (new in v0.4.0)
         lines.append("## Lifecycle")
         progress = lifecycle.progress
-        lines.append(f"  Progress:     {progress.approvals_current}/{progress.approvals_required} approvals")
+        lines.append(
+            f"  Progress:     {progress.approvals_current}/{progress.approvals_required} approvals"
+        )
         lines.append(f"  Ready:        {'yes' if progress.ready_to_execute else 'no'}")
 
         if lifecycle.is_blocked:
@@ -1011,8 +1028,7 @@ class NexusControlTools:
 
             # List approvers
             active_approvers = [
-                (aid, a) for aid, a in sorted(decision.approvals.items())
-                if not a.revoked
+                (aid, a) for aid, a in sorted(decision.approvals.items()) if not a.revoked
             ]
 
             if active_approvers:
@@ -1020,7 +1036,11 @@ class NexusControlTools:
                     lines.append("")
                     lines.append("  Approvers:")
                     for actor_id, approval in active_approvers:
-                        expires = approval.expires_at.strftime('%Y-%m-%dT%H:%M:%SZ') if approval.expires_at else "—"
+                        expires = (
+                            approval.expires_at.strftime("%Y-%m-%dT%H:%M:%SZ")
+                            if approval.expires_at
+                            else "—"
+                        )
                         lines.append(f"    - {actor_id}  (expires: {expires})")
                         if approval.comment:
                             lines.append(f'      "{approval.comment}"')
@@ -1040,7 +1060,11 @@ class NexusControlTools:
         lines.append("## Policy")
         if decision.policy:
             modes = ", ".join(decision.policy.allowed_modes)
-            caps = ", ".join(decision.policy.require_adapter_capabilities) if decision.policy.require_adapter_capabilities else "—"
+            caps = (
+                ", ".join(decision.policy.require_adapter_capabilities)
+                if decision.policy.require_adapter_capabilities
+                else "—"
+            )
             max_steps = decision.policy.max_steps if decision.policy.max_steps else "—"
 
             lines.append(f"  Allowed modes:          {modes}")
@@ -1066,7 +1090,9 @@ class NexusControlTools:
         lines.append("## Execution")
         exec_record = decision.latest_execution
         if exec_record:
-            lines.append(f"  Requested:    {exec_record.requested_at.strftime('%Y-%m-%dT%H:%M:%SZ')}")
+            lines.append(
+                f"  Requested:    {exec_record.requested_at.strftime('%Y-%m-%dT%H:%M:%SZ')}"
+            )
             lines.append(f"  Run ID:       {exec_record.run_id or '—'}")
             lines.append(f"  Adapter:      {exec_record.adapter_id}")
 
@@ -1089,10 +1115,16 @@ class NexusControlTools:
         if exec_record and exec_record.run_id:
             lines.append("## Router (linked)")
             if exec_record.request_digest:
-                lines.append(f"  Router request digest:  sha256:{exec_record.request_digest[:12]}...")
+                lines.append(
+                    f"  Router request digest:  sha256:{exec_record.request_digest[:12]}..."
+                )
             if exec_record.response_digest:
-                lines.append(f"  Router result digest:   sha256:{exec_record.response_digest[:12]}...")
-            lines.append(f'  Inspect hint:           nexus-router.inspect {{ "run_id": "{exec_record.run_id}" }}')
+                lines.append(
+                    f"  Router result digest:   sha256:{exec_record.response_digest[:12]}..."
+                )
+            lines.append(
+                f'  Inspect hint:           nexus-router.inspect {{ "run_id": "{exec_record.run_id}" }}'
+            )
             lines.append("")
 
         # Timeline section (using lifecycle timeline for human-readable format)
@@ -1221,14 +1253,16 @@ class NexusControlTools:
 
             summaries: list[dict[str, Any]] = []
             for t in templates:
-                summaries.append({
-                    "name": t.name,
-                    "description": t.description,
-                    "min_approvals": t.min_approvals,
-                    "allowed_modes": list(t.allowed_modes),
-                    "labels": list(t.labels),
-                    "created_at": t.created_at.isoformat() if t.created_at else None,
-                })
+                summaries.append(
+                    {
+                        "name": t.name,
+                        "description": t.description,
+                        "min_approvals": t.min_approvals,
+                        "allowed_modes": list(t.allowed_modes),
+                        "labels": list(t.labels),
+                        "created_at": t.created_at.isoformat() if t.created_at else None,
+                    }
+                )
 
             return ToolResult(
                 success=True,
@@ -1340,7 +1374,9 @@ class NexusControlTools:
         self,
         bundle: dict[str, Any],
         verify_digest: bool = True,
-        conflict_mode: Literal["reject_on_conflict", "new_decision_id", "overwrite"] = "reject_on_conflict",
+        conflict_mode: Literal[
+            "reject_on_conflict", "new_decision_id", "overwrite"
+        ] = "reject_on_conflict",
         replay_after_import: bool = True,
     ) -> ToolResult:
         """

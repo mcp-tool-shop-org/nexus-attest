@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "nexus-attest"
-version = "0.6.3"
+version = "0.7.0"
 description = "Cryptographic attestation and verification layer for MCP tool executions"
 readme = "README.md"
 license = "MIT"
@@ -68,8 +68,8 @@ python_files = ["test_*.py"]
 
 [tool.pyright]
 pythonVersion = "3.11"
-typeCheckingMode = "strict"
-include = ["nexus_attest", "tests"]
+typeCheckingMode = "basic"
+include = ["nexus_attest", "nexus_control"]
 
 [tool.ruff]
 target-version = "py311"

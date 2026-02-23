@@ -115,8 +115,12 @@ class Template:
             name=str(name_raw),
             description=str(description_raw),
             min_approvals=min_approvals_val,
-            allowed_modes=tuple(allowed_modes_raw) if isinstance(allowed_modes_raw, list) else ("dry_run",),  # type: ignore[arg-type]
-            require_adapter_capabilities=tuple(require_caps_raw) if isinstance(require_caps_raw, list) else (),  # type: ignore[arg-type]
+            allowed_modes=tuple(allowed_modes_raw)
+            if isinstance(allowed_modes_raw, list)
+            else ("dry_run",),  # type: ignore[arg-type]
+            require_adapter_capabilities=tuple(require_caps_raw)
+            if isinstance(require_caps_raw, list)
+            else (),  # type: ignore[arg-type]
             max_steps=max_steps_val,
             labels=tuple(labels_raw) if isinstance(labels_raw, list) else (),  # type: ignore[arg-type]
             created_at=created_at_val,

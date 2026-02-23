@@ -198,7 +198,9 @@ def _build_template_snapshot(decision: "Decision") -> BundleTemplateSnapshot:
         name=decision.template_ref.name,
         digest=f"sha256:{decision.template_ref.digest}",
         snapshot=dict(decision.template_ref.snapshot) if decision.template_ref.snapshot else None,
-        overrides=dict(decision.template_ref.overrides_applied) if decision.template_ref.overrides_applied else None,
+        overrides=dict(decision.template_ref.overrides_applied)
+        if decision.template_ref.overrides_applied
+        else None,
     )
 
 
@@ -220,8 +222,12 @@ def _build_router_link(decision: "Decision") -> BundleRouterLink:
     return BundleRouterLink(
         run_id=exec_record.run_id,
         adapter_id=exec_record.adapter_id,
-        router_request_digest=f"sha256:{exec_record.request_digest}" if exec_record.request_digest else None,
-        router_result_digest=f"sha256:{exec_record.response_digest}" if exec_record.response_digest else None,
+        router_request_digest=f"sha256:{exec_record.request_digest}"
+        if exec_record.request_digest
+        else None,
+        router_result_digest=f"sha256:{exec_record.response_digest}"
+        if exec_record.response_digest
+        else None,
         control_router_link_digest=f"sha256:{link_digest}" if link_digest else None,
     )
 

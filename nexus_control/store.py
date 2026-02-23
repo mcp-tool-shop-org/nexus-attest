@@ -311,10 +311,7 @@ class DecisionStore:
                 (limit, offset),
             ).fetchall()
 
-        return [
-            (row["decision_id"], datetime.fromisoformat(row["created_at"]))
-            for row in rows
-        ]
+        return [(row["decision_id"], datetime.fromisoformat(row["created_at"])) for row in rows]
 
     def decision_exists(self, decision_id: str) -> bool:
         """Check if a decision exists."""
@@ -426,10 +423,13 @@ class DecisionStore:
         """
         with self._transaction() as conn:
             # Check if exists
-            exists = conn.execute(
-                "SELECT 1 FROM decisions WHERE decision_id = ?",
-                (decision_id,),
-            ).fetchone() is not None
+            exists = (
+                conn.execute(
+                    "SELECT 1 FROM decisions WHERE decision_id = ?",
+                    (decision_id,),
+                ).fetchone()
+                is not None
+            )
 
             if exists:
                 if overwrite:

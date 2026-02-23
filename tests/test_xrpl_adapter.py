@@ -17,7 +17,6 @@ import pytest
 from nexus_attest.attestation.intent import AttestationIntent
 from nexus_attest.attestation.xrpl.adapter import AnchorPlan, plan
 from nexus_attest.attestation.xrpl.memo import (
-    MAX_MEMO_BYTES,
     MEMO_TYPE_HEX,
     build_memo_payload,
     encode_memo_hex,
@@ -30,9 +29,7 @@ from nexus_attest.attestation.xrpl.tx import plan_payment_to_self
 # Fixtures
 # ---------------------------------------------------------------------------
 
-SAMPLE_BINDING_DIGEST = (
-    "sha256:abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890"
-)
+SAMPLE_BINDING_DIGEST = "sha256:abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890"
 SAMPLE_ACCOUNT = "rHb9CJAWyB4rj91VRWn96DkukG4bwdtyTh"
 
 
@@ -91,7 +88,7 @@ class TestPlanShape:
     def test_memo_digest_is_prefixed(self) -> None:
         result = plan(_make_intent(), SAMPLE_ACCOUNT)
         assert result.memo_digest.startswith("sha256:")
-        hex_part = result.memo_digest[len("sha256:"):]
+        hex_part = result.memo_digest[len("sha256:") :]
         assert len(hex_part) == 64
 
     def test_memo_data_hex_is_hex(self) -> None:
@@ -139,9 +136,7 @@ class TestPlanComposition:
     def test_tx_matches_plan_payment_to_self(self) -> None:
         intent = _make_intent()
         result = plan(intent, SAMPLE_ACCOUNT)
-        expected_tx = plan_payment_to_self(
-            SAMPLE_ACCOUNT, result.memo_data_hex, amount_drops="1"
-        )
+        expected_tx = plan_payment_to_self(SAMPLE_ACCOUNT, result.memo_data_hex, amount_drops="1")
         assert result.tx == expected_tx
 
     def test_tx_memo_data_is_hex_encoded_payload(self) -> None:
@@ -264,9 +259,7 @@ class TestPlanIntentFlow:
         assert result.memo_payload.get("pv") == "0.6"
 
     def test_labels_excluded_from_memo(self) -> None:
-        result = plan(
-            _make_intent(labels={"key": "value"}), SAMPLE_ACCOUNT
-        )
+        result = plan(_make_intent(labels={"key": "value"}), SAMPLE_ACCOUNT)
         assert "labels" not in result.memo_payload
 
     def test_none_fields_excluded_from_memo(self) -> None:

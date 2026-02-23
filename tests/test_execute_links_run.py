@@ -1,11 +1,9 @@
 """Tests for execute tool and router integration."""
 
-import pytest
 from typing import Any
-from unittest.mock import MagicMock
 
 from nexus_attest.events import Actor
-from nexus_attest.tool import NexusControlTools, RouterProtocol
+from nexus_attest.tool import NexusControlTools
 
 
 class MockRouter:
@@ -36,14 +34,16 @@ class MockRouter:
         require_capabilities: list[str] | None = None,
     ) -> dict[str, Any]:
         """Mock execution."""
-        self.calls.append({
-            "goal": goal,
-            "adapter_id": adapter_id,
-            "dry_run": dry_run,
-            "plan": plan,
-            "max_steps": max_steps,
-            "require_capabilities": require_capabilities,
-        })
+        self.calls.append(
+            {
+                "goal": goal,
+                "adapter_id": adapter_id,
+                "dry_run": dry_run,
+                "plan": plan,
+                "max_steps": max_steps,
+                "require_capabilities": require_capabilities,
+            }
+        )
 
         if self.should_fail:
             raise RuntimeError(self.error_message)
