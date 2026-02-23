@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "nexus-attest"
-version = "0.6.2"
+version = "0.6.3"
 description = "Cryptographic attestation and verification layer for MCP tool executions"
 readme = "README.md"
 license = "MIT"
@@ -40,6 +40,8 @@ classifiers = [
 ]
 dependencies = [
     "nexus-router>=0.1.0",
+    "httpx>=0.27.0",
+    "cryptography>=42.0.0",
 ]
 
 [project.optional-dependencies]
