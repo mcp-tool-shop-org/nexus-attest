@@ -194,7 +194,7 @@ jobs:
           actor = Actor(type="test", id="test-actor")
           policy = Policy(min_approvals=1, allowed_modes=["dry_run"])
 
-          print(f"✓ Actor: {actor.id}")
+          print(f"✓ Actor: {actor['id']}")
           print(f"✓ Policy: min_approvals={policy.min_approvals}")
           print(f"\n✓ Basic functionality verified")
           EOF
