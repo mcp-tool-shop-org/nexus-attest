@@ -22,29 +22,29 @@
 
 ---
 
-## Why
+## なぜ
 
-Running MCP tools in production requires approval workflows, audit trails, and policy enforcement. nexus-router executes immediately --- there is no governance layer.
+本番環境でMCPツールを実行するには、承認ワークフロー、監査ログ、およびポリシー適用が必要です。nexus-routerは即座に実行されます。ガバナンスの仕組みはありません。
 
-**nexus-attest** adds that layer:
+**nexus-attest**は、その仕組みを追加します。
 
-- Request / Review / Approve / Execute workflow with N-of-M approvals
-- Cryptographic audit packages that bind governance decisions to execution outcomes
-- XRPL-anchored witness proofs for third-party verifiability
-- Policy templates for repeatable approval patterns
-- Full event sourcing --- every state is derived by replaying an immutable log
+- N-of-M承認によるリクエスト/レビュー/承認/実行ワークフロー
+- ガバナンスの決定と実行結果を結びつける暗号化された監査パッケージ
+- サードパーティによる検証を可能にするXRPLベースの証明
+- 繰り返し利用可能な承認パターン用のポリシーテンプレート
+- 完全なイベントソーシング：すべての状態は、変更不可能なログを再生することで導出されます。
 
-Everything is exportable, verifiable, and replayable. No mutable state. No hidden writes.
+すべてエクスポート可能、検証可能、かつ再実行可能です。変更可能な状態はありません。隠された書き込みもありません。
 
-## Install
+## インストール
 
 ```bash
 pip install nexus-attest
 ```
 
-Requires Python 3.11 or later.
+Python 3.11以降が必要です。
 
-## Quick Start
+## クイックスタート
 
 ```python
 from nexus_attest import NexusControlTools
@@ -82,11 +82,11 @@ audit = tools.export_audit_package(request_id)
 print(audit.data["digest"])  # sha256:...
 ```
 
-See [QUICKSTART.md](QUICKSTART.md) for the full walkthrough with policy options, dry-run mode, and timeline views.
+[QUICKSTART.md](QUICKSTART.md)を参照して、ポリシーオプション、ドライランモード、およびタイムラインビューを使用した詳細な手順を確認してください。
 
-## Core Concepts
+## 主要な概念
 
-### Governance Flow
+### ガバナンスフロー
 
 ```
 Request ──► Policy ──► Approvals (N-of-M) ──► Execute ──► Audit Package
@@ -97,19 +97,19 @@ Request ──► Policy ──► Approvals (N-of-M) ──► Execute ──�
  created    attached      recorded           run_id linked   (tamper-evident)
 ```
 
-### What Gets Bound
+### 関連付けられるもの
 
-Every audit package cryptographically links three things:
+すべての監査パッケージは、以下の3つの要素を暗号的に関連付けます。
 
-| Component | What it captures |
-|-----------|-----------------|
-| **Control bundle** | The decision, policy, approvals, and constraints (what was allowed) |
-| **Router section** | The execution identity --- `run_id` and `router_digest` (what actually ran) |
-| **Control-router link** | Why this specific execution was authorized by this specific decision |
+| コンポーネント | キャプチャされる内容 |
+| ----------- | ----------------- |
+| **Control bundle** | 決定、ポリシー、承認、および制約（許可された内容） |
+| **Router section** | 実行主体（`run_id`と`router_digest`）（実際に実行された内容） |
+| **Control-router link** | この特定の実行が、この特定の決定によってどのように承認されたか |
 
-The `binding_digest` is a SHA-256 hash over all three. If any component changes, the digest breaks.
+`binding_digest`は、これら3つの要素すべてに対するSHA-256ハッシュです。いずれかのコンポーネントが変更されると、ハッシュは無効になります。
 
-### Verification
+### 検証
 
 ```python
 from nexus_attest import verify_audit_package
@@ -118,38 +118,38 @@ verification = verify_audit_package(package)
 assert verification.ok  # 6 independent checks, no short-circuiting
 ```
 
-All six checks run regardless of failures --- every issue is reported:
+エラーが発生した場合でも、すべての6つのチェックが実行されます。すべての問題が報告されます。
 
-| Check | What it verifies |
-|-------|-----------------|
-| `binding_digest` | Recompute from binding fields |
-| `control_bundle_digest` | Recompute from control bundle content |
-| `binding_control_match` | Binding matches control bundle |
-| `binding_router_match` | Binding matches router section |
-| `binding_link_match` | Binding matches control-router link |
-| `router_digest` | Embedded router bundle integrity (if applicable) |
+| Check | 検証される内容 |
+| ------- | ----------------- |
+| `binding_digest` | バインディングフィールドから再計算 |
+| `control_bundle_digest` | コントロールバンドルの内容から再計算 |
+| `binding_control_match` | バインディングがコントロールバンドルと一致 |
+| `binding_router_match` | バインディングがルーターセクションと一致 |
+| `binding_link_match` | バインディングがコントロール-ルーターのリンクと一致 |
+| `router_digest` | 埋め込みルーターバンドルの整合性（該当する場合） |
 
-## MCP Tools
+## MCPツール
 
-11 tools exposed via the Model Context Protocol:
+Model Context Protocolを介して公開されている11のツール：
 
-| Tool | Description |
-|------|-------------|
-| `nexus-attest.request` | Create an execution request with goal, policy, and approvers |
-| `nexus-attest.approve` | Approve a request (supports N-of-M approvals) |
-| `nexus-attest.execute` | Execute approved request via nexus-router |
-| `nexus-attest.status` | Get request state and linked run status |
-| `nexus-attest.inspect` | Read-only introspection with human-readable output |
-| `nexus-attest.template.create` | Create a named, immutable policy template |
-| `nexus-attest.template.get` | Retrieve a template by name |
-| `nexus-attest.template.list` | List all templates with optional label filtering |
-| `nexus-attest.export_bundle` | Export a decision as a portable, integrity-verified bundle |
-| `nexus-attest.import_bundle` | Import a bundle with conflict modes and replay validation |
-| `nexus-attest.export_audit_package` | Export audit package binding governance to execution |
+| Tool | 説明 |
+| ------ | ------------- |
+| `nexus-attest.request` | 目標、ポリシー、および承認者を含む実行リクエストを作成 |
+| `nexus-attest.approve` | リクエストを承認（N-of-M承認をサポート） |
+| `nexus-attest.execute` | nexus-routerを介して承認されたリクエストを実行 |
+| `nexus-attest.status` | リクエストの状態と関連する実行ステータスを取得 |
+| `nexus-attest.inspect` | 人間が読める出力形式での読み取り専用のインスペクション |
+| `nexus-attest.template.create` | 名前付きで不変のポリシーテンプレートを作成 |
+| `nexus-attest.template.get` | 名前でテンプレートを取得 |
+| `nexus-attest.template.list` | オプションでラベルによるフィルタリングを行い、すべてのテンプレートを一覧表示 |
+| `nexus-attest.export_bundle` | 決定を、ポータブルで整合性が検証されたバンドルとしてエクスポート |
+| `nexus-attest.import_bundle` | バンドルをインポートし、競合モードと再検証を実行 |
+| `nexus-attest.export_audit_package` | 監査パッケージをバインドして、ガバナンスを実行に結びつける |
 
-## Decision Templates
+## 決定テンプレート
 
-Named, immutable policy bundles that can be reused across decisions:
+決定間で再利用できる名前付きで不変のポリシーバンドル：
 
 ```python
 tools.template_create(
@@ -170,9 +170,9 @@ result = tools.request(
 )
 ```
 
-## Decision Lifecycle
+## 決定ライフサイクル
 
-Computed lifecycle with blocking reasons and timeline:
+ブロック理由とタイムラインを含む、計算されたライフサイクル：
 
 ```python
 from nexus_attest import compute_lifecycle
@@ -188,9 +188,9 @@ for entry in lifecycle.timeline:
     print(f"  {entry.seq}  {entry.label}")
 ```
 
-## Export / Import Bundles
+## バンドルのエクスポート/インポート
 
-Portable, integrity-verified decision bundles for cross-system transfer:
+システム間で転送するための、ポータブルで整合性が検証された決定バンドル：
 
 ```python
 # Export
@@ -205,15 +205,15 @@ import_result = tools.import_bundle(
 )
 ```
 
-Conflict modes: `reject_on_conflict` | `new_decision_id` | `overwrite`
+競合モード：`reject_on_conflict` | `new_decision_id` | `overwrite`
 
-## Attestation Subsystem
+## アテステーションサブシステム
 
-The attestation layer provides cryptographic witness proofs with XRPL anchoring:
+アテステーションレイヤーは、XRPLをアンカーとする暗号化された検証証明を提供します。
 
-### Attestation Intents
+### アテステーションの目的
 
-Content-addressed attestation requests with subject binding:
+件名バインディングを含む、コンテンツベースのアテステーションリクエスト：
 
 ```python
 from nexus_attest.attestation import AttestationIntent
@@ -226,21 +226,21 @@ intent = AttestationIntent(
 )
 ```
 
-### XRPL Witness Backend
+### XRPL検証バックエンド
 
-On-chain attestation via the XRP Ledger for third-party verifiability:
+XRP Ledger を利用したオンチェーンでの認証機能：第三者による検証を可能にします。
 
-| Component | Purpose |
-|-----------|---------|
-| `XRPLAdapter` | Submit attestation transactions |
-| `JsonRpcClient` | Communicate with XRPL nodes |
-| `ExchangeStore` | Track request/response evidence |
-| `MemoCodec` | Encode/decode attestation payloads in XRPL memos |
-| `XRPLSigner` | Transaction signing |
+| コンポーネント | 目的 |
+| ----------- | --------- |
+| `XRPLAdapter` | 認証トランザクションの送信 |
+| `JsonRpcClient` | XRPL ノードとの通信 |
+| `ExchangeStore` | リクエスト/レスポンスの証拠の追跡 |
+| `MemoCodec` | XRPL メモにおける認証データのエンコード/デコード |
+| `XRPLSigner` | トランザクションの署名 |
 
-### Self-Verifying Narratives
+### 自己検証可能なナラティブ
 
-Human-readable audit reports with embedded integrity checks:
+内蔵された整合性チェックを含む、人間が読める監査レポート：
 
 ```python
 from nexus_attest.attestation.narrative import build_narrative
@@ -254,9 +254,9 @@ report = build_narrative(
 # integrity checks (PASS/FAIL/SKIP), and XRPL witness data
 ```
 
-### Attestation Replay
+### 認証の再実行
 
-Deterministic replay of attestation timelines for verification:
+検証のための、認証のタイムラインの決定的な再実行：
 
 ```python
 from nexus_attest.attestation.replay import replay_attestation
@@ -266,11 +266,11 @@ report = replay_attestation(queue, intent_digest)
 # confirmation status, and exchange evidence
 ```
 
-## Data Model
+## データモデル
 
-### Event-Sourced Design
+### イベントソース設計
 
-All state is derived by replaying an immutable event log:
+すべての状態は、変更不可能なイベントログを再実行することで導出されます。
 
 ```
 decisions (header)
@@ -285,7 +285,7 @@ decisions (header)
         +-- EXECUTION_FAILED
 ```
 
-### Policy Model
+### ポリシーモデル
 
 ```python
 Policy(
@@ -297,23 +297,23 @@ Policy(
 )
 ```
 
-### Approval Model
+### 承認モデル
 
-- Counted by distinct `actor.id`
-- Can include `comment` and optional `expires_at`
-- Can be revoked (before execution)
-- Execution requires approvals to satisfy policy **at execution time**
+- `actor.id` ごとにカウントされます。
+- `comment` を含めることができ、オプションで `expires_at` を設定できます。
+- 実行前に取り消すことができます。
+- 実行には、ポリシーを満たす承認が必要です（**実行時**）。
 
-### Router Modes
+### ルーティングモード
 
-| Mode | Contains | Use Case |
-|------|----------|----------|
-| **Reference** (default) | `run_id` + `router_digest` | CI, internal systems |
-| **Embedded** | Full router bundle + cross-check | Regulators, long-term archival |
+| Mode | 含まれるもの | ユースケース |
+| ------ | ---------- | ---------- |
+| **Reference** (default) | `run_id` + `router_digest` | CI、内部システム |
+| **Embedded** | 完全なルーティングバンドル + クロスチェック | 規制当局、長期アーカイブ |
 
-Both modes are cryptographically equivalent at the binding layer.
+両方のモードは、バインディング層において暗号学的に同等です。
 
-## Project Structure
+## プロジェクト構造
 
 ```
 nexus-attest/
@@ -360,7 +360,7 @@ nexus-attest/
 +-- pyproject.toml
 ```
 
-## Development
+## 開発
 
 ```bash
 # Install dev dependencies
@@ -379,14 +379,14 @@ ruff check .
 ruff format .
 ```
 
-## Exit Codes
+## 終了コード
 
-| Code | Meaning |
-|------|---------|
-| `0` | All checks passed |
-| `1` | Unhandled error |
-| `2` | Validation or schema error |
+| Code | 意味 |
+| ------ | --------- |
+| `0` | すべてのチェックに合格 |
+| `1` | 予期しないエラー |
+| `2` | 検証エラーまたはスキーマエラー |
 
-## License
+## ライセンス
 
 MIT

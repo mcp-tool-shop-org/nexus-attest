@@ -22,29 +22,29 @@
 
 ---
 
-## Why
+## Perché
 
-Running MCP tools in production requires approval workflows, audit trails, and policy enforcement. nexus-router executes immediately --- there is no governance layer.
+L'esecuzione di strumenti MCP in ambiente di produzione richiede flussi di lavoro di approvazione, tracciabilità delle attività e applicazione delle policy. nexus-router viene eseguito immediatamente: non esiste un livello di governance.
 
-**nexus-attest** adds that layer:
+**nexus-attest** aggiunge questo livello:
 
-- Request / Review / Approve / Execute workflow with N-of-M approvals
-- Cryptographic audit packages that bind governance decisions to execution outcomes
-- XRPL-anchored witness proofs for third-party verifiability
-- Policy templates for repeatable approval patterns
-- Full event sourcing --- every state is derived by replaying an immutable log
+- Flusso di lavoro di richiesta / revisione / approvazione / esecuzione con approvazioni N-of-M
+- Pacchetti di audit crittografici che associano le decisioni di governance ai risultati dell'esecuzione
+- Prove di testimonianza ancorate a XRPL per la verificabilità da parte di terzi
+- Modelli di policy per schemi di approvazione ripetibili
+- Tracciamento completo degli eventi: ogni stato è derivato dalla riproduzione di un log immutabile
 
-Everything is exportable, verifiable, and replayable. No mutable state. No hidden writes.
+Tutto è esportabile, verificabile e riproducibile. Nessuno stato modificabile. Nessuna scrittura nascosta.
 
-## Install
+## Installazione
 
 ```bash
 pip install nexus-attest
 ```
 
-Requires Python 3.11 or later.
+Richiede Python 3.11 o versioni successive.
 
-## Quick Start
+## Guida rapida
 
 ```python
 from nexus_attest import NexusControlTools
@@ -82,11 +82,11 @@ audit = tools.export_audit_package(request_id)
 print(audit.data["digest"])  # sha256:...
 ```
 
-See [QUICKSTART.md](QUICKSTART.md) for the full walkthrough with policy options, dry-run mode, and timeline views.
+Consultare [QUICKSTART.md](QUICKSTART.md) per una guida completa con opzioni di policy, modalità di test e visualizzazioni temporali.
 
-## Core Concepts
+## Concetti fondamentali
 
-### Governance Flow
+### Flusso di governance
 
 ```
 Request ──► Policy ──► Approvals (N-of-M) ──► Execute ──► Audit Package
@@ -97,19 +97,19 @@ Request ──► Policy ──► Approvals (N-of-M) ──► Execute ──�
  created    attached      recorded           run_id linked   (tamper-evident)
 ```
 
-### What Gets Bound
+### Cosa viene associato
 
-Every audit package cryptographically links three things:
+Ogni pacchetto di audit associa crittograficamente tre elementi:
 
-| Component | What it captures |
-|-----------|-----------------|
-| **Control bundle** | The decision, policy, approvals, and constraints (what was allowed) |
-| **Router section** | The execution identity --- `run_id` and `router_digest` (what actually ran) |
-| **Control-router link** | Why this specific execution was authorized by this specific decision |
+| Componente | Cosa viene catturato |
+| ----------- | ----------------- |
+| **Control bundle** | La decisione, la policy, le approvazioni e i vincoli (ciò che è stato consentito) |
+| **Router section** | L'identità dell'esecuzione: `run_id` e `router_digest` (ciò che è stato effettivamente eseguito) |
+| **Control-router link** | Perché questa specifica esecuzione è stata autorizzata da questa specifica decisione |
 
-The `binding_digest` is a SHA-256 hash over all three. If any component changes, the digest breaks.
+Il `binding_digest` è un hash SHA-256 di tutti e tre gli elementi. Se uno qualsiasi dei componenti cambia, l'hash si invalida.
 
-### Verification
+### Verifica
 
 ```python
 from nexus_attest import verify_audit_package
@@ -118,38 +118,38 @@ verification = verify_audit_package(package)
 assert verification.ok  # 6 independent checks, no short-circuiting
 ```
 
-All six checks run regardless of failures --- every issue is reported:
+Tutte e sei le verifiche vengono eseguite indipendentemente dagli errori: ogni problema viene segnalato.
 
-| Check | What it verifies |
-|-------|-----------------|
-| `binding_digest` | Recompute from binding fields |
-| `control_bundle_digest` | Recompute from control bundle content |
-| `binding_control_match` | Binding matches control bundle |
-| `binding_router_match` | Binding matches router section |
-| `binding_link_match` | Binding matches control-router link |
-| `router_digest` | Embedded router bundle integrity (if applicable) |
+| Check | Cosa viene verificato |
+| ------- | ----------------- |
+| `binding_digest` | Ricalcolo dai campi di binding |
+| `control_bundle_digest` | Ricalcolo dal contenuto del bundle di controllo |
+| `binding_control_match` | Il binding corrisponde al bundle di controllo |
+| `binding_router_match` | Il binding corrisponde alla sezione del router |
+| `binding_link_match` | Il binding corrisponde al collegamento controllo-router |
+| `router_digest` | Integrità del bundle del router incorporato (se applicabile) |
 
-## MCP Tools
+## Strumenti MCP
 
-11 tools exposed via the Model Context Protocol:
+11 strumenti esposti tramite il Model Context Protocol:
 
-| Tool | Description |
-|------|-------------|
-| `nexus-attest.request` | Create an execution request with goal, policy, and approvers |
-| `nexus-attest.approve` | Approve a request (supports N-of-M approvals) |
-| `nexus-attest.execute` | Execute approved request via nexus-router |
-| `nexus-attest.status` | Get request state and linked run status |
-| `nexus-attest.inspect` | Read-only introspection with human-readable output |
-| `nexus-attest.template.create` | Create a named, immutable policy template |
-| `nexus-attest.template.get` | Retrieve a template by name |
-| `nexus-attest.template.list` | List all templates with optional label filtering |
-| `nexus-attest.export_bundle` | Export a decision as a portable, integrity-verified bundle |
-| `nexus-attest.import_bundle` | Import a bundle with conflict modes and replay validation |
-| `nexus-attest.export_audit_package` | Export audit package binding governance to execution |
+| Tool | Descrizione |
+| ------ | ------------- |
+| `nexus-attest.request` | Crea una richiesta di esecuzione con obiettivo, policy e approvatori |
+| `nexus-attest.approve` | Approva una richiesta (supporta le approvazioni N-of-M) |
+| `nexus-attest.execute` | Esegui la richiesta approvata tramite nexus-router |
+| `nexus-attest.status` | Ottieni lo stato della richiesta e lo stato dell'esecuzione associata |
+| `nexus-attest.inspect` | Introspezione di sola lettura con output leggibile |
+| `nexus-attest.template.create` | Crea un modello di policy immutabile con nome |
+| `nexus-attest.template.get` | Recupera un modello per nome |
+| `nexus-attest.template.list` | Elenca tutti i modelli con filtraggio opzionale per etichetta |
+| `nexus-attest.export_bundle` | Esporta una decisione come un bundle portatile con verifica dell'integrità |
+| `nexus-attest.import_bundle` | Importa un bundle con modalità di conflitto e convalida della riproduzione |
+| `nexus-attest.export_audit_package` | Esporta il pacchetto di audit che associa la governance all'esecuzione |
 
-## Decision Templates
+## Modelli di decisione
 
-Named, immutable policy bundles that can be reused across decisions:
+Bundle di policy immutabili con nome che possono essere riutilizzati in diverse decisioni:
 
 ```python
 tools.template_create(
@@ -170,9 +170,9 @@ result = tools.request(
 )
 ```
 
-## Decision Lifecycle
+## Ciclo di vita della decisione
 
-Computed lifecycle with blocking reasons and timeline:
+Ciclo di vita calcolato con motivi di blocco e timeline:
 
 ```python
 from nexus_attest import compute_lifecycle
@@ -188,9 +188,9 @@ for entry in lifecycle.timeline:
     print(f"  {entry.seq}  {entry.label}")
 ```
 
-## Export / Import Bundles
+## Esportazione / Importazione di bundle
 
-Portable, integrity-verified decision bundles for cross-system transfer:
+Bundle di decisioni portabili con verifica dell'integrità per il trasferimento tra sistemi:
 
 ```python
 # Export
@@ -205,15 +205,15 @@ import_result = tools.import_bundle(
 )
 ```
 
-Conflict modes: `reject_on_conflict` | `new_decision_id` | `overwrite`
+Modalità di conflitto: `reject_on_conflict` | `new_decision_id` | `overwrite`
 
-## Attestation Subsystem
+## Sottosistema di attestazione
 
-The attestation layer provides cryptographic witness proofs with XRPL anchoring:
+Il livello di attestazione fornisce prove di testimonianza crittografiche con ancoraggio a XRPL:
 
-### Attestation Intents
+### Intenti di attestazione
 
-Content-addressed attestation requests with subject binding:
+Richieste di attestazione con indirizzamento basato sul contenuto e associazione al soggetto:
 
 ```python
 from nexus_attest.attestation import AttestationIntent
@@ -226,21 +226,21 @@ intent = AttestationIntent(
 )
 ```
 
-### XRPL Witness Backend
+### Backend di testimonianza XRPL
 
-On-chain attestation via the XRP Ledger for third-party verifiability:
+Certificazione on-chain tramite il registro XRP per la verificabilità da parte di terzi:
 
-| Component | Purpose |
-|-----------|---------|
-| `XRPLAdapter` | Submit attestation transactions |
-| `JsonRpcClient` | Communicate with XRPL nodes |
-| `ExchangeStore` | Track request/response evidence |
-| `MemoCodec` | Encode/decode attestation payloads in XRPL memos |
-| `XRPLSigner` | Transaction signing |
+| Componente | Scopo |
+| ----------- | --------- |
+| `XRPLAdapter` | Inviare transazioni di certificazione |
+| `JsonRpcClient` | Comunicare con i nodi XRPL |
+| `ExchangeStore` | Tracciare le prove di richiesta/risposta |
+| `MemoCodec` | Codificare/decodificare i dati di certificazione nei memo XRPL |
+| `XRPLSigner` | Firma delle transazioni |
 
-### Self-Verifying Narratives
+### Narrative auto-verificanti
 
-Human-readable audit reports with embedded integrity checks:
+Report di audit leggibili dagli esseri umani con controlli di integrità integrati:
 
 ```python
 from nexus_attest.attestation.narrative import build_narrative
@@ -254,9 +254,9 @@ report = build_narrative(
 # integrity checks (PASS/FAIL/SKIP), and XRPL witness data
 ```
 
-### Attestation Replay
+### Riproduzione della certificazione
 
-Deterministic replay of attestation timelines for verification:
+Riproduzione deterministica delle sequenze di certificazione per la verifica:
 
 ```python
 from nexus_attest.attestation.replay import replay_attestation
@@ -266,11 +266,11 @@ report = replay_attestation(queue, intent_digest)
 # confirmation status, and exchange evidence
 ```
 
-## Data Model
+## Modello dei dati
 
-### Event-Sourced Design
+### Progettazione basata su eventi
 
-All state is derived by replaying an immutable event log:
+Tutto lo stato è derivato riproducendo un registro di eventi immutabile:
 
 ```
 decisions (header)
@@ -285,7 +285,7 @@ decisions (header)
         +-- EXECUTION_FAILED
 ```
 
-### Policy Model
+### Modello delle politiche
 
 ```python
 Policy(
@@ -297,23 +297,23 @@ Policy(
 )
 ```
 
-### Approval Model
+### Modello di approvazione
 
-- Counted by distinct `actor.id`
-- Can include `comment` and optional `expires_at`
-- Can be revoked (before execution)
-- Execution requires approvals to satisfy policy **at execution time**
+- Calcolato in base a `actor.id` univoci
+- Può includere un `commento` e un campo `expires_at` opzionale
+- Può essere revocato (prima dell'esecuzione)
+- L'esecuzione richiede approvazioni per soddisfare la politica **al momento dell'esecuzione**
 
-### Router Modes
+### Modalità del router
 
-| Mode | Contains | Use Case |
-|------|----------|----------|
-| **Reference** (default) | `run_id` + `router_digest` | CI, internal systems |
-| **Embedded** | Full router bundle + cross-check | Regulators, long-term archival |
+| Mode | Contiene | Caso d'uso |
+| ------ | ---------- | ---------- |
+| **Reference** (default) | `run_id` + `router_digest` | CI, sistemi interni |
+| **Embedded** | Pacchetto completo del router + controllo incrociato | Enti regolatori, archiviazione a lungo termine |
 
-Both modes are cryptographically equivalent at the binding layer.
+Entrambe le modalità sono crittograficamente equivalenti a livello di binding.
 
-## Project Structure
+## Struttura del progetto
 
 ```
 nexus-attest/
@@ -360,7 +360,7 @@ nexus-attest/
 +-- pyproject.toml
 ```
 
-## Development
+## Sviluppo
 
 ```bash
 # Install dev dependencies
@@ -379,14 +379,14 @@ ruff check .
 ruff format .
 ```
 
-## Exit Codes
+## Codici di uscita
 
-| Code | Meaning |
-|------|---------|
-| `0` | All checks passed |
-| `1` | Unhandled error |
-| `2` | Validation or schema error |
+| Code | Significato |
+| ------ | --------- |
+| `0` | Tutti i controlli superati |
+| `1` | Errore non gestito |
+| `2` | Errore di validazione o di schema |
 
-## License
+## Licenza
 
 MIT

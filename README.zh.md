@@ -22,29 +22,29 @@
 
 ---
 
-## Why
+## 为什么
 
-Running MCP tools in production requires approval workflows, audit trails, and policy enforcement. nexus-router executes immediately --- there is no governance layer.
+在生产环境中运行 MCP 工具需要审批流程、审计跟踪和策略执行。 nexus-router 会立即执行，没有治理层。
 
-**nexus-attest** adds that layer:
+**nexus-attest** 增加了这一层：
 
-- Request / Review / Approve / Execute workflow with N-of-M approvals
-- Cryptographic audit packages that bind governance decisions to execution outcomes
-- XRPL-anchored witness proofs for third-party verifiability
-- Policy templates for repeatable approval patterns
-- Full event sourcing --- every state is derived by replaying an immutable log
+- 带有 N-of-M 审批的请求/审查/批准/执行工作流程
+- 密码学审计包，将治理决策与执行结果绑定
+- 基于 XRPL 的凭证，用于第三方验证
+- 策略模板，用于可重复的审批模式
+- 全事件溯源，每个状态都是通过重放不可变日志推导出来的
 
-Everything is exportable, verifiable, and replayable. No mutable state. No hidden writes.
+所有内容都可以导出、验证和重放。没有可变状态。没有隐藏的写入操作。
 
-## Install
+## 安装
 
 ```bash
 pip install nexus-attest
 ```
 
-Requires Python 3.11 or later.
+需要 Python 3.11 或更高版本。
 
-## Quick Start
+## 快速入门
 
 ```python
 from nexus_attest import NexusControlTools
@@ -82,11 +82,11 @@ audit = tools.export_audit_package(request_id)
 print(audit.data["digest"])  # sha256:...
 ```
 
-See [QUICKSTART.md](QUICKSTART.md) for the full walkthrough with policy options, dry-run mode, and timeline views.
+请参阅 [QUICKSTART.md](QUICKSTART.md)，了解带有策略选项、试运行模式和时间线视图的完整指南。
 
-## Core Concepts
+## 核心概念
 
-### Governance Flow
+### 治理流程
 
 ```
 Request ──► Policy ──► Approvals (N-of-M) ──► Execute ──► Audit Package
@@ -97,19 +97,19 @@ Request ──► Policy ──► Approvals (N-of-M) ──► Execute ──�
  created    attached      recorded           run_id linked   (tamper-evident)
 ```
 
-### What Gets Bound
+### 绑定内容
 
-Every audit package cryptographically links three things:
+每个审计包都通过密码学方式将以下三者关联起来：
 
-| Component | What it captures |
-|-----------|-----------------|
-| **Control bundle** | The decision, policy, approvals, and constraints (what was allowed) |
-| **Router section** | The execution identity --- `run_id` and `router_digest` (what actually ran) |
-| **Control-router link** | Why this specific execution was authorized by this specific decision |
+| 组件 | 它捕获的内容 |
+| ----------- | ----------------- |
+| **Control bundle** | 决策、策略、审批和约束（允许的内容） |
+| **Router section** | 执行身份——`run_id` 和 `router_digest`（实际执行的内容） |
+| **Control-router link** | 为什么这个特定的执行会由这个特定的决策授权 |
 
-The `binding_digest` is a SHA-256 hash over all three. If any component changes, the digest breaks.
+`binding_digest` 是所有三个组件的 SHA-256 哈希值。如果任何组件发生更改，哈希值就会失效。
 
-### Verification
+### 验证
 
 ```python
 from nexus_attest import verify_audit_package
@@ -118,38 +118,38 @@ verification = verify_audit_package(package)
 assert verification.ok  # 6 independent checks, no short-circuiting
 ```
 
-All six checks run regardless of failures --- every issue is reported:
+所有六个检查都会运行，无论是否出现错误——所有问题都会被报告：
 
-| Check | What it verifies |
-|-------|-----------------|
-| `binding_digest` | Recompute from binding fields |
-| `control_bundle_digest` | Recompute from control bundle content |
-| `binding_control_match` | Binding matches control bundle |
-| `binding_router_match` | Binding matches router section |
-| `binding_link_match` | Binding matches control-router link |
-| `router_digest` | Embedded router bundle integrity (if applicable) |
+| Check | 它验证的内容 |
+| ------- | ----------------- |
+| `binding_digest` | 从绑定字段重新计算 |
+| `control_bundle_digest` | 从控制包内容重新计算 |
+| `binding_control_match` | 绑定与控制包匹配 |
+| `binding_router_match` | 绑定与路由器部分匹配 |
+| `binding_link_match` | 绑定与控制-路由器链接匹配 |
+| `router_digest` | 嵌入式路由器包完整性（如果适用） |
 
-## MCP Tools
+## MCP 工具
 
-11 tools exposed via the Model Context Protocol:
+通过模型上下文协议暴露的 11 个工具：
 
-| Tool | Description |
-|------|-------------|
-| `nexus-attest.request` | Create an execution request with goal, policy, and approvers |
-| `nexus-attest.approve` | Approve a request (supports N-of-M approvals) |
-| `nexus-attest.execute` | Execute approved request via nexus-router |
-| `nexus-attest.status` | Get request state and linked run status |
-| `nexus-attest.inspect` | Read-only introspection with human-readable output |
-| `nexus-attest.template.create` | Create a named, immutable policy template |
-| `nexus-attest.template.get` | Retrieve a template by name |
-| `nexus-attest.template.list` | List all templates with optional label filtering |
-| `nexus-attest.export_bundle` | Export a decision as a portable, integrity-verified bundle |
-| `nexus-attest.import_bundle` | Import a bundle with conflict modes and replay validation |
-| `nexus-attest.export_audit_package` | Export audit package binding governance to execution |
+| Tool | 描述 |
+| ------ | ------------- |
+| `nexus-attest.request` | 创建带有目标、策略和审批人的执行请求 |
+| `nexus-attest.approve` | 批准请求（支持 N-of-M 审批） |
+| `nexus-attest.execute` | 通过 nexus-router 执行已批准的请求 |
+| `nexus-attest.status` | 获取请求状态和相关运行状态 |
+| `nexus-attest.inspect` | 只读的内省，带有可读的输出 |
+| `nexus-attest.template.create` | 创建命名、不可变的策略模板 |
+| `nexus-attest.template.get` | 通过名称检索模板 |
+| `nexus-attest.template.list` | 列出所有模板，并可选择使用标签进行过滤 |
+| `nexus-attest.export_bundle` | 将决策导出为可移植、具有完整性验证的包 |
+| `nexus-attest.import_bundle` | 导入包，支持冲突模式和重放验证 |
+| `nexus-attest.export_audit_package` | 导出审计包，将治理与执行绑定 |
 
-## Decision Templates
+## 决策模板
 
-Named, immutable policy bundles that can be reused across decisions:
+命名、不可变的策略包，可以在决策中重复使用：
 
 ```python
 tools.template_create(
@@ -170,9 +170,9 @@ result = tools.request(
 )
 ```
 
-## Decision Lifecycle
+## 决策生命周期
 
-Computed lifecycle with blocking reasons and timeline:
+带有阻塞原因和时间线的计算生命周期：
 
 ```python
 from nexus_attest import compute_lifecycle
@@ -188,9 +188,9 @@ for entry in lifecycle.timeline:
     print(f"  {entry.seq}  {entry.label}")
 ```
 
-## Export / Import Bundles
+## 导出/导入包
 
-Portable, integrity-verified decision bundles for cross-system transfer:
+可移植、具有完整性验证的决策包，用于跨系统传输：
 
 ```python
 # Export
@@ -205,15 +205,15 @@ import_result = tools.import_bundle(
 )
 ```
 
-Conflict modes: `reject_on_conflict` | `new_decision_id` | `overwrite`
+冲突模式：`reject_on_conflict` | `new_decision_id` | `overwrite`
 
-## Attestation Subsystem
+## 凭证子系统
 
-The attestation layer provides cryptographic witness proofs with XRPL anchoring:
+凭证层提供基于 XRPL 的密码学凭证：
 
-### Attestation Intents
+### 凭证意图
 
-Content-addressed attestation requests with subject binding:
+带有主体绑定的基于内容寻址的凭证请求：
 
 ```python
 from nexus_attest.attestation import AttestationIntent
@@ -226,21 +226,21 @@ intent = AttestationIntent(
 )
 ```
 
-### XRPL Witness Backend
+### XRPL 凭证后端
 
-On-chain attestation via the XRP Ledger for third-party verifiability:
+通过XRP账本进行链上验证，以便第三方进行验证：
 
-| Component | Purpose |
-|-----------|---------|
-| `XRPLAdapter` | Submit attestation transactions |
-| `JsonRpcClient` | Communicate with XRPL nodes |
-| `ExchangeStore` | Track request/response evidence |
-| `MemoCodec` | Encode/decode attestation payloads in XRPL memos |
-| `XRPLSigner` | Transaction signing |
+| 组件 | 目的 |
+| ----------- | --------- |
+| `XRPLAdapter` | 提交验证交易 |
+| `JsonRpcClient` | 与XRPL节点进行通信 |
+| `ExchangeStore` | 跟踪请求/响应证据 |
+| `MemoCodec` | 在XRPL备忘录中编码/解码验证数据 |
+| `XRPLSigner` | 交易签名 |
 
-### Self-Verifying Narratives
+### 自我验证叙述
 
-Human-readable audit reports with embedded integrity checks:
+包含嵌入式完整性检查的、可读的审计报告：
 
 ```python
 from nexus_attest.attestation.narrative import build_narrative
@@ -254,9 +254,9 @@ report = build_narrative(
 # integrity checks (PASS/FAIL/SKIP), and XRPL witness data
 ```
 
-### Attestation Replay
+### 验证重放
 
-Deterministic replay of attestation timelines for verification:
+为了验证，对验证时间线的确定性重放：
 
 ```python
 from nexus_attest.attestation.replay import replay_attestation
@@ -266,11 +266,11 @@ report = replay_attestation(queue, intent_digest)
 # confirmation status, and exchange evidence
 ```
 
-## Data Model
+## 数据模型
 
-### Event-Sourced Design
+### 基于事件的设计
 
-All state is derived by replaying an immutable event log:
+所有状态都是通过重放不可变的事件日志推导出来的：
 
 ```
 decisions (header)
@@ -285,7 +285,7 @@ decisions (header)
         +-- EXECUTION_FAILED
 ```
 
-### Policy Model
+### 策略模型
 
 ```python
 Policy(
@@ -297,23 +297,23 @@ Policy(
 )
 ```
 
-### Approval Model
+### 审批模型
 
-- Counted by distinct `actor.id`
-- Can include `comment` and optional `expires_at`
-- Can be revoked (before execution)
-- Execution requires approvals to satisfy policy **at execution time**
+- 通过不同的`actor.id`进行计数
+- 可以包含`comment`以及可选的`expires_at`
+- 可以撤销（在执行之前）
+- 执行需要获得足够的批准，以满足策略，**在执行时**
 
-### Router Modes
+### 路由模式
 
-| Mode | Contains | Use Case |
-|------|----------|----------|
-| **Reference** (default) | `run_id` + `router_digest` | CI, internal systems |
-| **Embedded** | Full router bundle + cross-check | Regulators, long-term archival |
+| Mode | 包含 | 用例 |
+| ------ | ---------- | ---------- |
+| **Reference** (default) | `run_id` + `router_digest` | CI，内部系统 |
+| **Embedded** | 完整的路由包 + 交叉检查 | 监管机构，长期归档 |
 
-Both modes are cryptographically equivalent at the binding layer.
+这两种模式在绑定层在密码学上是等价的。
 
-## Project Structure
+## 项目结构
 
 ```
 nexus-attest/
@@ -360,7 +360,7 @@ nexus-attest/
 +-- pyproject.toml
 ```
 
-## Development
+## 开发
 
 ```bash
 # Install dev dependencies
@@ -379,14 +379,14 @@ ruff check .
 ruff format .
 ```
 
-## Exit Codes
+## 退出码
 
-| Code | Meaning |
-|------|---------|
-| `0` | All checks passed |
-| `1` | Unhandled error |
-| `2` | Validation or schema error |
+| Code | 含义 |
+| ------ | --------- |
+| `0` | 所有检查通过 |
+| `1` | 未处理的错误 |
+| `2` | 验证或模式错误 |
 
-## License
+## 许可证
 
 MIT
