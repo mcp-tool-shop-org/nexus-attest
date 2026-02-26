@@ -3,7 +3,9 @@
 </p>
 
 <p align="center">
-  <img src="logo.png" alt="nexus-attest logo" width="400" />
+  
+            <img src="https://raw.githubusercontent.com/mcp-tool-shop-org/brand/main/logos/nexus-attest/readme.png"
+           alt="nexus-attest logo" width="400" />
 </p>
 
 <p align="center">
