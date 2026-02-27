@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "nexus-attest"
-version = "0.7.1"
+version = "1.0.0"
 description = "Cryptographic attestation and verification layer for MCP tool executions"
 readme = "README.md"
 license = "MIT"
@@ -25,7 +25,7 @@ keywords = [
     "xrpl",
 ]
 classifiers = [
-    "Development Status :: 4 - Beta",
+    "Development Status :: 5 - Production/Stable",
     "Intended Audience :: Developers",
     "Intended Audience :: System Administrators",
     "License :: OSI Approved :: MIT License",

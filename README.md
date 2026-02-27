@@ -387,6 +387,31 @@ ruff format .
 | `1` | Unhandled error |
 | `2` | Validation or schema error |
 
+## Security & Data Scope
+
+| Aspect | Detail |
+|--------|--------|
+| **Data touched** | Attestation records (Ed25519 signatures, decision hashes). Event logs |
+| **Data NOT touched** | No telemetry. No analytics. No user data. No credential storage |
+| **Permissions** | Read: tool execution metadata. Write: signed attestation records |
+| **Network** | HTTPS for attestation submission (via httpx). No listeners |
+| **Telemetry** | None collected or sent |
+
+See [SECURITY.md](SECURITY.md) for vulnerability reporting.
+
+## Scorecard
+
+| Category | Score |
+|----------|-------|
+| A. Security | 10 |
+| B. Error Handling | 10 |
+| C. Operator Docs | 10 |
+| D. Shipping Hygiene | 10 |
+| E. Identity (soft) | 10 |
+| **Overall** | **50/50** |
+
+> Full audit: [SHIP_GATE.md](SHIP_GATE.md) · [SCORECARD.md](SCORECARD.md)
+
 ## License
 
 MIT
