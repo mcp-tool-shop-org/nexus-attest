@@ -1,0 +1,3330 @@
+{
+  "version": 1,
+  "entries": {
+    "e8cddf057923e25a": {
+      "translation": "なぜ",
+      "model": "translategemma:12b",
+      "timestamp": 1772019533235
+    },
+    "04fe408f11b40bcd": {
+      "translation": "本番環境でMCPツールを実行するには、承認ワークフロー、監査ログ、およびポリシー適用が必要です。nexus-routerは即座に実行されます。ガバナンスの仕組みはありません。",
+      "model": "translategemma:12b",
+      "timestamp": 1772019533235
+    },
+    "78adccf4b55fbf77": {
+      "translation": "**nexus-attest**は、その仕組みを追加します。",
+      "model": "translategemma:12b",
+      "timestamp": 1772019533235
+    },
+    "76d9b29f63477c3a": {
+      "translation": "- N-of-M承認によるリクエスト/レビュー/承認/実行ワークフロー\n- ガバナンスの決定と実行結果を結びつける暗号化された監査パッケージ\n- サードパーティによる検証を可能にするXRPLベースの証明\n- 繰り返し利用可能な承認パターン用のポリシーテンプレート\n- 完全なイベントソーシング：すべての状態は、変更不可能なログを再生することで導出されます。",
+      "model": "translategemma:12b",
+      "timestamp": 1772019533235
+    },
+    "5317d68a7f9a7ffc": {
+      "translation": "すべてエクスポート可能、検証可能、かつ再実行可能です。変更可能な状態はありません。隠された書き込みもありません。",
+      "model": "translategemma:12b",
+      "timestamp": 1772019533235
+    },
+    "ea65604e8b784581": {
+      "translation": "インストール",
+      "model": "translategemma:12b",
+      "timestamp": 1772019533235
+    },
+    "7d194b782b217cae": {
+      "translation": "Python 3.11以降が必要です。",
+      "model": "translategemma:12b",
+      "timestamp": 1772019533235
+    },
+    "d182d24c54cc50a7": {
+      "translation": "クイックスタート",
+      "model": "translategemma:12b",
+      "timestamp": 1772019533235
+    },
+    "5f7637e99a3c4a41": {
+      "translation": "[QUICKSTART.md](QUICKSTART.md)を参照して、ポリシーオプション、ドライランモード、およびタイムラインビューを使用した詳細な手順を確認してください。",
+      "model": "translategemma:12b",
+      "timestamp": 1772019533235
+    },
+    "dfd4122918068414": {
+      "translation": "主要な概念",
+      "model": "translategemma:12b",
+      "timestamp": 1772019533235
+    },
+    "8e1949cfed1b3b85": {
+      "translation": "ガバナンスフロー",
+      "model": "translategemma:12b",
+      "timestamp": 1772019533235
+    },
+    "692c63b3437dc027": {
+      "translation": "関連付けられるもの",
+      "model": "translategemma:12b",
+      "timestamp": 1772019533235
+    },
+    "513f88939b5b4c33": {
+      "translation": "すべての監査パッケージは、以下の3つの要素を暗号的に関連付けます。",
+      "model": "translategemma:12b",
+      "timestamp": 1772019533235
+    },
+    "8d7b4c5455a25691": {
+      "translation": "コンポーネント",
+      "model": "translategemma:12b",
+      "timestamp": 1772019533235
+    },
+    "aee7f6d4fd8d656a": {
+      "translation": "キャプチャされる内容",
+      "model": "translategemma:12b",
+      "timestamp": 1772019533235
+    },
+    "5267a4e52ef1849b": {
+      "translation": "-----------",
+      "model": "translategemma:12b",
+      "timestamp": 1772019533235
+    },
+    "b0e27d1a98f08b56": {
+      "translation": "-----------------",
+      "model": "translategemma:12b",
+      "timestamp": 1772019533235
+    },
+    "2d03ed2d9a77488a": {
+      "translation": "決定、ポリシー、承認、および制約（許可された内容）",
+      "model": "translategemma:12b",
+      "timestamp": 1772019533235
+    },
+    "d453772ce45dd196": {
+      "translation": "実行主体（`run_id`と`router_digest`）（実際に実行された内容）",
+      "model": "translategemma:12b",
+      "timestamp": 1772019533235
+    },
+    "3d9ceaeea094d4c1": {
+      "translation": "この特定の実行が、この特定の決定によってどのように承認されたか",
+      "model": "translategemma:12b",
+      "timestamp": 1772019533235
+    },
+    "52b5b1c538a1f2b0": {
+      "translation": "`binding_digest`は、これら3つの要素すべてに対するSHA-256ハッシュです。いずれかのコンポーネントが変更されると、ハッシュは無効になります。",
+      "model": "translategemma:12b",
+      "timestamp": 1772019533235
+    },
+    "d809998f1707449f": {
+      "translation": "検証",
+      "model": "translategemma:12b",
+      "timestamp": 1772019533235
+    },
+    "f5e92b417b94ec20": {
+      "translation": "エラーが発生した場合でも、すべての6つのチェックが実行されます。すべての問題が報告されます。",
+      "model": "translategemma:12b",
+      "timestamp": 1772019533235
+    },
+    "d166f8b65d395a92": {
+      "translation": "検証される内容",
+      "model": "translategemma:12b",
+      "timestamp": 1772019533235
+    },
+    "59196af31abc0d4d": {
+      "translation": "-------",
+      "model": "translategemma:12b",
+      "timestamp": 1772019533235
+    },
+    "a8e7578bff5e0cbc": {
+      "translation": "バインディングフィールドから再計算",
+      "model": "translategemma:12b",
+      "timestamp": 1772019533235
+    },
+    "f790be132ba749c6": {
+      "translation": "コントロールバンドルの内容から再計算",
+      "model": "translategemma:12b",
+      "timestamp": 1772019533235
+    },
+    "276eca87f86b0e33": {
+      "translation": "バインディングがコントロールバンドルと一致",
+      "model": "translategemma:12b",
+      "timestamp": 1772019533235
+    },
+    "fdb3043311043071": {
+      "translation": "バインディングがルーターセクションと一致",
+      "model": "translategemma:12b",
+      "timestamp": 1772019533235
+    },
+    "c4e72c2b13ee29ea": {
+      "translation": "バインディングがコントロール-ルーターのリンクと一致",
+      "model": "translategemma:12b",
+      "timestamp": 1772019533235
+    },
+    "2c17025965d05b13": {
+      "translation": "埋め込みルーターバンドルの整合性（該当する場合）",
+      "model": "translategemma:12b",
+      "timestamp": 1772019533235
+    },
+    "97b95abaf791c71b": {
+      "translation": "MCPツール",
+      "model": "translategemma:12b",
+      "timestamp": 1772019533235
+    },
+    "eb49971abb3d896b": {
+      "translation": "Model Context Protocolを介して公開されている11のツール：",
+      "model": "translategemma:12b",
+      "timestamp": 1772019533235
+    },
+    "67731479bd4e364b": {
+      "translation": "説明",
+      "model": "translategemma:12b",
+      "timestamp": 1772019533235
+    },
+    "69e70b451ff65bf9": {
+      "translation": "------",
+      "model": "translategemma:12b",
+      "timestamp": 1772019533235
+    },
+    "651826877e732548": {
+      "translation": "-------------",
+      "model": "translategemma:12b",
+      "timestamp": 1772019533235
+    },
+    "f2971495e1f2b887": {
+      "translation": "目標、ポリシー、および承認者を含む実行リクエストを作成",
+      "model": "translategemma:12b",
+      "timestamp": 1772019533235
+    },
+    "e295151cb7fbebfc": {
+      "translation": "リクエストを承認（N-of-M承認をサポート）",
+      "model": "translategemma:12b",
+      "timestamp": 1772019533235
+    },
+    "146df8b64402dcaa": {
+      "translation": "nexus-routerを介して承認されたリクエストを実行",
+      "model": "translategemma:12b",
+      "timestamp": 1772019533235
+    },
+    "291638a291baff15": {
+      "translation": "リクエストの状態と関連する実行ステータスを取得",
+      "model": "translategemma:12b",
+      "timestamp": 1772019533235
+    },
+    "9583d28d3b29ee41": {
+      "translation": "人間が読める出力形式での読み取り専用のインスペクション",
+      "model": "translategemma:12b",
+      "timestamp": 1772019533235
+    },
+    "f9c4ce4437ccce1b": {
+      "translation": "名前付きで不変のポリシーテンプレートを作成",
+      "model": "translategemma:12b",
+      "timestamp": 1772019533235
+    },
+    "9f5b8af82ff5e46a": {
+      "translation": "名前でテンプレートを取得",
+      "model": "translategemma:12b",
+      "timestamp": 1772019533235
+    },
+    "9d975c5651e29708": {
+      "translation": "オプションでラベルによるフィルタリングを行い、すべてのテンプレートを一覧表示",
+      "model": "translategemma:12b",
+      "timestamp": 1772019533235
+    },
+    "c0aac36b66e9bf5d": {
+      "translation": "決定を、ポータブルで整合性が検証されたバンドルとしてエクスポート",
+      "model": "translategemma:12b",
+      "timestamp": 1772019533235
+    },
+    "1795e2223e2ce39a": {
+      "translation": "バンドルをインポートし、競合モードと再検証を実行",
+      "model": "translategemma:12b",
+      "timestamp": 1772019533235
+    },
+    "a6baad0b7953dee2": {
+      "translation": "監査パッケージをバインドして、ガバナンスを実行に結びつける",
+      "model": "translategemma:12b",
+      "timestamp": 1772019533235
+    },
+    "290f06e7c17fbc4a": {
+      "translation": "決定テンプレート",
+      "model": "translategemma:12b",
+      "timestamp": 1772019533235
+    },
+    "7f42c45871c3f464": {
+      "translation": "決定間で再利用できる名前付きで不変のポリシーバンドル：",
+      "model": "translategemma:12b",
+      "timestamp": 1772019533235
+    },
+    "cc00108b2123706f": {
+      "translation": "決定ライフサイクル",
+      "model": "translategemma:12b",
+      "timestamp": 1772019533235
+    },
+    "081cc771f1e212ee": {
+      "translation": "ブロック理由とタイムラインを含む、計算されたライフサイクル：",
+      "model": "translategemma:12b",
+      "timestamp": 1772019533235
+    },
+    "c23075d176898260": {
+      "translation": "バンドルのエクスポート/インポート",
+      "model": "translategemma:12b",
+      "timestamp": 1772019533235
+    },
+    "7876baf1eac7a8dd": {
+      "translation": "システム間で転送するための、ポータブルで整合性が検証された決定バンドル：",
+      "model": "translategemma:12b",
+      "timestamp": 1772019533235
+    },
+    "8f58ae4049bda7b1": {
+      "translation": "競合モード：`reject_on_conflict` | `new_decision_id` | `overwrite`",
+      "model": "translategemma:12b",
+      "timestamp": 1772019533235
+    },
+    "6a825f223517aa36": {
+      "translation": "アテステーションサブシステム",
+      "model": "translategemma:12b",
+      "timestamp": 1772019533235
+    },
+    "f42ccec6b2c2f9e1": {
+      "translation": "アテステーションレイヤーは、XRPLをアンカーとする暗号化された検証証明を提供します。",
+      "model": "translategemma:12b",
+      "timestamp": 1772019533235
+    },
+    "162e04f11c473b29": {
+      "translation": "アテステーションの目的",
+      "model": "translategemma:12b",
+      "timestamp": 1772019533235
+    },
+    "659035969ec4a350": {
+      "translation": "件名バインディングを含む、コンテンツベースのアテステーションリクエスト：",
+      "model": "translategemma:12b",
+      "timestamp": 1772019533235
+    },
+    "263e06d49b2a10fb": {
+      "translation": "XRPL検証バックエンド",
+      "model": "translategemma:12b",
+      "timestamp": 1772019533235
+    },
+    "1be93e5e11f82d3f": {
+      "translation": "XRP Ledger を利用したオンチェーンでの認証機能：第三者による検証を可能にします。",
+      "model": "translategemma:12b",
+      "timestamp": 1772019533235
+    },
+    "24c1fbd3bac70e35": {
+      "translation": "目的",
+      "model": "translategemma:12b",
+      "timestamp": 1772019533235
+    },
+    "2a56d6ea96d9fd14": {
+      "translation": "---------",
+      "model": "translategemma:12b",
+      "timestamp": 1772019533235
+    },
+    "8b131d4730f0c5df": {
+      "translation": "認証トランザクションの送信",
+      "model": "translategemma:12b",
+      "timestamp": 1772019533235
+    },
+    "fc1a1624d5872002": {
+      "translation": "XRPL ノードとの通信",
+      "model": "translategemma:12b",
+      "timestamp": 1772019533235
+    },
+    "04a2f0f9c6678222": {
+      "translation": "リクエスト/レスポンスの証拠の追跡",
+      "model": "translategemma:12b",
+      "timestamp": 1772019533235
+    },
+    "5f7d7d45564bd265": {
+      "translation": "XRPL メモにおける認証データのエンコード/デコード",
+      "model": "translategemma:12b",
+      "timestamp": 1772019533235
+    },
+    "f3c0655440210b57": {
+      "translation": "トランザクションの署名",
+      "model": "translategemma:12b",
+      "timestamp": 1772019533235
+    },
+    "12d4a2677e3ece9b": {
+      "translation": "自己検証可能なナラティブ",
+      "model": "translategemma:12b",
+      "timestamp": 1772019533235
+    },
+    "deb031b004f5b5c5": {
+      "translation": "内蔵された整合性チェックを含む、人間が読める監査レポート：",
+      "model": "translategemma:12b",
+      "timestamp": 1772019533235
+    },
+    "52fed2e0bca8e982": {
+      "translation": "認証の再実行",
+      "model": "translategemma:12b",
+      "timestamp": 1772019533235
+    },
+    "8f7d88d368236696": {
+      "translation": "検証のための、認証のタイムラインの決定的な再実行：",
+      "model": "translategemma:12b",
+      "timestamp": 1772019533235
+    },
+    "4e6d5c44a6b4e31a": {
+      "translation": "データモデル",
+      "model": "translategemma:12b",
+      "timestamp": 1772019533235
+    },
+    "7a9a37169374be51": {
+      "translation": "イベントソース設計",
+      "model": "translategemma:12b",
+      "timestamp": 1772019533235
+    },
+    "c5486f836294cce4": {
+      "translation": "すべての状態は、変更不可能なイベントログを再実行することで導出されます。",
+      "model": "translategemma:12b",
+      "timestamp": 1772019533235
+    },
+    "d6ffb316cb2d285c": {
+      "translation": "ポリシーモデル",
+      "model": "translategemma:12b",
+      "timestamp": 1772019533235
+    },
+    "6d3cab9cf5eba039": {
+      "translation": "承認モデル",
+      "model": "translategemma:12b",
+      "timestamp": 1772019533235
+    },
+    "bb07548cd61428c5": {
+      "translation": "- `actor.id` ごとにカウントされます。\n- `comment` を含めることができ、オプションで `expires_at` を設定できます。\n- 実行前に取り消すことができます。\n- 実行には、ポリシーを満たす承認が必要です（**実行時**）。",
+      "model": "translategemma:12b",
+      "timestamp": 1772019533235
+    },
+    "e19ae0e0a558e963": {
+      "translation": "ルーティングモード",
+      "model": "translategemma:12b",
+      "timestamp": 1772019533235
+    },
+    "e61a77f9ecfbad85": {
+      "translation": "含まれるもの",
+      "model": "translategemma:12b",
+      "timestamp": 1772019533235
+    },
+    "8f63e755955aa909": {
+      "translation": "ユースケース",
+      "model": "translategemma:12b",
+      "timestamp": 1772019533235
+    },
+    "52494e60f0fbc76b": {
+      "translation": "----------",
+      "model": "translategemma:12b",
+      "timestamp": 1772019533235
+    },
+    "c30c1bd15de74b83": {
+      "translation": "`run_id` + `router_digest`",
+      "model": "translategemma:12b",
+      "timestamp": 1772019533235
+    },
+    "c1bbf404cd449938": {
+      "translation": "CI、内部システム",
+      "model": "translategemma:12b",
+      "timestamp": 1772019533235
+    },
+    "27a9eb013d17c649": {
+      "translation": "完全なルーティングバンドル + クロスチェック",
+      "model": "translategemma:12b",
+      "timestamp": 1772019533235
+    },
+    "c57c9973684a505a": {
+      "translation": "規制当局、長期アーカイブ",
+      "model": "translategemma:12b",
+      "timestamp": 1772019533235
+    },
+    "f0857869b5057c01": {
+      "translation": "両方のモードは、バインディング層において暗号学的に同等です。",
+      "model": "translategemma:12b",
+      "timestamp": 1772019533235
+    },
+    "1d417df09230eb05": {
+      "translation": "プロジェクト構造",
+      "model": "translategemma:12b",
+      "timestamp": 1772019533235
+    },
+    "5d5ad8a86ff28f36": {
+      "translation": "開発",
+      "model": "translategemma:12b",
+      "timestamp": 1772019533235
+    },
+    "2e22400e9cbba1b8": {
+      "translation": "終了コード",
+      "model": "translategemma:12b",
+      "timestamp": 1772019533235
+    },
+    "58123bdea582f8e2": {
+      "translation": "意味",
+      "model": "translategemma:12b",
+      "timestamp": 1772019533235
+    },
+    "e1fbc38c6862cd6e": {
+      "translation": "すべてのチェックに合格",
+      "model": "translategemma:12b",
+      "timestamp": 1772019533235
+    },
+    "64945f8a419bbd3e": {
+      "translation": "予期しないエラー",
+      "model": "translategemma:12b",
+      "timestamp": 1772019533235
+    },
+    "930d8e63bb106804": {
+      "translation": "検証エラーまたはスキーマエラー",
+      "model": "translategemma:12b",
+      "timestamp": 1772019533235
+    },
+    "08ea9dfbe36d981b": {
+      "translation": "ライセンス",
+      "model": "translategemma:12b",
+      "timestamp": 1772019533235
+    },
+    "f044c126a8902f11": {
+      "translation": "MIT",
+      "model": "translategemma:12b",
+      "timestamp": 1772019533235
+    },
+    "9810d3815576feae": {
+      "translation": "为什么",
+      "model": "translategemma:12b",
+      "timestamp": 1772019590255
+    },
+    "260e76bdc98254b6": {
+      "translation": "在生产环境中运行 MCP 工具需要审批流程、审计跟踪和策略执行。 nexus-router 会立即执行，没有治理层。",
+      "model": "translategemma:12b",
+      "timestamp": 1772019590255
+    },
+    "14b09c883cad1ae1": {
+      "translation": "**nexus-attest** 增加了这一层：",
+      "model": "translategemma:12b",
+      "timestamp": 1772019590255
+    },
+    "836253d62e198212": {
+      "translation": "- 带有 N-of-M 审批的请求/审查/批准/执行工作流程\n- 密码学审计包，将治理决策与执行结果绑定\n- 基于 XRPL 的凭证，用于第三方验证\n- 策略模板，用于可重复的审批模式\n- 全事件溯源，每个状态都是通过重放不可变日志推导出来的",
+      "model": "translategemma:12b",
+      "timestamp": 1772019590255
+    },
+    "09136d539e835591": {
+      "translation": "所有内容都可以导出、验证和重放。没有可变状态。没有隐藏的写入操作。",
+      "model": "translategemma:12b",
+      "timestamp": 1772019590255
+    },
+    "ed61d0d109031128": {
+      "translation": "安装",
+      "model": "translategemma:12b",
+      "timestamp": 1772019590255
+    },
+    "a374ef78881f4299": {
+      "translation": "需要 Python 3.11 或更高版本。",
+      "model": "translategemma:12b",
+      "timestamp": 1772019590255
+    },
+    "3e6394397900eaa1": {
+      "translation": "快速入门",
+      "model": "translategemma:12b",
+      "timestamp": 1772019590255
+    },
+    "4a441cf69f47feb7": {
+      "translation": "请参阅 [QUICKSTART.md](QUICKSTART.md)，了解带有策略选项、试运行模式和时间线视图的完整指南。",
+      "model": "translategemma:12b",
+      "timestamp": 1772019590255
+    },
+    "6e2015af903f2eb2": {
+      "translation": "核心概念",
+      "model": "translategemma:12b",
+      "timestamp": 1772019590255
+    },
+    "e0145fe2b1768b30": {
+      "translation": "治理流程",
+      "model": "translategemma:12b",
+      "timestamp": 1772019590255
+    },
+    "810298786d14d08c": {
+      "translation": "绑定内容",
+      "model": "translategemma:12b",
+      "timestamp": 1772019590255
+    },
+    "b8035e5159cb32ac": {
+      "translation": "每个审计包都通过密码学方式将以下三者关联起来：",
+      "model": "translategemma:12b",
+      "timestamp": 1772019590255
+    },
+    "2431cbeb7340b69e": {
+      "translation": "组件",
+      "model": "translategemma:12b",
+      "timestamp": 1772019590255
+    },
+    "5bde4f496254955f": {
+      "translation": "它捕获的内容",
+      "model": "translategemma:12b",
+      "timestamp": 1772019590255
+    },
+    "10198921144da1d7": {
+      "translation": "-----------",
+      "model": "translategemma:12b",
+      "timestamp": 1772019590255
+    },
+    "8dcd33a6d382512c": {
+      "translation": "-----------------",
+      "model": "translategemma:12b",
+      "timestamp": 1772019590255
+    },
+    "1cfb98ebf63fafef": {
+      "translation": "决策、策略、审批和约束（允许的内容）",
+      "model": "translategemma:12b",
+      "timestamp": 1772019590255
+    },
+    "4daf670ff6467531": {
+      "translation": "执行身份——`run_id` 和 `router_digest`（实际执行的内容）",
+      "model": "translategemma:12b",
+      "timestamp": 1772019590255
+    },
+    "a9ccce3550a1a7ad": {
+      "translation": "为什么这个特定的执行会由这个特定的决策授权",
+      "model": "translategemma:12b",
+      "timestamp": 1772019590255
+    },
+    "9611a4c186262ae1": {
+      "translation": "`binding_digest` 是所有三个组件的 SHA-256 哈希值。如果任何组件发生更改，哈希值就会失效。",
+      "model": "translategemma:12b",
+      "timestamp": 1772019590255
+    },
+    "a8f94f928e083052": {
+      "translation": "验证",
+      "model": "translategemma:12b",
+      "timestamp": 1772019590255
+    },
+    "1730cea8df6fce23": {
+      "translation": "所有六个检查都会运行，无论是否出现错误——所有问题都会被报告：",
+      "model": "translategemma:12b",
+      "timestamp": 1772019590255
+    },
+    "8592180349f72b02": {
+      "translation": "它验证的内容",
+      "model": "translategemma:12b",
+      "timestamp": 1772019590255
+    },
+    "d75d743091909926": {
+      "translation": "-------",
+      "model": "translategemma:12b",
+      "timestamp": 1772019590255
+    },
+    "c4dd5b03c112b94a": {
+      "translation": "从绑定字段重新计算",
+      "model": "translategemma:12b",
+      "timestamp": 1772019590255
+    },
+    "c170ce24a973963c": {
+      "translation": "从控制包内容重新计算",
+      "model": "translategemma:12b",
+      "timestamp": 1772019590255
+    },
+    "d9de64402befb327": {
+      "translation": "绑定与控制包匹配",
+      "model": "translategemma:12b",
+      "timestamp": 1772019590255
+    },
+    "53721d65eff20f5a": {
+      "translation": "绑定与路由器部分匹配",
+      "model": "translategemma:12b",
+      "timestamp": 1772019590255
+    },
+    "23d68f0fc8d325e7": {
+      "translation": "绑定与控制-路由器链接匹配",
+      "model": "translategemma:12b",
+      "timestamp": 1772019590255
+    },
+    "084280fb2c65fe09": {
+      "translation": "嵌入式路由器包完整性（如果适用）",
+      "model": "translategemma:12b",
+      "timestamp": 1772019590255
+    },
+    "8c1c73cce1e5447b": {
+      "translation": "MCP 工具",
+      "model": "translategemma:12b",
+      "timestamp": 1772019590255
+    },
+    "0cb6ab74c76a45f8": {
+      "translation": "通过模型上下文协议暴露的 11 个工具：",
+      "model": "translategemma:12b",
+      "timestamp": 1772019590255
+    },
+    "601d6e570e22e932": {
+      "translation": "描述",
+      "model": "translategemma:12b",
+      "timestamp": 1772019590255
+    },
+    "7b7596c3d1d0c899": {
+      "translation": "------",
+      "model": "translategemma:12b",
+      "timestamp": 1772019590255
+    },
+    "dd5b28ff24f8cbdb": {
+      "translation": "-------------",
+      "model": "translategemma:12b",
+      "timestamp": 1772019590255
+    },
+    "80d62edd7c5dfa3c": {
+      "translation": "创建带有目标、策略和审批人的执行请求",
+      "model": "translategemma:12b",
+      "timestamp": 1772019590255
+    },
+    "0a3ec875cdc4bb3c": {
+      "translation": "批准请求（支持 N-of-M 审批）",
+      "model": "translategemma:12b",
+      "timestamp": 1772019590255
+    },
+    "45d06603e08d30fd": {
+      "translation": "通过 nexus-router 执行已批准的请求",
+      "model": "translategemma:12b",
+      "timestamp": 1772019590255
+    },
+    "a439e91b59c7a08a": {
+      "translation": "获取请求状态和相关运行状态",
+      "model": "translategemma:12b",
+      "timestamp": 1772019590255
+    },
+    "577b4e409dc87a75": {
+      "translation": "只读的内省，带有可读的输出",
+      "model": "translategemma:12b",
+      "timestamp": 1772019590255
+    },
+    "70d1e21e676a5268": {
+      "translation": "创建命名、不可变的策略模板",
+      "model": "translategemma:12b",
+      "timestamp": 1772019590255
+    },
+    "6a473424f8f17525": {
+      "translation": "通过名称检索模板",
+      "model": "translategemma:12b",
+      "timestamp": 1772019590255
+    },
+    "093b05603d5d781e": {
+      "translation": "列出所有模板，并可选择使用标签进行过滤",
+      "model": "translategemma:12b",
+      "timestamp": 1772019590255
+    },
+    "7a18750e7aa0b2c2": {
+      "translation": "将决策导出为可移植、具有完整性验证的包",
+      "model": "translategemma:12b",
+      "timestamp": 1772019590255
+    },
+    "abd82f1cdb1b1c0b": {
+      "translation": "导入包，支持冲突模式和重放验证",
+      "model": "translategemma:12b",
+      "timestamp": 1772019590255
+    },
+    "f6706dc76220e275": {
+      "translation": "导出审计包，将治理与执行绑定",
+      "model": "translategemma:12b",
+      "timestamp": 1772019590255
+    },
+    "5bf475c72167a32e": {
+      "translation": "决策模板",
+      "model": "translategemma:12b",
+      "timestamp": 1772019590255
+    },
+    "68500164d7e9faea": {
+      "translation": "命名、不可变的策略包，可以在决策中重复使用：",
+      "model": "translategemma:12b",
+      "timestamp": 1772019590255
+    },
+    "1dbdc62e4a16789f": {
+      "translation": "决策生命周期",
+      "model": "translategemma:12b",
+      "timestamp": 1772019590255
+    },
+    "0ffbc861f409a983": {
+      "translation": "带有阻塞原因和时间线的计算生命周期：",
+      "model": "translategemma:12b",
+      "timestamp": 1772019590255
+    },
+    "5a7b2474c2e70384": {
+      "translation": "导出/导入包",
+      "model": "translategemma:12b",
+      "timestamp": 1772019590255
+    },
+    "4e5fd9565990e860": {
+      "translation": "可移植、具有完整性验证的决策包，用于跨系统传输：",
+      "model": "translategemma:12b",
+      "timestamp": 1772019590255
+    },
+    "7575fa49a627028d": {
+      "translation": "冲突模式：`reject_on_conflict` | `new_decision_id` | `overwrite`",
+      "model": "translategemma:12b",
+      "timestamp": 1772019590255
+    },
+    "d707c2057cb824de": {
+      "translation": "凭证子系统",
+      "model": "translategemma:12b",
+      "timestamp": 1772019590255
+    },
+    "146b0afea425410a": {
+      "translation": "凭证层提供基于 XRPL 的密码学凭证：",
+      "model": "translategemma:12b",
+      "timestamp": 1772019590255
+    },
+    "43074095f2fe8b14": {
+      "translation": "凭证意图",
+      "model": "translategemma:12b",
+      "timestamp": 1772019590255
+    },
+    "4c3b9cfc6b8554cb": {
+      "translation": "带有主体绑定的基于内容寻址的凭证请求：",
+      "model": "translategemma:12b",
+      "timestamp": 1772019590255
+    },
+    "c723b339ac651681": {
+      "translation": "XRPL 凭证后端",
+      "model": "translategemma:12b",
+      "timestamp": 1772019590255
+    },
+    "b418b920a0c067f8": {
+      "translation": "通过XRP账本进行链上验证，以便第三方进行验证：",
+      "model": "translategemma:12b",
+      "timestamp": 1772019590255
+    },
+    "88c2bb9d9f0847b6": {
+      "translation": "目的",
+      "model": "translategemma:12b",
+      "timestamp": 1772019590255
+    },
+    "3c50ad19fc6c359b": {
+      "translation": "---------",
+      "model": "translategemma:12b",
+      "timestamp": 1772019590255
+    },
+    "0764d26e490f70a0": {
+      "translation": "提交验证交易",
+      "model": "translategemma:12b",
+      "timestamp": 1772019590255
+    },
+    "da80b7bb2571d74e": {
+      "translation": "与XRPL节点进行通信",
+      "model": "translategemma:12b",
+      "timestamp": 1772019590255
+    },
+    "4ed17f77a3b25ffd": {
+      "translation": "跟踪请求/响应证据",
+      "model": "translategemma:12b",
+      "timestamp": 1772019590255
+    },
+    "c3fd6fc70048d077": {
+      "translation": "在XRPL备忘录中编码/解码验证数据",
+      "model": "translategemma:12b",
+      "timestamp": 1772019590255
+    },
+    "cf6bbaf365c4016d": {
+      "translation": "交易签名",
+      "model": "translategemma:12b",
+      "timestamp": 1772019590255
+    },
+    "72f9e826027c3487": {
+      "translation": "自我验证叙述",
+      "model": "translategemma:12b",
+      "timestamp": 1772019590255
+    },
+    "6240b2e1148f60a1": {
+      "translation": "包含嵌入式完整性检查的、可读的审计报告：",
+      "model": "translategemma:12b",
+      "timestamp": 1772019590255
+    },
+    "a0f470fa4a081f96": {
+      "translation": "验证重放",
+      "model": "translategemma:12b",
+      "timestamp": 1772019590255
+    },
+    "c9c748c09e137e71": {
+      "translation": "为了验证，对验证时间线的确定性重放：",
+      "model": "translategemma:12b",
+      "timestamp": 1772019590255
+    },
+    "208624cb1e8ddced": {
+      "translation": "数据模型",
+      "model": "translategemma:12b",
+      "timestamp": 1772019590255
+    },
+    "289519e9cd8acf08": {
+      "translation": "基于事件的设计",
+      "model": "translategemma:12b",
+      "timestamp": 1772019590255
+    },
+    "fd8c4cf70de128d2": {
+      "translation": "所有状态都是通过重放不可变的事件日志推导出来的：",
+      "model": "translategemma:12b",
+      "timestamp": 1772019590255
+    },
+    "ec07e44c83708302": {
+      "translation": "策略模型",
+      "model": "translategemma:12b",
+      "timestamp": 1772019590255
+    },
+    "0450da2eb658329f": {
+      "translation": "审批模型",
+      "model": "translategemma:12b",
+      "timestamp": 1772019590255
+    },
+    "1e93364063167208": {
+      "translation": "- 通过不同的`actor.id`进行计数\n- 可以包含`comment`以及可选的`expires_at`\n- 可以撤销（在执行之前）\n- 执行需要获得足够的批准，以满足策略，**在执行时**",
+      "model": "translategemma:12b",
+      "timestamp": 1772019590255
+    },
+    "12cd111b3b015375": {
+      "translation": "路由模式",
+      "model": "translategemma:12b",
+      "timestamp": 1772019590255
+    },
+    "0438d793558bdbc6": {
+      "translation": "包含",
+      "model": "translategemma:12b",
+      "timestamp": 1772019590255
+    },
+    "b23ed1a00458fe22": {
+      "translation": "用例",
+      "model": "translategemma:12b",
+      "timestamp": 1772019590255
+    },
+    "7bc35c26567fc0cb": {
+      "translation": "----------",
+      "model": "translategemma:12b",
+      "timestamp": 1772019590255
+    },
+    "182dd7769a471a79": {
+      "translation": "`run_id` + `router_digest`",
+      "model": "translategemma:12b",
+      "timestamp": 1772019590255
+    },
+    "0bc705c5f4d24e46": {
+      "translation": "CI，内部系统",
+      "model": "translategemma:12b",
+      "timestamp": 1772019590255
+    },
+    "686343041918636b": {
+      "translation": "完整的路由包 + 交叉检查",
+      "model": "translategemma:12b",
+      "timestamp": 1772019590255
+    },
+    "8cca4206cd23707d": {
+      "translation": "监管机构，长期归档",
+      "model": "translategemma:12b",
+      "timestamp": 1772019590255
+    },
+    "c67614be62f11367": {
+      "translation": "这两种模式在绑定层在密码学上是等价的。",
+      "model": "translategemma:12b",
+      "timestamp": 1772019590255
+    },
+    "ff01fb234ea9ac38": {
+      "translation": "项目结构",
+      "model": "translategemma:12b",
+      "timestamp": 1772019590255
+    },
+    "97f802ddcc5bda79": {
+      "translation": "开发",
+      "model": "translategemma:12b",
+      "timestamp": 1772019590255
+    },
+    "7a04b47e3bc57a61": {
+      "translation": "退出码",
+      "model": "translategemma:12b",
+      "timestamp": 1772019590255
+    },
+    "d92f14b6efff6a75": {
+      "translation": "含义",
+      "model": "translategemma:12b",
+      "timestamp": 1772019590255
+    },
+    "12f15c5a6372e631": {
+      "translation": "所有检查通过",
+      "model": "translategemma:12b",
+      "timestamp": 1772019590255
+    },
+    "b18916b55c0ef449": {
+      "translation": "未处理的错误",
+      "model": "translategemma:12b",
+      "timestamp": 1772019590255
+    },
+    "a985bb849c1f910e": {
+      "translation": "验证或模式错误",
+      "model": "translategemma:12b",
+      "timestamp": 1772019590255
+    },
+    "1fb815b9a436fadb": {
+      "translation": "许可证",
+      "model": "translategemma:12b",
+      "timestamp": 1772019590255
+    },
+    "6325e155e3ad88d6": {
+      "translation": "MIT",
+      "model": "translategemma:12b",
+      "timestamp": 1772019590255
+    },
+    "5d816d36d89fe697": {
+      "translation": "¿Por qué?",
+      "model": "translategemma:12b",
+      "timestamp": 1772019692168
+    },
+    "51e6b3f2b29a41f3": {
+      "translation": "La ejecución de herramientas MCP en producción requiere flujos de trabajo de aprobación, registros de auditoría y cumplimiento de políticas. nexus-router se ejecuta de inmediato; no hay una capa de gobernanza.",
+      "model": "translategemma:12b",
+      "timestamp": 1772019692168
+    },
+    "9912d70eed9fb39f": {
+      "translation": "**nexus-attest** agrega esa capa:",
+      "model": "translategemma:12b",
+      "timestamp": 1772019692168
+    },
+    "7e5f9f542c1dd5a6": {
+      "translation": "- Flujo de trabajo de solicitud / revisión / aprobación / ejecución con aprobaciones N-de-M.\n- Paquetes de auditoría criptográficos que vinculan las decisiones de gobernanza con los resultados de la ejecución.\n- Pruebas de testigos ancladas en XRPL para la verificación de terceros.\n- Plantillas de políticas para patrones de aprobación repetibles.\n- Seguimiento completo de eventos: cada estado se deriva al reproducir un registro inmutable.",
+      "model": "translategemma:12b",
+      "timestamp": 1772019692168
+    },
+    "7254814e5352d48a": {
+      "translation": "Todo es exportable, verificable y reproducible. No hay estado mutable. No hay escrituras ocultas.",
+      "model": "translategemma:12b",
+      "timestamp": 1772019692168
+    },
+    "144b06b61516beec": {
+      "translation": "Instalación",
+      "model": "translategemma:12b",
+      "timestamp": 1772019692168
+    },
+    "02a5d530cfa58fee": {
+      "translation": "Requiere Python 3.11 o posterior.",
+      "model": "translategemma:12b",
+      "timestamp": 1772019692168
+    },
+    "785321ff8279266b": {
+      "translation": "Guía rápida",
+      "model": "translategemma:12b",
+      "timestamp": 1772019692168
+    },
+    "8ee0ab36872ded06": {
+      "translation": "Consulte [QUICKSTART.md](QUICKSTART.md) para obtener una descripción general completa con opciones de políticas, modo de prueba y vistas de línea de tiempo.",
+      "model": "translategemma:12b",
+      "timestamp": 1772019692168
+    },
+    "3e3f9474f825e92b": {
+      "translation": "Conceptos clave",
+      "model": "translategemma:12b",
+      "timestamp": 1772019692168
+    },
+    "94258255d59f2b3a": {
+      "translation": "Flujo de gobernanza",
+      "model": "translategemma:12b",
+      "timestamp": 1772019692168
+    },
+    "2ae8c9d2c9f46145": {
+      "translation": "Qué se vincula",
+      "model": "translategemma:12b",
+      "timestamp": 1772019692168
+    },
+    "66cff16580e6c652": {
+      "translation": "Cada paquete de auditoría vincula criptográficamente tres cosas:",
+      "model": "translategemma:12b",
+      "timestamp": 1772019692168
+    },
+    "3f330cf8a5597c77": {
+      "translation": "Componente",
+      "model": "translategemma:12b",
+      "timestamp": 1772019692169
+    },
+    "7fc8fddbe7d864e6": {
+      "translation": "Qué captura",
+      "model": "translategemma:12b",
+      "timestamp": 1772019692168
+    },
+    "8d960fb67d9cab35": {
+      "translation": "-----------",
+      "model": "translategemma:12b",
+      "timestamp": 1772019692169
+    },
+    "a0324d67f77cc3ed": {
+      "translation": "-----------------",
+      "model": "translategemma:12b",
+      "timestamp": 1772019692169
+    },
+    "6ae78def0efc1a45": {
+      "translation": "La decisión, la política, las aprobaciones y las restricciones (lo que se permitió).",
+      "model": "translategemma:12b",
+      "timestamp": 1772019692169
+    },
+    "be859631db5a7cdc": {
+      "translation": "La identidad de la ejecución: `run_id` y `router_digest` (lo que realmente se ejecutó).",
+      "model": "translategemma:12b",
+      "timestamp": 1772019692169
+    },
+    "8eff84770d66222b": {
+      "translation": "Por qué esta ejecución específica fue autorizada por esta decisión específica.",
+      "model": "translategemma:12b",
+      "timestamp": 1772019692169
+    },
+    "6b6d2377f9ea6c58": {
+      "translation": "El `binding_digest` es un hash SHA-256 de los tres elementos. Si algún componente cambia, el hash se invalida.",
+      "model": "translategemma:12b",
+      "timestamp": 1772019692169
+    },
+    "5058595ab1b8ed45": {
+      "translation": "Verificación",
+      "model": "translategemma:12b",
+      "timestamp": 1772019692169
+    },
+    "4a9b237e60b35b2f": {
+      "translation": "Las seis comprobaciones se ejecutan independientemente de los fallos; se informa de cualquier problema:",
+      "model": "translategemma:12b",
+      "timestamp": 1772019692169
+    },
+    "e4f1c77cc1de4340": {
+      "translation": "Qué se verifica",
+      "model": "translategemma:12b",
+      "timestamp": 1772019692169
+    },
+    "58e46b91ebfb210e": {
+      "translation": "-------",
+      "model": "translategemma:12b",
+      "timestamp": 1772019692169
+    },
+    "4e78f3d665c53b9d": {
+      "translation": "Recalcular a partir de los campos de enlace.",
+      "model": "translategemma:12b",
+      "timestamp": 1772019692169
+    },
+    "dfbf5dea80ae26ee": {
+      "translation": "Recalcular a partir del contenido del paquete de control.",
+      "model": "translategemma:12b",
+      "timestamp": 1772019692169
+    },
+    "acb6d6f061b9c581": {
+      "translation": "El enlace coincide con el paquete de control.",
+      "model": "translategemma:12b",
+      "timestamp": 1772019692169
+    },
+    "96e3f0225e703774": {
+      "translation": "El enlace coincide con la sección del router.",
+      "model": "translategemma:12b",
+      "timestamp": 1772019692169
+    },
+    "8633e821203d61c1": {
+      "translation": "El enlace coincide con el enlace de control-router.",
+      "model": "translategemma:12b",
+      "timestamp": 1772019692169
+    },
+    "3e5f806b076b9f64": {
+      "translation": "Integridad del paquete de router integrado (si corresponde).",
+      "model": "translategemma:12b",
+      "timestamp": 1772019692169
+    },
+    "86d6362d882f770f": {
+      "translation": "Herramientas MCP",
+      "model": "translategemma:12b",
+      "timestamp": 1772019692169
+    },
+    "f955e0db3941225f": {
+      "translation": "11 herramientas expuestas a través del Protocolo de Contexto del Modelo:",
+      "model": "translategemma:12b",
+      "timestamp": 1772019692169
+    },
+    "a0102622d03d4c0f": {
+      "translation": "Descripción",
+      "model": "translategemma:12b",
+      "timestamp": 1772019692169
+    },
+    "4110d0f8faecdeab": {
+      "translation": "------",
+      "model": "translategemma:12b",
+      "timestamp": 1772019692169
+    },
+    "184e6ce2c9237895": {
+      "translation": "-------------",
+      "model": "translategemma:12b",
+      "timestamp": 1772019692169
+    },
+    "0c69606de243d721": {
+      "translation": "Crear una solicitud de ejecución con objetivo, política y aprobadores.",
+      "model": "translategemma:12b",
+      "timestamp": 1772019692169
+    },
+    "732da11916a9eb03": {
+      "translation": "Aprobar una solicitud (admite aprobaciones N-de-M).",
+      "model": "translategemma:12b",
+      "timestamp": 1772019692169
+    },
+    "9f3ef1dc33b390e4": {
+      "translation": "Ejecutar la solicitud aprobada a través de nexus-router.",
+      "model": "translategemma:12b",
+      "timestamp": 1772019692169
+    },
+    "25ef469615f4f1ef": {
+      "translation": "Obtener el estado de la solicitud y el estado de la ejecución vinculada.",
+      "model": "translategemma:12b",
+      "timestamp": 1772019692169
+    },
+    "52d0ce84cde0e8af": {
+      "translation": "Inspección de solo lectura con salida legible por humanos.",
+      "model": "translategemma:12b",
+      "timestamp": 1772019692169
+    },
+    "65a2b50134443878": {
+      "translation": "Crear una plantilla de política con nombre e inmutable.",
+      "model": "translategemma:12b",
+      "timestamp": 1772019692169
+    },
+    "60e8595f13671451": {
+      "translation": "Recuperar una plantilla por nombre.",
+      "model": "translategemma:12b",
+      "timestamp": 1772019692169
+    },
+    "a53e9711e667b64a": {
+      "translation": "Listar todas las plantillas con filtrado opcional por etiqueta.",
+      "model": "translategemma:12b",
+      "timestamp": 1772019692169
+    },
+    "71cf7131264312a5": {
+      "translation": "Exportar una decisión como un paquete portátil y con integridad verificada.",
+      "model": "translategemma:12b",
+      "timestamp": 1772019692169
+    },
+    "845cf26b51157274": {
+      "translation": "Importar un paquete con modos de conflicto y validación de reproducción.",
+      "model": "translategemma:12b",
+      "timestamp": 1772019692169
+    },
+    "15cde2385e6031e8": {
+      "translation": "Exportar el paquete de auditoría que vincula la gobernanza con la ejecución.",
+      "model": "translategemma:12b",
+      "timestamp": 1772019692169
+    },
+    "9aa67d73c58b2e22": {
+      "translation": "Plantillas de decisión",
+      "model": "translategemma:12b",
+      "timestamp": 1772019692169
+    },
+    "d983ffc57dc7fdf4": {
+      "translation": "Paquetes de políticas con nombre e inmutables que se pueden reutilizar en diferentes decisiones:",
+      "model": "translategemma:12b",
+      "timestamp": 1772019692169
+    },
+    "16643799b857974b": {
+      "translation": "Ciclo de vida de la decisión",
+      "model": "translategemma:12b",
+      "timestamp": 1772019692169
+    },
+    "6fd47e1ea1d97aae": {
+      "translation": "Ciclo de vida calculado con razones de bloqueo y línea de tiempo:",
+      "model": "translategemma:12b",
+      "timestamp": 1772019692169
+    },
+    "c27f16e2e2345d2c": {
+      "translation": "Exportar / Importar paquetes",
+      "model": "translategemma:12b",
+      "timestamp": 1772019692169
+    },
+    "dde36e608db4520b": {
+      "translation": "Paquetes de decisión portátiles y con integridad verificada para la transferencia entre sistemas:",
+      "model": "translategemma:12b",
+      "timestamp": 1772019692169
+    },
+    "3da8d5d822749e54": {
+      "translation": "Modos de conflicto: `reject_on_conflict` | `new_decision_id` | `overwrite`",
+      "model": "translategemma:12b",
+      "timestamp": 1772019692169
+    },
+    "3787723f68267034": {
+      "translation": "Subsistema de atestación",
+      "model": "translategemma:12b",
+      "timestamp": 1772019692169
+    },
+    "40b7e203eb4e5561": {
+      "translation": "La capa de atestación proporciona pruebas de testigos criptográficos con anclaje en XRPL:",
+      "model": "translategemma:12b",
+      "timestamp": 1772019692169
+    },
+    "fadfc74cbc3919b8": {
+      "translation": "Intenciones de atestación",
+      "model": "translategemma:12b",
+      "timestamp": 1772019692169
+    },
+    "d364b610caa6c782": {
+      "translation": "Solicitudes de atestación con direccionamiento de contenido y vinculación de sujeto:",
+      "model": "translategemma:12b",
+      "timestamp": 1772019692169
+    },
+    "03e556fff7526837": {
+      "translation": "Backend de testigo XRPL",
+      "model": "translategemma:12b",
+      "timestamp": 1772019692169
+    },
+    "3330bcb642863bfb": {
+      "translation": "Certificación en cadena a través del Ledger de XRP para la verificabilidad por terceros:",
+      "model": "translategemma:12b",
+      "timestamp": 1772019692169
+    },
+    "8c5543c85ea23525": {
+      "translation": "Propósito",
+      "model": "translategemma:12b",
+      "timestamp": 1772019692169
+    },
+    "f2088caa76d4a948": {
+      "translation": "---------",
+      "model": "translategemma:12b",
+      "timestamp": 1772019692169
+    },
+    "dd1631b84da26bbc": {
+      "translation": "Enviar transacciones de certificación",
+      "model": "translategemma:12b",
+      "timestamp": 1772019692169
+    },
+    "c751d64fc7bcd05e": {
+      "translation": "Comunicarse con los nodos de XRPL",
+      "model": "translategemma:12b",
+      "timestamp": 1772019692169
+    },
+    "cd5ce5ddd47661ab": {
+      "translation": "Rastrear la evidencia de solicitudes/respuestas",
+      "model": "translategemma:12b",
+      "timestamp": 1772019692169
+    },
+    "5f8a45f7984f7f8f": {
+      "translation": "Codificar/decodificar las cargas útiles de certificación en las notas de XRPL",
+      "model": "translategemma:12b",
+      "timestamp": 1772019692169
+    },
+    "ff19f2279a64d416": {
+      "translation": "Firma de transacciones",
+      "model": "translategemma:12b",
+      "timestamp": 1772019692169
+    },
+    "b9179e836928ec15": {
+      "translation": "Narrativas de auto-verificación",
+      "model": "translategemma:12b",
+      "timestamp": 1772019692169
+    },
+    "c2ed8c283f17cbf3": {
+      "translation": "Informes de auditoría legibles por humanos con controles de integridad integrados:",
+      "model": "translategemma:12b",
+      "timestamp": 1772019692169
+    },
+    "4e52daa1d1e6a790": {
+      "translation": "Replicación de la certificación",
+      "model": "translategemma:12b",
+      "timestamp": 1772019692169
+    },
+    "3837a0a7a83d9706": {
+      "translation": "Replicación determinista de las líneas de tiempo de la certificación para la verificación:",
+      "model": "translategemma:12b",
+      "timestamp": 1772019692169
+    },
+    "39d5d6abbf56a651": {
+      "translation": "Modelo de datos",
+      "model": "translategemma:12b",
+      "timestamp": 1772019692169
+    },
+    "654b1e1a01a3d43f": {
+      "translation": "Diseño basado en eventos",
+      "model": "translategemma:12b",
+      "timestamp": 1772019692169
+    },
+    "4e054ca03971ac04": {
+      "translation": "Todo el estado se deriva de la reproducción de un registro de eventos inmutable:",
+      "model": "translategemma:12b",
+      "timestamp": 1772019692169
+    },
+    "f7f653ce9adeadef": {
+      "translation": "Modelo de políticas",
+      "model": "translategemma:12b",
+      "timestamp": 1772019692169
+    },
+    "49f28311983a4eff": {
+      "translation": "Modelo de aprobación",
+      "model": "translategemma:12b",
+      "timestamp": 1772019692169
+    },
+    "d41a345c867febf7": {
+      "translation": "- Contado por `actor.id` distintos.\n- Puede incluir `comentario` y un campo `expires_at` opcional.\n- Puede ser revocado (antes de la ejecución).\n- La ejecución requiere aprobaciones para satisfacer la política **en el momento de la ejecución**.",
+      "model": "translategemma:12b",
+      "timestamp": 1772019692169
+    },
+    "e5a84bb20bdad3c1": {
+      "translation": "Modos del enrutador",
+      "model": "translategemma:12b",
+      "timestamp": 1772019692169
+    },
+    "990289f6714d9b33": {
+      "translation": "Contiene",
+      "model": "translategemma:12b",
+      "timestamp": 1772019692169
+    },
+    "6e7232efb40e8a56": {
+      "translation": "Caso de uso",
+      "model": "translategemma:12b",
+      "timestamp": 1772019692169
+    },
+    "7566658296739da2": {
+      "translation": "----------",
+      "model": "translategemma:12b",
+      "timestamp": 1772019692169
+    },
+    "e0f6661ee0859912": {
+      "translation": "`run_id` + `router_digest`",
+      "model": "translategemma:12b",
+      "timestamp": 1772019692169
+    },
+    "6240e4bc235cca66": {
+      "translation": "CI, sistemas internos",
+      "model": "translategemma:12b",
+      "timestamp": 1772019692169
+    },
+    "23e9b60eda14eead": {
+      "translation": "Paquete completo del enrutador + verificación cruzada",
+      "model": "translategemma:12b",
+      "timestamp": 1772019692169
+    },
+    "03ba63b38a54c05c": {
+      "translation": "Reguladores, archivo a largo plazo",
+      "model": "translategemma:12b",
+      "timestamp": 1772019692169
+    },
+    "47701265545efba2": {
+      "translation": "Ambos modos son criptográficamente equivalentes en la capa de enlace.",
+      "model": "translategemma:12b",
+      "timestamp": 1772019692169
+    },
+    "cc290f922a5da509": {
+      "translation": "Estructura del proyecto",
+      "model": "translategemma:12b",
+      "timestamp": 1772019692169
+    },
+    "d8f95608a506567a": {
+      "translation": "Desarrollo",
+      "model": "translategemma:12b",
+      "timestamp": 1772019692169
+    },
+    "ead6d0852bab11de": {
+      "translation": "Códigos de salida",
+      "model": "translategemma:12b",
+      "timestamp": 1772019692169
+    },
+    "a9e0b03a532423f7": {
+      "translation": "Significado",
+      "model": "translategemma:12b",
+      "timestamp": 1772019692169
+    },
+    "079fcee2f00c10d6": {
+      "translation": "Todas las comprobaciones pasaron",
+      "model": "translategemma:12b",
+      "timestamp": 1772019692169
+    },
+    "734fcf1c15f3e1d2": {
+      "translation": "Error no manejado",
+      "model": "translategemma:12b",
+      "timestamp": 1772019692169
+    },
+    "7710d28c7dee3665": {
+      "translation": "Error de validación o de esquema",
+      "model": "translategemma:12b",
+      "timestamp": 1772019692169
+    },
+    "9572f74b6d3f62b1": {
+      "translation": "Licencia",
+      "model": "translategemma:12b",
+      "timestamp": 1772019692169
+    },
+    "ed7f97ee046bbb09": {
+      "translation": "MIT",
+      "model": "translategemma:12b",
+      "timestamp": 1772019692169
+    },
+    "f80fd7f517f0a656": {
+      "translation": "Pourquoi",
+      "model": "translategemma:12b",
+      "timestamp": 1772019765713
+    },
+    "32be548598e3b79a": {
+      "translation": "L'exécution des outils MCP en production nécessite des flux de validation, des pistes d'audit et l'application de politiques. nexus-router s'exécute immédiatement – il n'y a pas de couche de gouvernance.",
+      "model": "translategemma:12b",
+      "timestamp": 1772019765713
+    },
+    "828615bed93890c7": {
+      "translation": "**nexus-attest** ajoute cette couche :",
+      "model": "translategemma:12b",
+      "timestamp": 1772019765713
+    },
+    "b869b4138b2d2a98": {
+      "translation": "- Flux de demande/examen/approbation/exécution avec des approbations N-de-M.\n- Paquets d'audit cryptographiques qui associent les décisions de gouvernance aux résultats d'exécution.\n- Preuves de témoin ancrées dans XRPL pour une vérification par des tiers.\n- Modèles de politiques pour des schémas d'approbation répétables.\n- Traçabilité complète des événements : chaque état est dérivé en rejouant un journal immuable.",
+      "model": "translategemma:12b",
+      "timestamp": 1772019765713
+    },
+    "cc5f23e3d1d5985c": {
+      "translation": "Tout est exportable, vérifiable et rejouable. Pas d'état mutable. Pas d'écritures cachées.",
+      "model": "translategemma:12b",
+      "timestamp": 1772019765713
+    },
+    "6c946ac8441b05e9": {
+      "translation": "Installation",
+      "model": "translategemma:12b",
+      "timestamp": 1772019765713
+    },
+    "291e0ffcc0e46bb6": {
+      "translation": "Nécessite Python 3.11 ou une version ultérieure.",
+      "model": "translategemma:12b",
+      "timestamp": 1772019765713
+    },
+    "caef1b750e85e405": {
+      "translation": "Démarrage rapide",
+      "model": "translategemma:12b",
+      "timestamp": 1772019765713
+    },
+    "400baf4cb4464abd": {
+      "translation": "Consultez [QUICKSTART.md](QUICKSTART.md) pour un guide complet avec les options de politique, le mode test et les vues chronologiques.",
+      "model": "translategemma:12b",
+      "timestamp": 1772019765713
+    },
+    "e00c85af2b5618c9": {
+      "translation": "Concepts clés",
+      "model": "translategemma:12b",
+      "timestamp": 1772019765713
+    },
+    "dc7603c6ec73a66d": {
+      "translation": "Flux de gouvernance",
+      "model": "translategemma:12b",
+      "timestamp": 1772019765713
+    },
+    "5924e15fa5bb4e7a": {
+      "translation": "Ce qui est lié",
+      "model": "translategemma:12b",
+      "timestamp": 1772019765713
+    },
+    "a709bb872318e7b7": {
+      "translation": "Chaque paquet d'audit lie cryptographiquement trois éléments :",
+      "model": "translategemma:12b",
+      "timestamp": 1772019765713
+    },
+    "25a36f97495e0ab0": {
+      "translation": "Composant",
+      "model": "translategemma:12b",
+      "timestamp": 1772019765714
+    },
+    "3ef14b70b0b6f921": {
+      "translation": "Ce qu'il capture",
+      "model": "translategemma:12b",
+      "timestamp": 1772019765713
+    },
+    "d342ebe446ad84bf": {
+      "translation": "-----------",
+      "model": "translategemma:12b",
+      "timestamp": 1772019765714
+    },
+    "fa2cf08685d4cc07": {
+      "translation": "-----------------",
+      "model": "translategemma:12b",
+      "timestamp": 1772019765713
+    },
+    "525eeff4bb9ea7df": {
+      "translation": "La décision, la politique, les approbations et les contraintes (ce qui était autorisé)",
+      "model": "translategemma:12b",
+      "timestamp": 1772019765713
+    },
+    "67dfc9a9f23636c3": {
+      "translation": "L'identité de l'exécution – `run_id` et `router_digest` (ce qui a réellement été exécuté)",
+      "model": "translategemma:12b",
+      "timestamp": 1772019765713
+    },
+    "0650508f13a4d236": {
+      "translation": "Pourquoi cette exécution spécifique a été autorisée par cette décision spécifique",
+      "model": "translategemma:12b",
+      "timestamp": 1772019765713
+    },
+    "a8103473409dce93": {
+      "translation": "Le `binding_digest` est un hachage SHA-256 de tous les trois éléments. Si un composant change, le hachage est invalide.",
+      "model": "translategemma:12b",
+      "timestamp": 1772019765713
+    },
+    "24a938b57d5053fe": {
+      "translation": "Vérification",
+      "model": "translategemma:12b",
+      "timestamp": 1772019765713
+    },
+    "8ee512df7212a39c": {
+      "translation": "Les six vérifications sont exécutées quel que soit le résultat – chaque problème est signalé :",
+      "model": "translategemma:12b",
+      "timestamp": 1772019765713
+    },
+    "f2f2cace6b6e8de7": {
+      "translation": "Ce qui est vérifié",
+      "model": "translategemma:12b",
+      "timestamp": 1772019765713
+    },
+    "b8a31ebdae787756": {
+      "translation": "-------",
+      "model": "translategemma:12b",
+      "timestamp": 1772019765713
+    },
+    "584339c05404fdf6": {
+      "translation": "Recalculer à partir des champs de liaison",
+      "model": "translategemma:12b",
+      "timestamp": 1772019765713
+    },
+    "d414f3ff44d2a708": {
+      "translation": "Recalculer à partir du contenu du paquet de contrôle",
+      "model": "translategemma:12b",
+      "timestamp": 1772019765713
+    },
+    "13e75224714f472d": {
+      "translation": "La liaison correspond au paquet de contrôle",
+      "model": "translategemma:12b",
+      "timestamp": 1772019765713
+    },
+    "9306008f2122a15d": {
+      "translation": "La liaison correspond à la section du routeur",
+      "model": "translategemma:12b",
+      "timestamp": 1772019765713
+    },
+    "bc73c72d4d07e42e": {
+      "translation": "La liaison correspond au lien de contrôle-routeur",
+      "model": "translategemma:12b",
+      "timestamp": 1772019765713
+    },
+    "571d4221580cac8f": {
+      "translation": "Intégrité du paquet de routeur intégré (si applicable)",
+      "model": "translategemma:12b",
+      "timestamp": 1772019765713
+    },
+    "2b14453ec5987bd9": {
+      "translation": "Outils MCP",
+      "model": "translategemma:12b",
+      "timestamp": 1772019765713
+    },
+    "9154e47c4533c2ed": {
+      "translation": "11 outils accessibles via le protocole de contexte du modèle :",
+      "model": "translategemma:12b",
+      "timestamp": 1772019765713
+    },
+    "9a51c5b4f05710c0": {
+      "translation": "Description",
+      "model": "translategemma:12b",
+      "timestamp": 1772019765714
+    },
+    "86d5118e773cafab": {
+      "translation": "------",
+      "model": "translategemma:12b",
+      "timestamp": 1772019765714
+    },
+    "42738f280dbf39b2": {
+      "translation": "-------------",
+      "model": "translategemma:12b",
+      "timestamp": 1772019765714
+    },
+    "6c1d749501db5f83": {
+      "translation": "Créer une demande d'exécution avec un objectif, une politique et des approbateurs.",
+      "model": "translategemma:12b",
+      "timestamp": 1772019765714
+    },
+    "6773e9bc152eddae": {
+      "translation": "Approuver une demande (prend en charge les approbations N-de-M).",
+      "model": "translategemma:12b",
+      "timestamp": 1772019765714
+    },
+    "0649b5802a65272f": {
+      "translation": "Exécuter la demande approuvée via nexus-router.",
+      "model": "translategemma:12b",
+      "timestamp": 1772019765714
+    },
+    "2cd917d04aec259c": {
+      "translation": "Obtenir l'état de la demande et le statut de l'exécution associée.",
+      "model": "translategemma:12b",
+      "timestamp": 1772019765714
+    },
+    "10cff641b6bc951d": {
+      "translation": "Introspection en lecture seule avec une sortie lisible par l'homme.",
+      "model": "translategemma:12b",
+      "timestamp": 1772019765714
+    },
+    "53455546881a30fc": {
+      "translation": "Créer un modèle de politique nommé et immuable.",
+      "model": "translategemma:12b",
+      "timestamp": 1772019765714
+    },
+    "e131b38f114d220e": {
+      "translation": "Récupérer un modèle par son nom.",
+      "model": "translategemma:12b",
+      "timestamp": 1772019765714
+    },
+    "269e241ff3978654": {
+      "translation": "Lister tous les modèles avec un filtrage optionnel par étiquette.",
+      "model": "translategemma:12b",
+      "timestamp": 1772019765714
+    },
+    "94f32b46b59edbc4": {
+      "translation": "Exporter une décision sous forme de paquet portable et dont l'intégrité est vérifiée.",
+      "model": "translategemma:12b",
+      "timestamp": 1772019765714
+    },
+    "9668fd37776ae92c": {
+      "translation": "Importer un paquet avec des modes de conflit et une validation de relecture.",
+      "model": "translategemma:12b",
+      "timestamp": 1772019765714
+    },
+    "3803b0ac9966ff77": {
+      "translation": "Exporter le paquet d'audit reliant la gouvernance à l'exécution.",
+      "model": "translategemma:12b",
+      "timestamp": 1772019765714
+    },
+    "e5076fcf58a6c22b": {
+      "translation": "Modèles de décision",
+      "model": "translategemma:12b",
+      "timestamp": 1772019765714
+    },
+    "6e980ba7288ab6f2": {
+      "translation": "Paquets de politiques nommés et immuables qui peuvent être réutilisés dans différentes décisions :",
+      "model": "translategemma:12b",
+      "timestamp": 1772019765714
+    },
+    "5c1688868611177b": {
+      "translation": "Cycle de vie de la décision",
+      "model": "translategemma:12b",
+      "timestamp": 1772019765714
+    },
+    "4da61633ce8b61a1": {
+      "translation": "Cycle de vie calculé avec des raisons de blocage et une chronologie :",
+      "model": "translategemma:12b",
+      "timestamp": 1772019765714
+    },
+    "51a5eb178b3b4534": {
+      "translation": "Exporter/Importer des paquets",
+      "model": "translategemma:12b",
+      "timestamp": 1772019765714
+    },
+    "b797d9d3e794136e": {
+      "translation": "Paquets de décisions portables et dont l'intégrité est vérifiée pour le transfert entre systèmes :",
+      "model": "translategemma:12b",
+      "timestamp": 1772019765714
+    },
+    "1890a9827140fac2": {
+      "translation": "Modes de conflit : `reject_on_conflict` | `new_decision_id` | `overwrite`",
+      "model": "translategemma:12b",
+      "timestamp": 1772019765714
+    },
+    "67caa1036bfdbb15": {
+      "translation": "Sous-système d'attestation",
+      "model": "translategemma:12b",
+      "timestamp": 1772019765714
+    },
+    "7ca32b740f211468": {
+      "translation": "La couche d'attestation fournit des preuves de témoin cryptographiques avec ancrage XRPL :",
+      "model": "translategemma:12b",
+      "timestamp": 1772019765714
+    },
+    "6738e0757fdcdf96": {
+      "translation": "Intentions d'attestation",
+      "model": "translategemma:12b",
+      "timestamp": 1772019765714
+    },
+    "f2441aeb568d27d7": {
+      "translation": "Demandes d'attestation adressées par contenu avec liaison au sujet :",
+      "model": "translategemma:12b",
+      "timestamp": 1772019765714
+    },
+    "b0557acba351fee2": {
+      "translation": "Backend de témoin XRPL",
+      "model": "translategemma:12b",
+      "timestamp": 1772019765714
+    },
+    "69f5ac62bd8c34bb": {
+      "translation": "Attestation sur la blockchain via le registre XRP pour une vérification par des tiers :",
+      "model": "translategemma:12b",
+      "timestamp": 1772019765714
+    },
+    "7317bbdecc8da9a3": {
+      "translation": "Objectif",
+      "model": "translategemma:12b",
+      "timestamp": 1772019765714
+    },
+    "9c7087410e6c6801": {
+      "translation": "---------",
+      "model": "translategemma:12b",
+      "timestamp": 1772019765714
+    },
+    "d9f59a2d804520ab": {
+      "translation": "Soumettre des transactions d'attestation.",
+      "model": "translategemma:12b",
+      "timestamp": 1772019765714
+    },
+    "0072c6d80b1e7da6": {
+      "translation": "Communiquer avec les nœuds XRPL.",
+      "model": "translategemma:12b",
+      "timestamp": 1772019765714
+    },
+    "2a9e0afd206dcc1a": {
+      "translation": "Suivre les preuves de requête/réponse.",
+      "model": "translategemma:12b",
+      "timestamp": 1772019765714
+    },
+    "cf9cf6677f019cd4": {
+      "translation": "Encoder/dé coder les données d'attestation dans les notes XRPL.",
+      "model": "translategemma:12b",
+      "timestamp": 1772019765714
+    },
+    "34b3040f40e16497": {
+      "translation": "Signature des transactions.",
+      "model": "translategemma:12b",
+      "timestamp": 1772019765714
+    },
+    "4288f5b5bae2cad5": {
+      "translation": "Narrations auto-vérifiables.",
+      "model": "translategemma:12b",
+      "timestamp": 1772019765714
+    },
+    "c3e0eb8ee62848dc": {
+      "translation": "Rapports d'audit lisibles par l'homme avec des contrôles d'intégrité intégrés :",
+      "model": "translategemma:12b",
+      "timestamp": 1772019765714
+    },
+    "17db00aed599d3c3": {
+      "translation": "Relecture de l'attestation",
+      "model": "translategemma:12b",
+      "timestamp": 1772019765714
+    },
+    "88f7f88b3d09e66d": {
+      "translation": "Relecture déterministe des chronologies d'attestation pour la vérification :",
+      "model": "translategemma:12b",
+      "timestamp": 1772019765714
+    },
+    "9edfb9a19df40297": {
+      "translation": "Modèle de données",
+      "model": "translategemma:12b",
+      "timestamp": 1772019765714
+    },
+    "43ddc5d7e8dea1e9": {
+      "translation": "Conception basée sur les événements.",
+      "model": "translategemma:12b",
+      "timestamp": 1772019765714
+    },
+    "f73213661105ce00": {
+      "translation": "L'état est dérivé en rejouant un journal d'événements immuable :",
+      "model": "translategemma:12b",
+      "timestamp": 1772019765714
+    },
+    "4eeb7df1af114ef4": {
+      "translation": "Modèle de politique",
+      "model": "translategemma:12b",
+      "timestamp": 1772019765714
+    },
+    "0952b48e3d0bfb1a": {
+      "translation": "Modèle d'approbation",
+      "model": "translategemma:12b",
+      "timestamp": 1772019765714
+    },
+    "22bba11517154676": {
+      "translation": "- Comptabilisé par `actor.id` distinct.\n- Peut inclure un `comment` et une date d'expiration optionnelle (`expires_at`).\n- Peut être révoqué (avant l'exécution).\n- L'exécution nécessite des approbations pour satisfaire la politique **au moment de l'exécution**.",
+      "model": "translategemma:12b",
+      "timestamp": 1772019765714
+    },
+    "951b10e8ea48d34e": {
+      "translation": "Modes de routage",
+      "model": "translategemma:12b",
+      "timestamp": 1772019765714
+    },
+    "dbe468d1959069d9": {
+      "translation": "Contient",
+      "model": "translategemma:12b",
+      "timestamp": 1772019765714
+    },
+    "32cb711fb5b3634e": {
+      "translation": "Cas d'utilisation",
+      "model": "translategemma:12b",
+      "timestamp": 1772019765714
+    },
+    "6b553dd92e93e2b8": {
+      "translation": "----------",
+      "model": "translategemma:12b",
+      "timestamp": 1772019765714
+    },
+    "b6a497115a4b663a": {
+      "translation": "`run_id` + `router_digest`",
+      "model": "translategemma:12b",
+      "timestamp": 1772019765714
+    },
+    "2daa8fad1ff892e6": {
+      "translation": "CI, systèmes internes.",
+      "model": "translategemma:12b",
+      "timestamp": 1772019765714
+    },
+    "d1f7176007f4c2c5": {
+      "translation": "Ensemble complet de routage + vérification croisée.",
+      "model": "translategemma:12b",
+      "timestamp": 1772019765714
+    },
+    "844039b9ef8a54e1": {
+      "translation": "Organismes de réglementation, archivage à long terme.",
+      "model": "translategemma:12b",
+      "timestamp": 1772019765714
+    },
+    "ecde9c62fc59bf6d": {
+      "translation": "Les deux modes sont cryptographiquement équivalents au niveau de la liaison.",
+      "model": "translategemma:12b",
+      "timestamp": 1772019765714
+    },
+    "79d1da0af5708b6a": {
+      "translation": "Structure du projet",
+      "model": "translategemma:12b",
+      "timestamp": 1772019765714
+    },
+    "45ec9a968ad0c8d2": {
+      "translation": "Développement",
+      "model": "translategemma:12b",
+      "timestamp": 1772019765714
+    },
+    "ea3b5c49e509bd45": {
+      "translation": "Codes de sortie",
+      "model": "translategemma:12b",
+      "timestamp": 1772019765714
+    },
+    "785c7a450a789477": {
+      "translation": "Signification",
+      "model": "translategemma:12b",
+      "timestamp": 1772019765714
+    },
+    "74457fce58b5836c": {
+      "translation": "Tous les contrôles ont réussi.",
+      "model": "translategemma:12b",
+      "timestamp": 1772019765714
+    },
+    "c6fd5ef13755edd3": {
+      "translation": "Erreur non gérée.",
+      "model": "translategemma:12b",
+      "timestamp": 1772019765714
+    },
+    "36c6c745225ca5fb": {
+      "translation": "Erreur de validation ou de schéma.",
+      "model": "translategemma:12b",
+      "timestamp": 1772019765714
+    },
+    "0174ffc9d6992c72": {
+      "translation": "Licence",
+      "model": "translategemma:12b",
+      "timestamp": 1772019765714
+    },
+    "9d6e22ae9823640e": {
+      "translation": "MIT",
+      "model": "translategemma:12b",
+      "timestamp": 1772019765714
+    },
+    "04d49f6a9c899e5b": {
+      "translation": "क्यों?",
+      "model": "translategemma:12b",
+      "timestamp": 1772019905149
+    },
+    "45438751d226dad2": {
+      "translation": "उत्पादन वातावरण में एमसीपी (MCP) टूल चलाने के लिए, अनुमोदन प्रक्रियाएं, ऑडिट ट्रेल और नीति प्रवर्तन की आवश्यकता होती है। नेक्सस-राउटर (nexus-router) तुरंत काम करता है - इसमें कोई शासन (governance) परत नहीं होती।",
+      "model": "translategemma:12b",
+      "timestamp": 1772019905149
+    },
+    "78f3fee74d249e3e": {
+      "translation": "\"nexus-attest\" एक अतिरिक्त सुविधा प्रदान करता है:",
+      "model": "translategemma:12b",
+      "timestamp": 1772019905149
+    },
+    "8c147beee15763c2": {
+      "translation": "- एन-ऑफ-एम अनुमोदन के साथ वर्कफ़्लो का अनुरोध, समीक्षा, अनुमोदन और निष्पादन।\n- क्रिप्टोग्राफिक ऑडिट पैकेज जो शासन संबंधी निर्णयों को निष्पादन परिणामों से जोड़ते हैं।\n- एक्सआरपीएल-आधारित प्रमाण जो तीसरे पक्ष द्वारा सत्यापन की अनुमति देते हैं।\n- दोहराए जाने वाले अनुमोदन प्रक्रियाओं के लिए नीति टेम्पलेट्स।\n- पूर्ण घटना-आधारित ट्रैकिंग - प्रत्येक स्थिति एक अपरिवर्तनीय लॉग को फिर से चलाने से प्राप्त होती है।",
+      "model": "translategemma:12b",
+      "timestamp": 1772019905149
+    },
+    "2b9e1cea3669d80e": {
+      "translation": "सब कुछ निर्यात करने योग्य, सत्यापित करने योग्य और पुनः चलाने योग्य है। कोई भी परिवर्तनशील अवस्था नहीं है। कोई भी गुप्त लेखन नहीं है।",
+      "model": "translategemma:12b",
+      "timestamp": 1772019905149
+    },
+    "7670bd721a08293f": {
+      "translation": "स्थापित करें।",
+      "model": "translategemma:12b",
+      "timestamp": 1772019905149
+    },
+    "3c0dafda645c6e1d": {
+      "translation": "इसके लिए पायथन 3.11 या उसके बाद के संस्करण की आवश्यकता है।",
+      "model": "translategemma:12b",
+      "timestamp": 1772019905149
+    },
+    "abb619d8b0588257": {
+      "translation": "शुरुआत कैसे करें।",
+      "model": "translategemma:12b",
+      "timestamp": 1772019905149
+    },
+    "44ceebfcdcd28614": {
+      "translation": "विस्तृत जानकारी के लिए, जिसमें नीतिगत विकल्प, परीक्षण मोड और समय-सीमा दृश्य शामिल हैं, [QUICKSTART.md](QUICKSTART.md) देखें।",
+      "model": "translategemma:12b",
+      "timestamp": 1772019905149
+    },
+    "08d35c21c5a5d287": {
+      "translation": "मुख्य अवधारणाएं।",
+      "model": "translategemma:12b",
+      "timestamp": 1772019905149
+    },
+    "4f1af12aaf720199": {
+      "translation": "प्रशासनिक प्रक्रिया प्रवाह।",
+      "model": "translategemma:12b",
+      "timestamp": 1772019905149
+    },
+    "ef5b537fbe2e422e": {
+      "translation": "जो चीजें बंध जाती हैं।",
+      "model": "translategemma:12b",
+      "timestamp": 1772019905149
+    },
+    "b554885cd583fb4b": {
+      "translation": "प्रत्येक ऑडिट पैकेज में तीन चीजों को क्रिप्टोग्राफिक रूप से जोड़ा जाता है:",
+      "model": "translategemma:12b",
+      "timestamp": 1772019905149
+    },
+    "b6fa9d5abbaf898a": {
+      "translation": "घटक।",
+      "model": "translategemma:12b",
+      "timestamp": 1772019905149
+    },
+    "1c82d03aa45b07aa": {
+      "translation": "यह क्या दर्शाता है।",
+      "model": "translategemma:12b",
+      "timestamp": 1772019905149
+    },
+    "03eb21bf393bcd87": {
+      "translation": "कृपया वह अंग्रेजी पाठ प्रदान करें जिसका आप हिंदी में अनुवाद करवाना चाहते हैं।",
+      "model": "translategemma:12b",
+      "timestamp": 1772019905149
+    },
+    "dd6357ea097c51bd": {
+      "translation": "ज़रूर, मैं आपकी मदद कर सकता हूँ। कृपया वह अंग्रेजी पाठ प्रदान करें जिसका आप हिंदी में अनुवाद करवाना चाहते हैं।",
+      "model": "translategemma:12b",
+      "timestamp": 1772019905149
+    },
+    "db57428239cbfcdc": {
+      "translation": "यह निर्णय, नीति, स्वीकृतियां और सीमाएं (यानी, क्या अनुमत था) शामिल हैं।",
+      "model": "translategemma:12b",
+      "timestamp": 1772019905149
+    },
+    "e42b3dc2180d0c68": {
+      "translation": "कार्यान्वयन की पहचान: `run_id` और `router_digest` (जो वास्तव में निष्पादित हुआ)।",
+      "model": "translategemma:12b",
+      "timestamp": 1772019905149
+    },
+    "92c820c88b847d39": {
+      "translation": "इस विशेष निर्णय के द्वारा ही क्यों इस विशेष निष्पादन (कार्यान्वयन) को अधिकृत किया गया?",
+      "model": "translategemma:12b",
+      "timestamp": 1772019905149
+    },
+    "012abbe1b6000cc6": {
+      "translation": "`binding_digest` एक SHA-256 हैश है जो तीनों घटकों पर आधारित है। यदि किसी भी घटक में बदलाव होता है, तो यह हैश (digest) अमान्य हो जाता है।",
+      "model": "translategemma:12b",
+      "timestamp": 1772019905149
+    },
+    "daf58ba30731dc68": {
+      "translation": "सत्यापन।",
+      "model": "translategemma:12b",
+      "timestamp": 1772019905149
+    },
+    "1b86361762df6112": {
+      "translation": "सभी छह जांचें, चाहे उनमें कोई त्रुटि हो या न हो, हमेशा चलती हैं - हर समस्या की रिपोर्ट की जाती है।",
+      "model": "translategemma:12b",
+      "timestamp": 1772019905149
+    },
+    "d57ec1cdd0048fa1": {
+      "translation": "यह क्या सत्यापित करता है?",
+      "model": "translategemma:12b",
+      "timestamp": 1772019905149
+    },
+    "6da5100c388f6595": {
+      "translation": "\"The quick brown fox jumps over the lazy dog.\"\n\n\"तेज़ भूरी लोमड़ी आलसी कुत्ते के ऊपर से कूदती है।\"",
+      "model": "translategemma:12b",
+      "timestamp": 1772019905149
+    },
+    "49f895f5869a50c8": {
+      "translation": "बाइंडिंग फ़ील्ड्स से फिर से गणना करें।",
+      "model": "translategemma:12b",
+      "timestamp": 1772019905149
+    },
+    "ce357949ed33b10f": {
+      "translation": "नियंत्रण बंडल की सामग्री के आधार पर पुनः गणना करें।",
+      "model": "translategemma:12b",
+      "timestamp": 1772019905149
+    },
+    "768469a204a399d2": {
+      "translation": "\"बाइंडिंग\" (Binding) से जुड़ी मैचों की नियंत्रण बंडल।",
+      "model": "translategemma:12b",
+      "timestamp": 1772019905149
+    },
+    "603cae5c54eaab33": {
+      "translation": "यह सुविधा राउटर अनुभाग को एक साथ जोड़ती है।",
+      "model": "translategemma:12b",
+      "timestamp": 1772019905149
+    },
+    "d8584a8eab037c08": {
+      "translation": "यह सेटिंग, \"बाइंडिंग,\" कंट्रोल-राउटर लिंक को नियंत्रित करता है।",
+      "model": "translategemma:12b",
+      "timestamp": 1772019905149
+    },
+    "8e83326afeeda976": {
+      "translation": "एम्बेडेड राउटर बंडल की अखंडता (यदि लागू हो)।",
+      "model": "translategemma:12b",
+      "timestamp": 1772019905149
+    },
+    "b9fdd7e4edc3c4d3": {
+      "translation": "एमसीपी टूल्स.",
+      "model": "translategemma:12b",
+      "timestamp": 1772019905149
+    },
+    "d3f80936e58fe3ba": {
+      "translation": "मॉडल कॉन्टेक्स्ट प्रोटोकॉल के माध्यम से 11 उपकरण उपलब्ध कराए गए हैं:",
+      "model": "translategemma:12b",
+      "timestamp": 1772019905149
+    },
+    "b8423b5b4842cbda": {
+      "translation": "विवरण।",
+      "model": "translategemma:12b",
+      "timestamp": 1772019905149
+    },
+    "1cb2d43271f2ec1d": {
+      "translation": "\"Please provide the English text you would like me to translate into Hindi.\"",
+      "model": "translategemma:12b",
+      "timestamp": 1772019905149
+    },
+    "bc35e1f9228e8622": {
+      "translation": "कृपया वह अंग्रेजी पाठ प्रदान करें जिसका आप हिंदी में अनुवाद करवाना चाहते हैं। मैं उसका सटीक और उचित अनुवाद करने के लिए तैयार हूं।",
+      "model": "translategemma:12b",
+      "timestamp": 1772019905149
+    },
+    "389e0244375a4e24": {
+      "translation": "एक निष्पादन अनुरोध बनाएं, जिसमें लक्ष्य, नीति और अनुमोदनकर्ता शामिल हों।",
+      "model": "translategemma:12b",
+      "timestamp": 1772019905149
+    },
+    "5573ed31ea84b883": {
+      "translation": "किसी अनुरोध को स्वीकृत करें (यह एन-ऑफ-एम अनुमोदन प्रणाली का समर्थन करता है)।",
+      "model": "translategemma:12b",
+      "timestamp": 1772019905149
+    },
+    "4764e5e16f1597a8": {
+      "translation": "अनुमोदित अनुरोध को नेक्सस-राउटर के माध्यम से क्रियान्वित करें।",
+      "model": "translategemma:12b",
+      "timestamp": 1772019905149
+    },
+    "003484e1eec1cbd6": {
+      "translation": "अनुरोध की स्थिति और उससे जुड़े रन की स्थिति प्राप्त करें।",
+      "model": "translategemma:12b",
+      "timestamp": 1772019905149
+    },
+    "63bbc856ee269ed7": {
+      "translation": "केवल पढ़ने की अनुमति वाले डेटा की जांच, जो कि मानव-पठनीय प्रारूप में प्रदर्शित हो।",
+      "model": "translategemma:12b",
+      "timestamp": 1772019905149
+    },
+    "1871de3ce45227ad": {
+      "translation": "एक नामित, अपरिवर्तनीय नीति टेम्पलेट बनाएं।",
+      "model": "translategemma:12b",
+      "timestamp": 1772019905149
+    },
+    "53365b6d2199583d": {
+      "translation": "नाम के आधार पर एक टेम्पलेट प्राप्त करें।",
+      "model": "translategemma:12b",
+      "timestamp": 1772019905149
+    },
+    "d4d5735b29305843": {
+      "translation": "सभी टेम्प्लेट की सूची दिखाएं, जिसमें वैकल्पिक रूप से लेबल के आधार पर फ़िल्टर करने का विकल्प हो।",
+      "model": "translategemma:12b",
+      "timestamp": 1772019905149
+    },
+    "424e4c0cafdc64fa": {
+      "translation": "एक निर्णय को एक ऐसे पैकेज के रूप में निर्यात करें जो आसानी से स्थानांतरित किया जा सके और जिसकी प्रामाणिकता की पुष्टि की जा सके।",
+      "model": "translategemma:12b",
+      "timestamp": 1772019905149
+    },
+    "4ac3bac2036005fb": {
+      "translation": "एक ऐसे बंडल को इम्पोर्ट करें जिसमें संघर्ष समाधान (conflict resolution) के तरीके और पुनः सत्यापन (replay validation) शामिल हों।",
+      "model": "translategemma:12b",
+      "timestamp": 1772019905149
+    },
+    "1fab46228253e8a7": {
+      "translation": "निर्यात लेखा परीक्षा पैकेज, शासन को क्रियान्वयन से जोड़ता है।",
+      "model": "translategemma:12b",
+      "timestamp": 1772019905149
+    },
+    "03459a87f1d9002d": {
+      "translation": "निर्णय के लिए टेम्पलेट।",
+      "model": "translategemma:12b",
+      "timestamp": 1772019905149
+    },
+    "e7caf844f7a3babf": {
+      "translation": "ऐसे नामित और अपरिवर्तनीय नीति समूह जिन्हें विभिन्न निर्णयों में बार-बार उपयोग किया जा सकता है:",
+      "model": "translategemma:12b",
+      "timestamp": 1772019905149
+    },
+    "172d6927c1904f47": {
+      "translation": "निर्णय चक्र।",
+      "model": "translategemma:12b",
+      "timestamp": 1772019905149
+    },
+    "9253dae0420a353c": {
+      "translation": "गणना की गई जीवनचक्र अवधि, जिसमें बाधा डालने वाले कारणों और समय-सीमा का विवरण शामिल है:",
+      "model": "translategemma:12b",
+      "timestamp": 1772019905149
+    },
+    "c6e1590f71110146": {
+      "translation": "निर्यात/आयात पैकेज।",
+      "model": "translategemma:12b",
+      "timestamp": 1772019905149
+    },
+    "27b25cb483b6fa5e": {
+      "translation": "पोर्टेबल, अखंडता-सत्यापित निर्णय पैकेजों का उपयोग विभिन्न प्रणालियों के बीच डेटा स्थानांतरित करने के लिए:",
+      "model": "translategemma:12b",
+      "timestamp": 1772019905149
+    },
+    "c4b7de573e240171": {
+      "translation": "संघर्ष समाधान के तरीके: `reject_on_conflict` | `new_decision_id` | `overwrite`",
+      "model": "translategemma:12b",
+      "timestamp": 1772019905149
+    },
+    "1f0e4dc260dfad33": {
+      "translation": "प्रमाणीकरण उप-प्रणाली।",
+      "model": "translategemma:12b",
+      "timestamp": 1772019905149
+    },
+    "4d44cccf01c4328c": {
+      "translation": "एटस्टेशन लेयर, एक्सआरपीएल (XRPL) के माध्यम से क्रिप्टोग्राफिक प्रमाण प्रदान करता है।",
+      "model": "translategemma:12b",
+      "timestamp": 1772019905149
+    },
+    "292cfb478d79811d": {
+      "translation": "प्रमाणीकरण इरादे।",
+      "model": "translategemma:12b",
+      "timestamp": 1772019905149
+    },
+    "178688105f9055c1": {
+      "translation": "सामग्री-आधारित प्रमाणन अनुरोध, जिसमें विषय-आधारित बाध्यता शामिल है:",
+      "model": "translategemma:12b",
+      "timestamp": 1772019905149
+    },
+    "f1b4580b9a3720c7": {
+      "translation": "XRPL विटनेस बैकएंड।",
+      "model": "translategemma:12b",
+      "timestamp": 1772019905149
+    },
+    "5fc7f1269a1a7486": {
+      "translation": "एक्सआरपी लेजर के माध्यम से ब्लॉकचेन पर सत्यापन, ताकि किसी भी तीसरे पक्ष द्वारा इसकी पुष्टि की जा सके:",
+      "model": "translategemma:12b",
+      "timestamp": 1772019905149
+    },
+    "33d4d5d125b87bde": {
+      "translation": "उद्देश्य।",
+      "model": "translategemma:12b",
+      "timestamp": 1772019905149
+    },
+    "1a20fc4dc8ce3304": {
+      "translation": "ज़रूर, मैं आपकी मदद कर सकता हूँ। कृपया वह अंग्रेजी पाठ प्रदान करें जिसका आप हिंदी में अनुवाद करवाना चाहते हैं।",
+      "model": "translategemma:12b",
+      "timestamp": 1772019905149
+    },
+    "380bb0bf1b99842d": {
+      "translation": "प्रमाणीकरण लेनदेन जमा करें।",
+      "model": "translategemma:12b",
+      "timestamp": 1772019905149
+    },
+    "2534d1f3e68a92ba": {
+      "translation": "XRPL नोड्स के साथ संवाद करें।",
+      "model": "translategemma:12b",
+      "timestamp": 1772019905149
+    },
+    "b95769501832f59e": {
+      "translation": "अनुरोध/प्रतिक्रिया के प्रमाणों को ट्रैक करें।",
+      "model": "translategemma:12b",
+      "timestamp": 1772019905149
+    },
+    "eb28ed93d8126a41": {
+      "translation": "XRPL मेमो में एन्कोडिंग/डिकोडिंग के माध्यम से प्रमाणीकरण डेटा को सुरक्षित करें।",
+      "model": "translategemma:12b",
+      "timestamp": 1772019905149
+    },
+    "f0390eb9edc51294": {
+      "translation": "लेन-देन पर हस्ताक्षर।",
+      "model": "translategemma:12b",
+      "timestamp": 1772019905149
+    },
+    "864969f2808ca4dd": {
+      "translation": "स्व-सत्यापन योग्य विवरण।",
+      "model": "translategemma:12b",
+      "timestamp": 1772019905149
+    },
+    "9b88a19803e09af8": {
+      "translation": "मानव-पठनीय ऑडिट रिपोर्टें जिनमें अंतर्निहित सत्यता जांच शामिल हैं:",
+      "model": "translategemma:12b",
+      "timestamp": 1772019905149
+    },
+    "f41f607977eced73": {
+      "translation": "प्रमाणीकरण का पुन: प्रदर्शन.",
+      "model": "translategemma:12b",
+      "timestamp": 1772019905149
+    },
+    "a1a342d89eb9b5fc": {
+      "translation": "सत्यापन के लिए, प्रमाणन प्रक्रियाओं के समय-क्रम का पूर्वनिर्धारित तरीके से पुन: प्रदर्शन।",
+      "model": "translategemma:12b",
+      "timestamp": 1772019905149
+    },
+    "7a2320ba932746c3": {
+      "translation": "डेटा मॉडल।",
+      "model": "translategemma:12b",
+      "timestamp": 1772019905149
+    },
+    "3c558a56b2f9ebfd": {
+      "translation": "इवेंट-आधारित डिज़ाइन।",
+      "model": "translategemma:12b",
+      "timestamp": 1772019905149
+    },
+    "6d4dfebb71a3e535": {
+      "translation": "सभी डेटा एक अपरिवर्तनीय घटना लॉग को फिर से चलाने से प्राप्त होता है।",
+      "model": "translategemma:12b",
+      "timestamp": 1772019905149
+    },
+    "b4052126f9b47a3d": {
+      "translation": "नीति मॉडल।",
+      "model": "translategemma:12b",
+      "timestamp": 1772019905149
+    },
+    "f2bd9560170fb3b6": {
+      "translation": "अनुमोदन मॉडल।",
+      "model": "translategemma:12b",
+      "timestamp": 1772019905149
+    },
+    "6e961cd9542c5b33": {
+      "translation": "- यह गिनती विशिष्ट `actor.id` के आधार पर की जाती है।\n- इसमें `comment` शामिल हो सकता है और वैकल्पिक रूप से `expires_at` भी हो सकता है।\n- इसे रद्द किया जा सकता है (निष्पादन से पहले)।\n- निष्पादन के लिए, नीति का अनुपालन **निष्पादन के समय** सुनिश्चित करने के लिए अनुमोदन की आवश्यकता होती है।",
+      "model": "translategemma:12b",
+      "timestamp": 1772019905149
+    },
+    "3a06514c3b2cf379": {
+      "translation": "राउटर के मोड।",
+      "model": "translategemma:12b",
+      "timestamp": 1772019905149
+    },
+    "d81162bc8844a5a5": {
+      "translation": "में शामिल है।",
+      "model": "translategemma:12b",
+      "timestamp": 1772019905149
+    },
+    "16d45ed830c16a88": {
+      "translation": "उपयोग परिदृश्य।",
+      "model": "translategemma:12b",
+      "timestamp": 1772019905149
+    },
+    "3b88b43261c1c270": {
+      "translation": "ज़रूर, मैं आपकी मदद कर सकता हूँ। कृपया वह अंग्रेजी पाठ प्रदान करें जिसका आप हिंदी में अनुवाद करवाना चाहते हैं।",
+      "model": "translategemma:12b",
+      "timestamp": 1772019905149
+    },
+    "9d22d5af273b528a": {
+      "translation": "`रन_आईडी` + `राउटर_डाइजेस्ट`",
+      "model": "translategemma:12b",
+      "timestamp": 1772019905149
+    },
+    "f6e2d24093466045": {
+      "translation": "सीआई, आंतरिक प्रणालियाँ।",
+      "model": "translategemma:12b",
+      "timestamp": 1772019905149
+    },
+    "c73491c6232c4424": {
+      "translation": "पूरा राउटर पैकेज + क्रॉस-चेक।",
+      "model": "translategemma:12b",
+      "timestamp": 1772019905149
+    },
+    "0a5c917964c03680": {
+      "translation": "नियामक, दीर्घकालिक अभिलेखागार।",
+      "model": "translategemma:12b",
+      "timestamp": 1772019905149
+    },
+    "1d2af919200774b2": {
+      "translation": "दोनों मोड, एन्क्रिप्शन की प्रक्रिया में, एक ही स्तर पर क्रिप्टोग्राफिक रूप से समान हैं।",
+      "model": "translategemma:12b",
+      "timestamp": 1772019905149
+    },
+    "d2353cadd82e82b6": {
+      "translation": "परियोजना की संरचना।",
+      "model": "translategemma:12b",
+      "timestamp": 1772019905149
+    },
+    "b0d946e24da0e7ee": {
+      "translation": "विकास।",
+      "model": "translategemma:12b",
+      "timestamp": 1772019905149
+    },
+    "92abed1747d9195a": {
+      "translation": "निकास कोड।",
+      "model": "translategemma:12b",
+      "timestamp": 1772019905149
+    },
+    "8e6cc4fa69314024": {
+      "translation": "अर्थ।",
+      "model": "translategemma:12b",
+      "timestamp": 1772019905149
+    },
+    "cb4bd56108195459": {
+      "translation": "सभी जांचें सफल रहीं।",
+      "model": "translategemma:12b",
+      "timestamp": 1772019905149
+    },
+    "c71020914ef21ca9": {
+      "translation": "अप्रत्याशित त्रुटि।",
+      "model": "translategemma:12b",
+      "timestamp": 1772019905149
+    },
+    "dba9f4cbc4f50d30": {
+      "translation": "मान्यकरण त्रुटि या स्कीमा त्रुटि।",
+      "model": "translategemma:12b",
+      "timestamp": 1772019905149
+    },
+    "cfbc372f8058f151": {
+      "translation": "लाइसेंस।",
+      "model": "translategemma:12b",
+      "timestamp": 1772019905149
+    },
+    "8a691ee81405175f": {
+      "translation": "एमआईटी।",
+      "model": "translategemma:12b",
+      "timestamp": 1772019905149
+    },
+    "4c0c64056baf3061": {
+      "translation": "Perché",
+      "model": "translategemma:12b",
+      "timestamp": 1772019960492
+    },
+    "5c3b2c200e2ce4a1": {
+      "translation": "L'esecuzione di strumenti MCP in ambiente di produzione richiede flussi di lavoro di approvazione, tracciabilità delle attività e applicazione delle policy. nexus-router viene eseguito immediatamente: non esiste un livello di governance.",
+      "model": "translategemma:12b",
+      "timestamp": 1772019960492
+    },
+    "2c8c8808c6a0b72b": {
+      "translation": "**nexus-attest** aggiunge questo livello:",
+      "model": "translategemma:12b",
+      "timestamp": 1772019960492
+    },
+    "2ccbe059381c88c9": {
+      "translation": "- Flusso di lavoro di richiesta / revisione / approvazione / esecuzione con approvazioni N-of-M\n- Pacchetti di audit crittografici che associano le decisioni di governance ai risultati dell'esecuzione\n- Prove di testimonianza ancorate a XRPL per la verificabilità da parte di terzi\n- Modelli di policy per schemi di approvazione ripetibili\n- Tracciamento completo degli eventi: ogni stato è derivato dalla riproduzione di un log immutabile",
+      "model": "translategemma:12b",
+      "timestamp": 1772019960492
+    },
+    "5427d00f223fc99e": {
+      "translation": "Tutto è esportabile, verificabile e riproducibile. Nessuno stato modificabile. Nessuna scrittura nascosta.",
+      "model": "translategemma:12b",
+      "timestamp": 1772019960492
+    },
+    "ff5580523b6052cc": {
+      "translation": "Installazione",
+      "model": "translategemma:12b",
+      "timestamp": 1772019960492
+    },
+    "05bcf07a1a33115e": {
+      "translation": "Richiede Python 3.11 o versioni successive.",
+      "model": "translategemma:12b",
+      "timestamp": 1772019960492
+    },
+    "d7e9780fb2074bec": {
+      "translation": "Guida rapida",
+      "model": "translategemma:12b",
+      "timestamp": 1772019960492
+    },
+    "2ba52e584a17a926": {
+      "translation": "Consultare [QUICKSTART.md](QUICKSTART.md) per una guida completa con opzioni di policy, modalità di test e visualizzazioni temporali.",
+      "model": "translategemma:12b",
+      "timestamp": 1772019960492
+    },
+    "233c0f08a06f83e7": {
+      "translation": "Concetti fondamentali",
+      "model": "translategemma:12b",
+      "timestamp": 1772019960492
+    },
+    "95dfb8bb9fbddb62": {
+      "translation": "Flusso di governance",
+      "model": "translategemma:12b",
+      "timestamp": 1772019960492
+    },
+    "e9a2cfe33857d5e0": {
+      "translation": "Cosa viene associato",
+      "model": "translategemma:12b",
+      "timestamp": 1772019960492
+    },
+    "2525ea64a5f4ce42": {
+      "translation": "Ogni pacchetto di audit associa crittograficamente tre elementi:",
+      "model": "translategemma:12b",
+      "timestamp": 1772019960492
+    },
+    "0c066004c2d3f189": {
+      "translation": "Componente",
+      "model": "translategemma:12b",
+      "timestamp": 1772019960492
+    },
+    "57081a06e55c4241": {
+      "translation": "Cosa viene catturato",
+      "model": "translategemma:12b",
+      "timestamp": 1772019960492
+    },
+    "b7dd8da33d76c15e": {
+      "translation": "-----------",
+      "model": "translategemma:12b",
+      "timestamp": 1772019960492
+    },
+    "0a5ab8a18268e424": {
+      "translation": "-----------------",
+      "model": "translategemma:12b",
+      "timestamp": 1772019960492
+    },
+    "808ce666c8c9d0e2": {
+      "translation": "La decisione, la policy, le approvazioni e i vincoli (ciò che è stato consentito)",
+      "model": "translategemma:12b",
+      "timestamp": 1772019960492
+    },
+    "338351645371b07a": {
+      "translation": "L'identità dell'esecuzione: `run_id` e `router_digest` (ciò che è stato effettivamente eseguito)",
+      "model": "translategemma:12b",
+      "timestamp": 1772019960492
+    },
+    "e380376d59147888": {
+      "translation": "Perché questa specifica esecuzione è stata autorizzata da questa specifica decisione",
+      "model": "translategemma:12b",
+      "timestamp": 1772019960492
+    },
+    "41dd8ca4c85c60b2": {
+      "translation": "Il `binding_digest` è un hash SHA-256 di tutti e tre gli elementi. Se uno qualsiasi dei componenti cambia, l'hash si invalida.",
+      "model": "translategemma:12b",
+      "timestamp": 1772019960492
+    },
+    "2e88c901781e74ad": {
+      "translation": "Verifica",
+      "model": "translategemma:12b",
+      "timestamp": 1772019960492
+    },
+    "287f45556245ba98": {
+      "translation": "Tutte e sei le verifiche vengono eseguite indipendentemente dagli errori: ogni problema viene segnalato.",
+      "model": "translategemma:12b",
+      "timestamp": 1772019960492
+    },
+    "97ee66761f56681d": {
+      "translation": "Cosa viene verificato",
+      "model": "translategemma:12b",
+      "timestamp": 1772019960492
+    },
+    "4f16a25e942668c8": {
+      "translation": "-------",
+      "model": "translategemma:12b",
+      "timestamp": 1772019960492
+    },
+    "773c112a5d209380": {
+      "translation": "Ricalcolo dai campi di binding",
+      "model": "translategemma:12b",
+      "timestamp": 1772019960492
+    },
+    "0842d3847931ca27": {
+      "translation": "Ricalcolo dal contenuto del bundle di controllo",
+      "model": "translategemma:12b",
+      "timestamp": 1772019960492
+    },
+    "5a030b83c5525dc9": {
+      "translation": "Il binding corrisponde al bundle di controllo",
+      "model": "translategemma:12b",
+      "timestamp": 1772019960492
+    },
+    "b2a0d34b74936196": {
+      "translation": "Il binding corrisponde alla sezione del router",
+      "model": "translategemma:12b",
+      "timestamp": 1772019960492
+    },
+    "6a671a2ae915092d": {
+      "translation": "Il binding corrisponde al collegamento controllo-router",
+      "model": "translategemma:12b",
+      "timestamp": 1772019960492
+    },
+    "88599740afbfb68e": {
+      "translation": "Integrità del bundle del router incorporato (se applicabile)",
+      "model": "translategemma:12b",
+      "timestamp": 1772019960492
+    },
+    "9b31e8f22e59df4a": {
+      "translation": "Strumenti MCP",
+      "model": "translategemma:12b",
+      "timestamp": 1772019960492
+    },
+    "38793e87d148085b": {
+      "translation": "11 strumenti esposti tramite il Model Context Protocol:",
+      "model": "translategemma:12b",
+      "timestamp": 1772019960492
+    },
+    "3af38881e7f28db0": {
+      "translation": "Descrizione",
+      "model": "translategemma:12b",
+      "timestamp": 1772019960492
+    },
+    "a8e2cbb75c81ee97": {
+      "translation": "------",
+      "model": "translategemma:12b",
+      "timestamp": 1772019960492
+    },
+    "5acc6809afb159f0": {
+      "translation": "-------------",
+      "model": "translategemma:12b",
+      "timestamp": 1772019960492
+    },
+    "9547f878d7c32b06": {
+      "translation": "Crea una richiesta di esecuzione con obiettivo, policy e approvatori",
+      "model": "translategemma:12b",
+      "timestamp": 1772019960492
+    },
+    "c1a2c6f3511beb15": {
+      "translation": "Approva una richiesta (supporta le approvazioni N-of-M)",
+      "model": "translategemma:12b",
+      "timestamp": 1772019960492
+    },
+    "4fca5cab0dc99bef": {
+      "translation": "Esegui la richiesta approvata tramite nexus-router",
+      "model": "translategemma:12b",
+      "timestamp": 1772019960492
+    },
+    "6d5e7821effb1a41": {
+      "translation": "Ottieni lo stato della richiesta e lo stato dell'esecuzione associata",
+      "model": "translategemma:12b",
+      "timestamp": 1772019960492
+    },
+    "6ae9784ede795be2": {
+      "translation": "Introspezione di sola lettura con output leggibile",
+      "model": "translategemma:12b",
+      "timestamp": 1772019960492
+    },
+    "67c78c5dfd82f383": {
+      "translation": "Crea un modello di policy immutabile con nome",
+      "model": "translategemma:12b",
+      "timestamp": 1772019960492
+    },
+    "7d8e938b62da9099": {
+      "translation": "Recupera un modello per nome",
+      "model": "translategemma:12b",
+      "timestamp": 1772019960492
+    },
+    "710e8dc2c4034269": {
+      "translation": "Elenca tutti i modelli con filtraggio opzionale per etichetta",
+      "model": "translategemma:12b",
+      "timestamp": 1772019960492
+    },
+    "00e526c61d26ee64": {
+      "translation": "Esporta una decisione come un bundle portatile con verifica dell'integrità",
+      "model": "translategemma:12b",
+      "timestamp": 1772019960492
+    },
+    "ec8329a4bb5abe32": {
+      "translation": "Importa un bundle con modalità di conflitto e convalida della riproduzione",
+      "model": "translategemma:12b",
+      "timestamp": 1772019960492
+    },
+    "63d4e549a9ef8b37": {
+      "translation": "Esporta il pacchetto di audit che associa la governance all'esecuzione",
+      "model": "translategemma:12b",
+      "timestamp": 1772019960492
+    },
+    "1b285a0fa56ba236": {
+      "translation": "Modelli di decisione",
+      "model": "translategemma:12b",
+      "timestamp": 1772019960492
+    },
+    "7c84961622409c17": {
+      "translation": "Bundle di policy immutabili con nome che possono essere riutilizzati in diverse decisioni:",
+      "model": "translategemma:12b",
+      "timestamp": 1772019960492
+    },
+    "66c960e510c19907": {
+      "translation": "Ciclo di vita della decisione",
+      "model": "translategemma:12b",
+      "timestamp": 1772019960492
+    },
+    "d655b8e6a0d2dc23": {
+      "translation": "Ciclo di vita calcolato con motivi di blocco e timeline:",
+      "model": "translategemma:12b",
+      "timestamp": 1772019960492
+    },
+    "433dc8f48ac9adea": {
+      "translation": "Esportazione / Importazione di bundle",
+      "model": "translategemma:12b",
+      "timestamp": 1772019960492
+    },
+    "d1b3feb1b5c34df4": {
+      "translation": "Bundle di decisioni portabili con verifica dell'integrità per il trasferimento tra sistemi:",
+      "model": "translategemma:12b",
+      "timestamp": 1772019960492
+    },
+    "70a2b4f25944a6d2": {
+      "translation": "Modalità di conflitto: `reject_on_conflict` | `new_decision_id` | `overwrite`",
+      "model": "translategemma:12b",
+      "timestamp": 1772019960492
+    },
+    "394d178bb48ae7d5": {
+      "translation": "Sottosistema di attestazione",
+      "model": "translategemma:12b",
+      "timestamp": 1772019960492
+    },
+    "3130ea5261628a8c": {
+      "translation": "Il livello di attestazione fornisce prove di testimonianza crittografiche con ancoraggio a XRPL:",
+      "model": "translategemma:12b",
+      "timestamp": 1772019960492
+    },
+    "ae7dbb0412c11dba": {
+      "translation": "Intenti di attestazione",
+      "model": "translategemma:12b",
+      "timestamp": 1772019960492
+    },
+    "dea1f041352c7d86": {
+      "translation": "Richieste di attestazione con indirizzamento basato sul contenuto e associazione al soggetto:",
+      "model": "translategemma:12b",
+      "timestamp": 1772019960492
+    },
+    "451330d617b9d40e": {
+      "translation": "Backend di testimonianza XRPL",
+      "model": "translategemma:12b",
+      "timestamp": 1772019960492
+    },
+    "08a5f42cc4fc60ed": {
+      "translation": "Certificazione on-chain tramite il registro XRP per la verificabilità da parte di terzi:",
+      "model": "translategemma:12b",
+      "timestamp": 1772019960492
+    },
+    "958e042250f447cd": {
+      "translation": "Scopo",
+      "model": "translategemma:12b",
+      "timestamp": 1772019960492
+    },
+    "859008cc19c8d7e4": {
+      "translation": "---------",
+      "model": "translategemma:12b",
+      "timestamp": 1772019960492
+    },
+    "18e8b2ebd941aca4": {
+      "translation": "Inviare transazioni di certificazione",
+      "model": "translategemma:12b",
+      "timestamp": 1772019960492
+    },
+    "44e8be0d013235cb": {
+      "translation": "Comunicare con i nodi XRPL",
+      "model": "translategemma:12b",
+      "timestamp": 1772019960492
+    },
+    "54400b50689bee85": {
+      "translation": "Tracciare le prove di richiesta/risposta",
+      "model": "translategemma:12b",
+      "timestamp": 1772019960492
+    },
+    "689b9d728e6ee973": {
+      "translation": "Codificare/decodificare i dati di certificazione nei memo XRPL",
+      "model": "translategemma:12b",
+      "timestamp": 1772019960492
+    },
+    "148c9635376ddea5": {
+      "translation": "Firma delle transazioni",
+      "model": "translategemma:12b",
+      "timestamp": 1772019960492
+    },
+    "ac6c5591d26b06da": {
+      "translation": "Narrative auto-verificanti",
+      "model": "translategemma:12b",
+      "timestamp": 1772019960492
+    },
+    "a80f01a1e08f5060": {
+      "translation": "Report di audit leggibili dagli esseri umani con controlli di integrità integrati:",
+      "model": "translategemma:12b",
+      "timestamp": 1772019960492
+    },
+    "39b87f2e9257e890": {
+      "translation": "Riproduzione della certificazione",
+      "model": "translategemma:12b",
+      "timestamp": 1772019960492
+    },
+    "0dcf3b7f459139d5": {
+      "translation": "Riproduzione deterministica delle sequenze di certificazione per la verifica:",
+      "model": "translategemma:12b",
+      "timestamp": 1772019960492
+    },
+    "578c9b0037466c2d": {
+      "translation": "Modello dei dati",
+      "model": "translategemma:12b",
+      "timestamp": 1772019960492
+    },
+    "ed314fbc692a974a": {
+      "translation": "Progettazione basata su eventi",
+      "model": "translategemma:12b",
+      "timestamp": 1772019960492
+    },
+    "9ca5d14b565a598e": {
+      "translation": "Tutto lo stato è derivato riproducendo un registro di eventi immutabile:",
+      "model": "translategemma:12b",
+      "timestamp": 1772019960492
+    },
+    "9a9143dc22852d24": {
+      "translation": "Modello delle politiche",
+      "model": "translategemma:12b",
+      "timestamp": 1772019960492
+    },
+    "4b794a4b3fe97272": {
+      "translation": "Modello di approvazione",
+      "model": "translategemma:12b",
+      "timestamp": 1772019960492
+    },
+    "1f29fac038b957f6": {
+      "translation": "- Calcolato in base a `actor.id` univoci\n- Può includere un `commento` e un campo `expires_at` opzionale\n- Può essere revocato (prima dell'esecuzione)\n- L'esecuzione richiede approvazioni per soddisfare la politica **al momento dell'esecuzione**",
+      "model": "translategemma:12b",
+      "timestamp": 1772019960492
+    },
+    "409df6c83c4b5023": {
+      "translation": "Modalità del router",
+      "model": "translategemma:12b",
+      "timestamp": 1772019960492
+    },
+    "b0a29cd03b0cd2c7": {
+      "translation": "Contiene",
+      "model": "translategemma:12b",
+      "timestamp": 1772019960492
+    },
+    "d40201c71d4d800d": {
+      "translation": "Caso d'uso",
+      "model": "translategemma:12b",
+      "timestamp": 1772019960492
+    },
+    "db5b48a0e074d983": {
+      "translation": "----------",
+      "model": "translategemma:12b",
+      "timestamp": 1772019960492
+    },
+    "051f70c1d3dd0d05": {
+      "translation": "`run_id` + `router_digest`",
+      "model": "translategemma:12b",
+      "timestamp": 1772019960492
+    },
+    "e4d8e1e9d3447260": {
+      "translation": "CI, sistemi interni",
+      "model": "translategemma:12b",
+      "timestamp": 1772019960492
+    },
+    "011e9c88804a1608": {
+      "translation": "Pacchetto completo del router + controllo incrociato",
+      "model": "translategemma:12b",
+      "timestamp": 1772019960492
+    },
+    "ebf724c9b85d8710": {
+      "translation": "Enti regolatori, archiviazione a lungo termine",
+      "model": "translategemma:12b",
+      "timestamp": 1772019960492
+    },
+    "e11baf4add3a0766": {
+      "translation": "Entrambe le modalità sono crittograficamente equivalenti a livello di binding.",
+      "model": "translategemma:12b",
+      "timestamp": 1772019960492
+    },
+    "b114cb04f77862a6": {
+      "translation": "Struttura del progetto",
+      "model": "translategemma:12b",
+      "timestamp": 1772019960492
+    },
+    "47278e1de195e17c": {
+      "translation": "Sviluppo",
+      "model": "translategemma:12b",
+      "timestamp": 1772019960492
+    },
+    "84b4e4ea8e580337": {
+      "translation": "Codici di uscita",
+      "model": "translategemma:12b",
+      "timestamp": 1772019960492
+    },
+    "69fb964a4ef1e52e": {
+      "translation": "Significato",
+      "model": "translategemma:12b",
+      "timestamp": 1772019960492
+    },
+    "629a2167aea4487d": {
+      "translation": "Tutti i controlli superati",
+      "model": "translategemma:12b",
+      "timestamp": 1772019960492
+    },
+    "fedab35f2a9701ff": {
+      "translation": "Errore non gestito",
+      "model": "translategemma:12b",
+      "timestamp": 1772019960492
+    },
+    "afcb837a6f69daae": {
+      "translation": "Errore di validazione o di schema",
+      "model": "translategemma:12b",
+      "timestamp": 1772019960492
+    },
+    "0870aa1dcfea97cc": {
+      "translation": "Licenza",
+      "model": "translategemma:12b",
+      "timestamp": 1772019960492
+    },
+    "cf7d056fb6111803": {
+      "translation": "MIT",
+      "model": "translategemma:12b",
+      "timestamp": 1772019960492
+    },
+    "739de2da43412225": {
+      "translation": "Por que",
+      "model": "translategemma:12b",
+      "timestamp": 1772020010499
+    },
+    "fa9d92f591821bd2": {
+      "translation": "A execução de ferramentas MCP em produção requer fluxos de trabalho de aprovação, trilhas de auditoria e aplicação de políticas. O nexus-router executa imediatamente – não há uma camada de governança.",
+      "model": "translategemma:12b",
+      "timestamp": 1772020010499
+    },
+    "f41c50420691afca": {
+      "translation": "O **nexus-attest** adiciona essa camada:",
+      "model": "translategemma:12b",
+      "timestamp": 1772020010499
+    },
+    "9bb840e784e6d772": {
+      "translation": "- Fluxo de trabalho de solicitação / revisão / aprovação / execução com aprovações N-de-M.\n- Pacotes de auditoria criptográficos que vinculam as decisões de governança aos resultados da execução.\n- Provas de testemunho ancoradas no XRPL para verificação por terceiros.\n- Modelos de política para padrões de aprovação repetíveis.\n- Rastreamento completo de eventos – cada estado é derivado da reprodução de um registro imutável.",
+      "model": "translategemma:12b",
+      "timestamp": 1772020010499
+    },
+    "e3b117e0e4ea0d27": {
+      "translation": "Tudo é exportável, verificável e reproduzível. Não há estado mutável. Não há escritas ocultas.",
+      "model": "translategemma:12b",
+      "timestamp": 1772020010499
+    },
+    "4898ae5813bd2bb7": {
+      "translation": "Instalação",
+      "model": "translategemma:12b",
+      "timestamp": 1772020010499
+    },
+    "230508fdc0230fa6": {
+      "translation": "Requer Python 3.11 ou posterior.",
+      "model": "translategemma:12b",
+      "timestamp": 1772020010499
+    },
+    "c88bcdb0dd505b6b": {
+      "translation": "Início Rápido",
+      "model": "translategemma:12b",
+      "timestamp": 1772020010499
+    },
+    "49b18373d061261a": {
+      "translation": "Consulte [QUICKSTART.md](QUICKSTART.md) para obter um guia completo com opções de política, modo de teste e visualizações de linha do tempo.",
+      "model": "translategemma:12b",
+      "timestamp": 1772020010499
+    },
+    "e1ddc35c55eab468": {
+      "translation": "Conceitos Principais",
+      "model": "translategemma:12b",
+      "timestamp": 1772020010499
+    },
+    "0672956a42e016ff": {
+      "translation": "Fluxo de Governança",
+      "model": "translategemma:12b",
+      "timestamp": 1772020010499
+    },
+    "6c9748fbba84687c": {
+      "translation": "O que é Vinculado",
+      "model": "translategemma:12b",
+      "timestamp": 1772020010499
+    },
+    "9ea836431cf8bb47": {
+      "translation": "Cada pacote de auditoria vincula criptograficamente três coisas:",
+      "model": "translategemma:12b",
+      "timestamp": 1772020010499
+    },
+    "6359f9d115e89dea": {
+      "translation": "Componente",
+      "model": "translategemma:12b",
+      "timestamp": 1772020010499
+    },
+    "cde6ac5f6d2cd0fa": {
+      "translation": "O que ele captura",
+      "model": "translategemma:12b",
+      "timestamp": 1772020010499
+    },
+    "d94afbcff5759c30": {
+      "translation": "-----------",
+      "model": "translategemma:12b",
+      "timestamp": 1772020010499
+    },
+    "3e8302fbfbe3f201": {
+      "translation": "-----------------",
+      "model": "translategemma:12b",
+      "timestamp": 1772020010499
+    },
+    "7125ff6d3de41335": {
+      "translation": "A decisão, a política, as aprovações e as restrições (o que foi permitido).",
+      "model": "translategemma:12b",
+      "timestamp": 1772020010499
+    },
+    "4f94e23db2711046": {
+      "translation": "A identidade da execução – `run_id` e `router_digest` (o que realmente foi executado).",
+      "model": "translategemma:12b",
+      "timestamp": 1772020010499
+    },
+    "3fc79709bd7a074f": {
+      "translation": "Por que essa execução específica foi autorizada por essa decisão específica.",
+      "model": "translategemma:12b",
+      "timestamp": 1772020010499
+    },
+    "aeafd8f22dc9da18": {
+      "translation": "O `binding_digest` é um hash SHA-256 de todos os três. Se qualquer componente for alterado, o digest será invalidado.",
+      "model": "translategemma:12b",
+      "timestamp": 1772020010499
+    },
+    "98df00a7f3b34655": {
+      "translation": "Verificação",
+      "model": "translategemma:12b",
+      "timestamp": 1772020010499
+    },
+    "b36f7552656c98d2": {
+      "translation": "Todas as seis verificações são executadas, independentemente de falhas – todos os problemas são relatados:",
+      "model": "translategemma:12b",
+      "timestamp": 1772020010499
+    },
+    "41feb9083d53c2c3": {
+      "translation": "O que é verificado",
+      "model": "translategemma:12b",
+      "timestamp": 1772020010499
+    },
+    "1f04ef9e8cc1d860": {
+      "translation": "-------",
+      "model": "translategemma:12b",
+      "timestamp": 1772020010499
+    },
+    "a45090854ac0cbd1": {
+      "translation": "Recalcular a partir dos campos de vinculação.",
+      "model": "translategemma:12b",
+      "timestamp": 1772020010499
+    },
+    "de56342254a5b1ed": {
+      "translation": "Recalcular a partir do conteúdo do pacote de controle.",
+      "model": "translategemma:12b",
+      "timestamp": 1772020010499
+    },
+    "a3f1b91864d7f957": {
+      "translation": "Vinculação corresponde ao pacote de controle.",
+      "model": "translategemma:12b",
+      "timestamp": 1772020010499
+    },
+    "e5409d73c8297fa3": {
+      "translation": "Vinculação corresponde à seção do roteador.",
+      "model": "translategemma:12b",
+      "timestamp": 1772020010499
+    },
+    "3f6347a8b0850366": {
+      "translation": "Vinculação corresponde ao link de controle-roteador.",
+      "model": "translategemma:12b",
+      "timestamp": 1772020010499
+    },
+    "618f0e3fbf94d798": {
+      "translation": "Integridade do pacote de roteador incorporado (se aplicável).",
+      "model": "translategemma:12b",
+      "timestamp": 1772020010499
+    },
+    "7440a933a9332dfb": {
+      "translation": "Ferramentas MCP",
+      "model": "translategemma:12b",
+      "timestamp": 1772020010499
+    },
+    "bf4a5cc9b1dd2d4b": {
+      "translation": "11 ferramentas expostas por meio do Protocolo de Contexto do Modelo:",
+      "model": "translategemma:12b",
+      "timestamp": 1772020010499
+    },
+    "4fe83802bbc45fcc": {
+      "translation": "Descrição",
+      "model": "translategemma:12b",
+      "timestamp": 1772020010499
+    },
+    "93982127e708d976": {
+      "translation": "------",
+      "model": "translategemma:12b",
+      "timestamp": 1772020010499
+    },
+    "7561209f94247c19": {
+      "translation": "-------------",
+      "model": "translategemma:12b",
+      "timestamp": 1772020010499
+    },
+    "ff70be76cfe0dc40": {
+      "translation": "Criar uma solicitação de execução com objetivo, política e aprovadores.",
+      "model": "translategemma:12b",
+      "timestamp": 1772020010499
+    },
+    "5a68a951fcfa8840": {
+      "translation": "Aprovar uma solicitação (suporta aprovações N-de-M).",
+      "model": "translategemma:12b",
+      "timestamp": 1772020010499
+    },
+    "a63991547a972fe1": {
+      "translation": "Executar a solicitação aprovada por meio do nexus-router.",
+      "model": "translategemma:12b",
+      "timestamp": 1772020010499
+    },
+    "959798ef2f41ad59": {
+      "translation": "Obter o estado da solicitação e o status da execução vinculada.",
+      "model": "translategemma:12b",
+      "timestamp": 1772020010499
+    },
+    "7b447343fab25dc8": {
+      "translation": "Introspecção somente leitura com saída legível por humanos.",
+      "model": "translategemma:12b",
+      "timestamp": 1772020010499
+    },
+    "2be088d5eb98fc6a": {
+      "translation": "Criar um modelo de política nomeado e imutável.",
+      "model": "translategemma:12b",
+      "timestamp": 1772020010499
+    },
+    "5ebc6dbf0350765f": {
+      "translation": "Recuperar um modelo por nome.",
+      "model": "translategemma:12b",
+      "timestamp": 1772020010499
+    },
+    "5f4d683be7423c77": {
+      "translation": "Listar todos os modelos com filtragem opcional por rótulo.",
+      "model": "translategemma:12b",
+      "timestamp": 1772020010499
+    },
+    "a74c309f1eda70cd": {
+      "translation": "Exportar uma decisão como um pacote portátil e com integridade verificada.",
+      "model": "translategemma:12b",
+      "timestamp": 1772020010499
+    },
+    "fc2c0153ec26597e": {
+      "translation": "Importar um pacote com modos de conflito e validação de reprodução.",
+      "model": "translategemma:12b",
+      "timestamp": 1772020010499
+    },
+    "b9efba4f966aab37": {
+      "translation": "Exportar o pacote de auditoria vinculando a governança à execução.",
+      "model": "translategemma:12b",
+      "timestamp": 1772020010499
+    },
+    "758ed30076c0c0ec": {
+      "translation": "Modelos de Decisão",
+      "model": "translategemma:12b",
+      "timestamp": 1772020010499
+    },
+    "aeb14913dadfc979": {
+      "translation": "Pacotes de política nomeados e imutáveis que podem ser reutilizados em várias decisões:",
+      "model": "translategemma:12b",
+      "timestamp": 1772020010499
+    },
+    "4efe6e08cd7d81a1": {
+      "translation": "Ciclo de Vida da Decisão",
+      "model": "translategemma:12b",
+      "timestamp": 1772020010499
+    },
+    "db6b71140511bfbb": {
+      "translation": "Ciclo de vida calculado com motivos de bloqueio e linha do tempo:",
+      "model": "translategemma:12b",
+      "timestamp": 1772020010499
+    },
+    "432a09f4b7590c85": {
+      "translation": "Exportar / Importar Pacotes",
+      "model": "translategemma:12b",
+      "timestamp": 1772020010499
+    },
+    "55b865d8c4cf8e6b": {
+      "translation": "Pacotes de decisão portáteis e com integridade verificada para transferência entre sistemas:",
+      "model": "translategemma:12b",
+      "timestamp": 1772020010499
+    },
+    "39668a8cc9293aa5": {
+      "translation": "Modos de conflito: `reject_on_conflict` | `new_decision_id` | `overwrite`",
+      "model": "translategemma:12b",
+      "timestamp": 1772020010499
+    },
+    "4fc6c1c721728a8c": {
+      "translation": "Subsistema de Atestado",
+      "model": "translategemma:12b",
+      "timestamp": 1772020010499
+    },
+    "a001aa903d072ea5": {
+      "translation": "A camada de atestado fornece provas de testemunho criptográficas com ancoragem no XRPL:",
+      "model": "translategemma:12b",
+      "timestamp": 1772020010499
+    },
+    "6508c225e3a3c41d": {
+      "translation": "Intenções de Atestado",
+      "model": "translategemma:12b",
+      "timestamp": 1772020010499
+    },
+    "d17f74262b6f29bf": {
+      "translation": "Solicitações de atestado com endereçamento de conteúdo e vinculação de sujeito:",
+      "model": "translategemma:12b",
+      "timestamp": 1772020010499
+    },
+    "e8bad4b0ac0df57f": {
+      "translation": "Backend de Testemunho XRPL",
+      "model": "translategemma:12b",
+      "timestamp": 1772020010499
+    },
+    "50bfd21b6e050826": {
+      "translation": "Certificação on-chain através do XRP Ledger para verificação por terceiros:",
+      "model": "translategemma:12b",
+      "timestamp": 1772020010499
+    },
+    "3f5aeb3f3cf93ebb": {
+      "translation": "Propósito",
+      "model": "translategemma:12b",
+      "timestamp": 1772020010499
+    },
+    "eeb243aa53a24f8e": {
+      "translation": "---------",
+      "model": "translategemma:12b",
+      "timestamp": 1772020010499
+    },
+    "153cb1a313a59c88": {
+      "translation": "Enviar transações de certificação",
+      "model": "translategemma:12b",
+      "timestamp": 1772020010499
+    },
+    "594ff83d6f815f07": {
+      "translation": "Comunicar com os nós do XRPL",
+      "model": "translategemma:12b",
+      "timestamp": 1772020010499
+    },
+    "396e89f3903a2d67": {
+      "translation": "Rastrear evidências de requisição/resposta",
+      "model": "translategemma:12b",
+      "timestamp": 1772020010499
+    },
+    "48b5f8a868924ea6": {
+      "translation": "Codificar/decodificar os dados de certificação em notas do XRPL",
+      "model": "translategemma:12b",
+      "timestamp": 1772020010499
+    },
+    "2186fcb713bf297e": {
+      "translation": "Assinatura de transações",
+      "model": "translategemma:12b",
+      "timestamp": 1772020010499
+    },
+    "18a5e099b3de2259": {
+      "translation": "Narrativas de auto-verificação",
+      "model": "translategemma:12b",
+      "timestamp": 1772020010499
+    },
+    "b695ce90015d8215": {
+      "translation": "Relatórios de auditoria legíveis por humanos com verificações de integridade embutidas:",
+      "model": "translategemma:12b",
+      "timestamp": 1772020010499
+    },
+    "385510390426e52b": {
+      "translation": "Repetição da Certificação",
+      "model": "translategemma:12b",
+      "timestamp": 1772020010499
+    },
+    "f82190e2060634cb": {
+      "translation": "Repetição determinística das sequências de certificação para verificação:",
+      "model": "translategemma:12b",
+      "timestamp": 1772020010499
+    },
+    "313ee262bf1325d4": {
+      "translation": "Modelo de Dados",
+      "model": "translategemma:12b",
+      "timestamp": 1772020010499
+    },
+    "6cba6f32296b37b6": {
+      "translation": "Design baseado em eventos",
+      "model": "translategemma:12b",
+      "timestamp": 1772020010499
+    },
+    "f940106580abfaa2": {
+      "translation": "Todo o estado é derivado da repetição de um registro de eventos imutável:",
+      "model": "translategemma:12b",
+      "timestamp": 1772020010499
+    },
+    "703665377acd112b": {
+      "translation": "Modelo de Políticas",
+      "model": "translategemma:12b",
+      "timestamp": 1772020010499
+    },
+    "6d82f8bcfc24c64e": {
+      "translation": "Modelo de Aprovação",
+      "model": "translategemma:12b",
+      "timestamp": 1772020010499
+    },
+    "5c8e0d1fa33750a3": {
+      "translation": "- Contado por `actor.id` distintos\n- Pode incluir `comment` e um campo opcional `expires_at`\n- Pode ser revogado (antes da execução)\n- A execução requer aprovações para satisfazer a política **no momento da execução**",
+      "model": "translategemma:12b",
+      "timestamp": 1772020010499
+    },
+    "9e6b96b5dc53e37f": {
+      "translation": "Modos do Roteador",
+      "model": "translategemma:12b",
+      "timestamp": 1772020010499
+    },
+    "2ec23fa2ff7784c9": {
+      "translation": "Contém",
+      "model": "translategemma:12b",
+      "timestamp": 1772020010499
+    },
+    "14c05aa6a32c3bbb": {
+      "translation": "Caso de Uso",
+      "model": "translategemma:12b",
+      "timestamp": 1772020010499
+    },
+    "f5f497abcadce090": {
+      "translation": "----------",
+      "model": "translategemma:12b",
+      "timestamp": 1772020010499
+    },
+    "db5c6306a09f6c53": {
+      "translation": "`run_id` + `router_digest`",
+      "model": "translategemma:12b",
+      "timestamp": 1772020010499
+    },
+    "6fc7655568d6e92c": {
+      "translation": "CI, sistemas internos",
+      "model": "translategemma:12b",
+      "timestamp": 1772020010499
+    },
+    "9e3f15ea7caa2a98": {
+      "translation": "Pacote completo do roteador + verificação cruzada",
+      "model": "translategemma:12b",
+      "timestamp": 1772020010499
+    },
+    "540e15ba45683813": {
+      "translation": "Reguladores, arquivamento de longo prazo",
+      "model": "translategemma:12b",
+      "timestamp": 1772020010499
+    },
+    "cd6722e4267db157": {
+      "translation": "Ambos os modos são criptograficamente equivalentes na camada de vinculação.",
+      "model": "translategemma:12b",
+      "timestamp": 1772020010499
+    },
+    "0f52ed7837bd1cc9": {
+      "translation": "Estrutura do Projeto",
+      "model": "translategemma:12b",
+      "timestamp": 1772020010499
+    },
+    "f18755710a900a8b": {
+      "translation": "Desenvolvimento",
+      "model": "translategemma:12b",
+      "timestamp": 1772020010499
+    },
+    "18d31170dcf1f21d": {
+      "translation": "Códigos de Saída",
+      "model": "translategemma:12b",
+      "timestamp": 1772020010499
+    },
+    "47d1e04b68b670ac": {
+      "translation": "Significado",
+      "model": "translategemma:12b",
+      "timestamp": 1772020010499
+    },
+    "e977ce0bff238cd7": {
+      "translation": "Todas as verificações passaram",
+      "model": "translategemma:12b",
+      "timestamp": 1772020010499
+    },
+    "315b2f8dc4a60ce5": {
+      "translation": "Erro não tratado",
+      "model": "translategemma:12b",
+      "timestamp": 1772020010499
+    },
+    "b361f641e1747548": {
+      "translation": "Erro de validação ou de esquema",
+      "model": "translategemma:12b",
+      "timestamp": 1772020010499
+    },
+    "2aca9b0e72841008": {
+      "translation": "Licença",
+      "model": "translategemma:12b",
+      "timestamp": 1772020010499
+    },
+    "673d526b33ab644f": {
+      "translation": "MIT",
+      "model": "translategemma:12b",
+      "timestamp": 1772020010499
+    }
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "repo_name": "nexus-attest",
+  "tier": "Promotion",
+  "format_candidates": [
+    "P2_demo_gif_storyboard",
+    "P5_screenshot_story"
+  ],
+  "constraints": [
+    "material:one-page",
+    "tone:museum-placard"
+  ],
+  "must_include": [
+    "nexus-attest template.create CLI command or API call",
+    "invariant:deterministic attestation with verifiable evidence",
+    "error_string:account must be non-empty"
+  ],
+  "ban_list": [
+    "D3_debug_tree",
+    "uses-real-invariant"
+  ],
+  "freshness_payload": {
+    "weird_detail": "| **Data NOT touched** | No telemetry. No analytics. No user data. No credential storage |",
+    "recent_change": "Promoted to v1.0.0 — stable release",
+    "sharp_edge": "- Execution requires approvals to satisfy policy at execution time"
+  },
+  "selected_hooks": [
+    {
+      "atom_id": "repo_tagline:c4407ebc6288",
+      "role": "name_hook"
+    },
+    {
+      "atom_id": "invariant:b10d7586faf5",
+      "role": "invariant_hook"
+    }
+  ],
+  "callouts": {
+    "veto": "Avoid using D3_debug_tree format as it has been used recently and is currently banned.",
+    "twist": "The unique twist for this artifact comes from the invariant that ensures deterministic attestation with verifiable evidence, referencing the repo's core purpose of cryptographic witness proofs.",
+    "pick": "P2_demo_gif_storyboard is chosen because it aligns well with showcasing the stable release and its key features without relying on formats or constraints recently used.",
+    "risk": ""
+  },
+  "driver_meta": {
+    "host": "http://127.0.0.1:11434",
+    "model": "qwen2.5:14b",
+    "mode": "ollama",
+    "timestamp": "2026-03-03T14:49:42.332Z"
+  },
+  "promotion_mandate": true,
+  "season": "none",
+  "org_bans_applied": [
+    "C4_cover_poster",
+    "D3_debug_tree",
+    "uses-real-invariant",
+    "signal-proof"
+  ],
+  "org_gap_bias": [
+    "prefer Promotion tier (at 0%, target ~15%)",
+    "9 unique formats used across 15 decisions"
+  ],
+  "signature_move": "checksum_box"
+}

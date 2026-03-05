@@ -1,0 +1,621 @@
+{
+  "atoms": [
+    {
+      "id": "cli_flag:247852142db1",
+      "type": "cli_flag",
+      "value": "--color-muted",
+      "confidence": 0.9,
+      "source": {
+        "file": "site/src/site-config.ts",
+        "lineStart": 9,
+        "lineEnd": 9
+      },
+      "tags": [
+        "cli"
+      ]
+    },
+    {
+      "id": "repo_tagline:c4407ebc6288",
+      "type": "repo_tagline",
+      "value": "Cryptographic attestation and verification layer for MCP tool executions",
+      "confidence": 0.9,
+      "source": {
+        "file": "pyproject.toml",
+        "lineStart": 8,
+        "lineEnd": 8
+      },
+      "tags": [
+        "identity"
+      ]
+    },
+    {
+      "id": "recent_change:91e231954d43",
+      "type": "recent_change",
+      "value": "Promoted to v1.0.0 — stable release",
+      "confidence": 0.85,
+      "source": {
+        "file": "CHANGELOG.md",
+        "lineStart": 11,
+        "lineEnd": 11
+      },
+      "tags": [
+        "freshness"
+      ]
+    },
+    {
+      "id": "recent_change:28a55a365447",
+      "type": "recent_change",
+      "value": "Updated Development Status classifier to Production/Stable",
+      "confidence": 0.85,
+      "source": {
+        "file": "CHANGELOG.md",
+        "lineStart": 12,
+        "lineEnd": 12
+      },
+      "tags": [
+        "freshness"
+      ]
+    },
+    {
+      "id": "recent_change:54934e27cda5",
+      "type": "recent_change",
+      "value": "Added SHIP_GATE.md, SCORECARD.md for product standards compliance",
+      "confidence": 0.85,
+      "source": {
+        "file": "CHANGELOG.md",
+        "lineStart": 13,
+        "lineEnd": 13
+      },
+      "tags": [
+        "freshness"
+      ]
+    },
+    {
+      "id": "recent_change:5de2f646e575",
+      "type": "recent_change",
+      "value": "Added Security & Data Scope section to README",
+      "confidence": 0.85,
+      "source": {
+        "file": "CHANGELOG.md",
+        "lineStart": 14,
+        "lineEnd": 14
+      },
+      "tags": [
+        "freshness"
+      ]
+    },
+    {
+      "id": "recent_change:5c508a089c5b",
+      "type": "recent_change",
+      "value": "Added SECURITY.md with full fields",
+      "confidence": 0.85,
+      "source": {
+        "file": "CHANGELOG.md",
+        "lineStart": 15,
+        "lineEnd": 15
+      },
+      "tags": [
+        "freshness"
+      ]
+    },
+    {
+      "id": "repo_tagline:367a24ba9ae5",
+      "type": "repo_tagline",
+      "value": "Part of <a href=\"https://mcp-tool-shop.github.io/\">MCP Tool Shop</a>",
+      "confidence": 0.85,
+      "source": {
+        "file": "README.md",
+        "lineStart": 20,
+        "lineEnd": 20
+      },
+      "tags": [
+        "identity"
+      ]
+    },
+    {
+      "id": "anti_goal:85634fa6a4dc",
+      "type": "anti_goal",
+      "value": "| **Data NOT touched** | No telemetry. No analytics. No user data. No credential storage |",
+      "confidence": 0.8,
+      "source": {
+        "file": "README.md",
+        "lineStart": 395,
+        "lineEnd": 395
+      },
+      "tags": [
+        "constraint",
+        "security"
+      ]
+    },
+    {
+      "id": "core_object:af468e6a08a8",
+      "type": "core_object",
+      "value": "nexus-attest",
+      "confidence": 0.8,
+      "source": {
+        "file": "pyproject.toml",
+        "lineStart": 6,
+        "lineEnd": 6
+      },
+      "tags": [
+        "identity"
+      ]
+    },
+    {
+      "id": "core_purpose:88eab438dd58",
+      "type": "core_purpose",
+      "value": "The `binding_digest` is a SHA-256 hash over all three. If any component changes, the digest breaks.",
+      "confidence": 0.8,
+      "source": {
+        "file": "README.md",
+        "lineStart": 110,
+        "lineEnd": 110
+      },
+      "tags": [
+        "identity"
+      ]
+    },
+    {
+      "id": "core_purpose:8172b26a021d",
+      "type": "core_purpose",
+      "value": "The attestation layer provides cryptographic witness proofs with XRPL anchoring:",
+      "confidence": 0.8,
+      "source": {
+        "file": "README.md",
+        "lineStart": 212,
+        "lineEnd": 212
+      },
+      "tags": [
+        "identity"
+      ]
+    },
+    {
+      "id": "error_string:229dbe1762fc",
+      "type": "error_string",
+      "value": "proof must be non-empty when status is CONFIRMED",
+      "confidence": 0.8,
+      "source": {
+        "file": "nexus_attest/attestation/receipt.py",
+        "lineStart": 114,
+        "lineEnd": 114
+      },
+      "tags": [
+        "error"
+      ]
+    },
+    {
+      "id": "error_string:7a8dff8bcc20",
+      "type": "error_string",
+      "value": "account must be non-empty",
+      "confidence": 0.8,
+      "source": {
+        "file": "nexus_attest/attestation/xrpl/adapter.py",
+        "lineStart": 127,
+        "lineEnd": 127
+      },
+      "tags": [
+        "error"
+      ]
+    },
+    {
+      "id": "error_string:9ab06ef7a33e",
+      "type": "error_string",
+      "value": "memo_data_hex must be non-empty",
+      "confidence": 0.8,
+      "source": {
+        "file": "nexus_attest/attestation/xrpl/tx.py",
+        "lineStart": 54,
+        "lineEnd": 54
+      },
+      "tags": [
+        "error"
+      ]
+    },
+    {
+      "id": "error_string:938230535a2c",
+      "type": "error_string",
+      "value": "min_approvals must be at least 1",
+      "confidence": 0.8,
+      "source": {
+        "file": "nexus_attest/policy.py",
+        "lineStart": 34,
+        "lineEnd": 34
+      },
+      "tags": [
+        "error"
+      ]
+    },
+    {
+      "id": "error_string:f8884b867516",
+      "type": "error_string",
+      "value": "allowed_modes cannot be empty",
+      "confidence": 0.8,
+      "source": {
+        "file": "nexus_attest/policy.py",
+        "lineStart": 36,
+        "lineEnd": 36
+      },
+      "tags": [
+        "error"
+      ]
+    },
+    {
+      "id": "error_string:1ccb9624503d",
+      "type": "error_string",
+      "value": "max_steps must be at least 1 if specified",
+      "confidence": 0.8,
+      "source": {
+        "file": "nexus_attest/policy.py",
+        "lineStart": 41,
+        "lineEnd": 41
+      },
+      "tags": [
+        "error"
+      ]
+    },
+    {
+      "id": "error_string:8de1a200b096",
+      "type": "error_string",
+      "value": "Template name cannot be empty",
+      "confidence": 0.8,
+      "source": {
+        "file": "nexus_attest/template.py",
+        "lineStart": 53,
+        "lineEnd": 53
+      },
+      "tags": [
+        "error"
+      ]
+    },
+    {
+      "id": "error_string:2ad257c6fae6",
+      "type": "error_string",
+      "value": "Connection timeout",
+      "confidence": 0.8,
+      "source": {
+        "file": "tests/test_inspect.py",
+        "lineStart": 249,
+        "lineEnd": 249
+      },
+      "tags": [
+        "error"
+      ]
+    },
+    {
+      "id": "error_string:feff7a5d92dc",
+      "type": "error_string",
+      "value": "Router crashed",
+      "confidence": 0.8,
+      "source": {
+        "file": "tests/test_lifecycle.py",
+        "lineStart": 151,
+        "lineEnd": 151
+      },
+      "tags": [
+        "error"
+      ]
+    },
+    {
+      "id": "error_string:ce548463c846",
+      "type": "error_string",
+      "value": "connection refused",
+      "confidence": 0.8,
+      "source": {
+        "file": "tests/test_xrpl_submit_confirm.py",
+        "lineStart": 430,
+        "lineEnd": 430
+      },
+      "tags": [
+        "error"
+      ]
+    },
+    {
+      "id": "invariant:b10d7586faf5",
+      "type": "invariant",
+      "value": "<strong>Deterministic attestation with verifiable evidence.</strong><br/>",
+      "confidence": 0.75,
+      "source": {
+        "file": "README.md",
+        "lineStart": 19,
+        "lineEnd": 19
+      },
+      "tags": [
+        "constraint"
+      ]
+    },
+    {
+      "id": "invariant:116b5e20de92",
+      "type": "invariant",
+      "value": "- Full event sourcing --- every state is derived by replaying an immutable log",
+      "confidence": 0.75,
+      "source": {
+        "file": "README.md",
+        "lineStart": 35,
+        "lineEnd": 35
+      },
+      "tags": [
+        "constraint"
+      ]
+    },
+    {
+      "id": "invariant:fca9d1faec0e",
+      "type": "invariant",
+      "value": "| `nexus-attest.template.create` | Create a named, immutable policy template |",
+      "confidence": 0.75,
+      "source": {
+        "file": "README.md",
+        "lineStart": 143,
+        "lineEnd": 143
+      },
+      "tags": [
+        "constraint"
+      ]
+    },
+    {
+      "id": "invariant:32352f9fd4b9",
+      "type": "invariant",
+      "value": "Named, immutable policy bundles that can be reused across decisions:",
+      "confidence": 0.75,
+      "source": {
+        "file": "README.md",
+        "lineStart": 152,
+        "lineEnd": 152
+      },
+      "tags": [
+        "constraint"
+      ]
+    },
+    {
+      "id": "invariant:d4ad8cd7212b",
+      "type": "invariant",
+      "value": "Deterministic replay of attestation timelines for verification:",
+      "confidence": 0.75,
+      "source": {
+        "file": "README.md",
+        "lineStart": 259,
+        "lineEnd": 259
+      },
+      "tags": [
+        "constraint"
+      ]
+    },
+    {
+      "id": "invariant:2caede07b499",
+      "type": "invariant",
+      "value": "All state is derived by replaying an immutable event log:",
+      "confidence": 0.75,
+      "source": {
+        "file": "README.md",
+        "lineStart": 273,
+        "lineEnd": 273
+      },
+      "tags": [
+        "constraint"
+      ]
+    },
+    {
+      "id": "invariant:3ff71a722cf3",
+      "type": "invariant",
+      "value": "|   |-- template.py            Named immutable policy templates",
+      "confidence": 0.75,
+      "source": {
+        "file": "README.md",
+        "lineStart": 328,
+        "lineEnd": 328
+      },
+      "tags": [
+        "constraint"
+      ]
+    },
+    {
+      "id": "invariant:d088358e37db",
+      "type": "invariant",
+      "value": "|   |-- canonical_json.py      Deterministic serialization",
+      "confidence": 0.75,
+      "source": {
+        "file": "README.md",
+        "lineStart": 334,
+        "lineEnd": 334
+      },
+      "tags": [
+        "constraint"
+      ]
+    },
+    {
+      "id": "invariant:9bbe8a777170",
+      "type": "invariant",
+      "value": "|       |-- replay.py          Deterministic attestation replay",
+      "confidence": 0.75,
+      "source": {
+        "file": "README.md",
+        "lineStart": 340,
+        "lineEnd": 340
+      },
+      "tags": [
+        "constraint"
+      ]
+    },
+    {
+      "id": "sharp_edge:11940cda3ea1",
+      "type": "sharp_edge",
+      "value": "Running MCP tools in production requires approval workflows, audit trails, and policy enforcement. nexus-router executes immediately --- there is no governance layer.",
+      "confidence": 0.7,
+      "source": {
+        "file": "README.md",
+        "lineStart": 27,
+        "lineEnd": 27
+      },
+      "tags": [
+        "caveat"
+      ]
+    },
+    {
+      "id": "sharp_edge:d2802ad2c816",
+      "type": "sharp_edge",
+      "value": "Requires Python 3.11 or later.",
+      "confidence": 0.7,
+      "source": {
+        "file": "README.md",
+        "lineStart": 45,
+        "lineEnd": 45
+      },
+      "tags": [
+        "caveat"
+      ]
+    },
+    {
+      "id": "sharp_edge:8886b4f1d91d",
+      "type": "sharp_edge",
+      "value": "- Execution requires approvals to satisfy policy **at execution time**",
+      "confidence": 0.7,
+      "source": {
+        "file": "README.md",
+        "lineStart": 305,
+        "lineEnd": 305
+      },
+      "tags": [
+        "caveat"
+      ]
+    },
+    {
+      "id": "core_object:ee703bf590be",
+      "type": "core_object",
+      "value": "Control bundle",
+      "confidence": 0.6,
+      "source": {
+        "file": "README.md",
+        "lineStart": 106,
+        "lineEnd": 106
+      },
+      "tags": [
+        "noun"
+      ]
+    },
+    {
+      "id": "core_object:9a3e5666f143",
+      "type": "core_object",
+      "value": "Router section",
+      "confidence": 0.6,
+      "source": {
+        "file": "README.md",
+        "lineStart": 107,
+        "lineEnd": 107
+      },
+      "tags": [
+        "noun"
+      ]
+    },
+    {
+      "id": "core_object:e3ef315859da",
+      "type": "core_object",
+      "value": "Control-router link",
+      "confidence": 0.6,
+      "source": {
+        "file": "README.md",
+        "lineStart": 108,
+        "lineEnd": 108
+      },
+      "tags": [
+        "noun"
+      ]
+    },
+    {
+      "id": "core_object:2a550ac24ba6",
+      "type": "core_object",
+      "value": "at execution time",
+      "confidence": 0.6,
+      "source": {
+        "file": "README.md",
+        "lineStart": 305,
+        "lineEnd": 305
+      },
+      "tags": [
+        "noun"
+      ]
+    },
+    {
+      "id": "core_object:b5a73c101458",
+      "type": "core_object",
+      "value": "Reference",
+      "confidence": 0.6,
+      "source": {
+        "file": "README.md",
+        "lineStart": 311,
+        "lineEnd": 311
+      },
+      "tags": [
+        "noun"
+      ]
+    },
+    {
+      "id": "core_object:3ae60ba8233b",
+      "type": "core_object",
+      "value": "Embedded",
+      "confidence": 0.6,
+      "source": {
+        "file": "README.md",
+        "lineStart": 312,
+        "lineEnd": 312
+      },
+      "tags": [
+        "noun"
+      ]
+    },
+    {
+      "id": "core_object:1e1181346cd5",
+      "type": "core_object",
+      "value": "Data touched",
+      "confidence": 0.6,
+      "source": {
+        "file": "README.md",
+        "lineStart": 394,
+        "lineEnd": 394
+      },
+      "tags": [
+        "noun"
+      ]
+    },
+    {
+      "id": "core_object:9cab56d87b1c",
+      "type": "core_object",
+      "value": "Data NOT touched",
+      "confidence": 0.6,
+      "source": {
+        "file": "README.md",
+        "lineStart": 395,
+        "lineEnd": 395
+      },
+      "tags": [
+        "noun"
+      ]
+    },
+    {
+      "id": "core_object:24b227c225f2",
+      "type": "core_object",
+      "value": "Permissions",
+      "confidence": 0.6,
+      "source": {
+        "file": "README.md",
+        "lineStart": 396,
+        "lineEnd": 396
+      },
+      "tags": [
+        "noun"
+      ]
+    }
+  ],
+  "stats": {
+    "scanned_files": 96,
+    "atoms_by_type": {
+      "cli_flag": 1,
+      "repo_tagline": 2,
+      "recent_change": 5,
+      "anti_goal": 1,
+      "core_object": 10,
+      "core_purpose": 2,
+      "error_string": 10,
+      "invariant": 9,
+      "sharp_edge": 3
+    }
+  }
+}

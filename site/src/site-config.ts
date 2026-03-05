@@ -14,7 +14,7 @@ export const config: SiteConfig = {
     headlineAccent: 'verified after.',
     description: 'Request / Review / Approve / Execute with N-of-M approvals, cryptographic audit packages, and XRPL-anchored witness proofs. Every decision is exportable, verifiable, and replayable.',
     primaryCta: { href: '#quickstart', label: 'Quick start' },
-    secondaryCta: { href: '#mcp-tools', label: 'MCP tools' },
+    secondaryCta: { href: 'handbook/', label: 'Read the Handbook' },
     previews: [
       {
         label: 'Install',

@@ -1,0 +1,21 @@
+{
+  "entries": [
+    {
+      "repo_name": "nexus-attest",
+      "tier": "Promotion",
+      "formats": [
+        "P2_demo_gif_storyboard",
+        "P5_screenshot_story"
+      ],
+      "constraints": [
+        "material:one-page",
+        "tone:museum-placard"
+      ],
+      "atom_ids_used": [
+        "repo_tagline:c4407ebc6288",
+        "invariant:b10d7586faf5"
+      ],
+      "timestamp": "2026-03-03T14:49:42.332Z"
+    }
+  ]
+}
