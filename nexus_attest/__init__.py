@@ -10,7 +10,7 @@ Every execution is tied to:
 Everything is exportable, verifiable, and replayable.
 """
 
-__version__ = "0.7.0"
+__version__ = "1.0.0"
 
 from nexus_attest.audit_export import export_audit_package
 from nexus_attest.audit_package import (
