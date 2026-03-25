@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [1.0.1] - 2026-03-25
+
+### Fixed
+- Aligned `__version__` with pyproject.toml (was 0.7.0)
+
+### Added
+- Version alignment tests (semver, >= 1.0.0, pyproject match)
+
 ## [1.0.0] - 2026-02-27
 
 ### Changed
