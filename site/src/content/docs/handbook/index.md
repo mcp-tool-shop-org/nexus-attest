@@ -33,6 +33,7 @@ Every decision produces a cryptographic audit package that binds what was allowe
 | [Templates & Bundles](/nexus-attest/handbook/templates-bundles/) | Decision templates, export/import, conflict modes |
 | [Attestation](/nexus-attest/handbook/attestation/) | Cryptographic proofs, XRPL anchoring, narrative reports, replay |
 | [Reference](/nexus-attest/handbook/reference/) | Data model, exit codes, project structure, security |
+| [Beginners](/nexus-attest/handbook/beginners/) | Gentle introduction for newcomers with step-by-step examples |
 
 ## Requirements
 

@@ -44,11 +44,11 @@ result = tools.request(
     goal="Deploy v2.1.0",
     actor=actor,
     template_name="prod-deploy",
-    override_min_approvals=3,  # Stricter for this deploy
+    min_approvals=3,  # Stricter for this deploy
 )
 ```
 
-The template provides the baseline policy. Overrides let you tighten constraints for specific decisions without creating a new template. You cannot use overrides to weaken a template's constraints below its defaults.
+When a template is specified, its policy values are used as defaults. Any explicit parameters (`min_approvals`, `allowed_modes`, `require_adapter_capabilities`, `max_steps`, `labels`) override the template value for that specific decision. The overrides applied are recorded in the decision's event log for auditability.
 
 ### Listing and retrieving templates
 
@@ -60,7 +60,7 @@ template = tools.template_get("prod-deploy")
 all_templates = tools.template_list()
 
 # Filter by label
-prod_templates = tools.template_list(labels=["prod"])
+prod_templates = tools.template_list(label_filter="prod")
 ```
 
 ### Template design patterns

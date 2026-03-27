@@ -166,7 +166,7 @@ result = tools.request(
     goal="Deploy v2.1.0",
     actor=actor,
     template_name="prod-deploy",
-    override_min_approvals=3,  # Stricter for this deploy
+    min_approvals=3,  # Stricter for this deploy
 )
 ```
 
@@ -353,7 +353,7 @@ nexus-attest/
 |           +-- tx.py          Transaction construction
 |
 |-- nexus_control/             35 modules (internal engine)
-|-- tests/                     22 test files, 632 tests
+|-- tests/                     24 test files, 635 tests
 |-- schemas/                   JSON schemas for tool inputs
 |-- ARCHITECTURE.md            Mental model + design guarantees
 |-- QUICKSTART.md              5-minute operational guide
@@ -366,7 +366,7 @@ nexus-attest/
 # Install dev dependencies
 pip install -e ".[dev]"
 
-# Run tests (632 tests)
+# Run tests (635 tests)
 pytest
 
 # Type check (basic mode, source packages)

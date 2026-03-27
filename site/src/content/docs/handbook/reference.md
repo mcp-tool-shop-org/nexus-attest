@@ -124,7 +124,7 @@ nexus-attest/
 |           +-- tx.py          Transaction construction
 |
 |-- nexus_control/             35 modules (internal engine)
-|-- tests/                     22 test files, 632 tests
+|-- tests/                     24 test files, 635 tests
 |-- schemas/                   JSON schemas for tool inputs
 |-- ARCHITECTURE.md            Mental model + design guarantees
 |-- QUICKSTART.md              5-minute operational guide

@@ -64,7 +64,7 @@ The lifecycle module computes the current state of a decision from its event log
 ```python
 from nexus_attest import compute_lifecycle
 
-lifecycle = compute_lifecycle(decision, events, policy)
+lifecycle = compute_lifecycle(decision)
 ```
 
 ### Blocking reasons
